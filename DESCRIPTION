@@ -1,9 +1,15 @@
 Package: coexnet
 Type: Package
-Title: What the Package Does (Title Case)
+Title: CO-EXpression NETwork Builder to Microarray Data
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Juan David Henao [aut,cre], Andres Pinzon-Velasco [aut]
+Maintainer: Juan David Henao <judhenaosa@unal.edu.co>
+Description: Extract gene expression from GEO DataSets database like a AffyBatch
+object. Furthermore, can makes normalization process using two different methods (vsn and rma),
+Summarizing using two different criteria (Maximum  value and Median of the sample data) and
+the process of gene differentially expressed using two methods (sam and acde).
+The construction of the co-expression network to be able to conduced using two different
+methods, Pearson Correlation Coefficient (PCC) or Mutual Information (MI) and
+choosing a threshold value using a new proposed method.
+License: GPL-2
 LazyData: TRUE
