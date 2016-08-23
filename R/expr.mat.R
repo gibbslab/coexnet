@@ -38,13 +38,13 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
       
       # Summarizing using the high expression value
       
-      eset <- ProbeFilter(rma,genes) 
+      eset <- .max.probe(rma,genes) 
       
     }else if(SummaryMethod == "median"){
       
       # Summarizing using the median expression value
       
-      eset <- medianProbe(genes,rma)
+      eset <- .median.probe(genes,rma)
     }
   }
   
