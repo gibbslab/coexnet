@@ -11,7 +11,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     vsn <- expresso(affy,pmcorrect.method = "pmonly", bg.correct = F,
                     normalize.method = "vsn", summary.method = "avgdiff")
     
-    print("summarizing")
+    cat("summarizing")
     
     if(SummaryMethod == "max"){
       
@@ -47,6 +47,8 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
       eset <- .median.probe(genes,rma)
     }
   }
+  
+  cat("DONE")
   
   # Returns the gene expression matrix
   
