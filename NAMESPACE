@@ -1,2 +1,2 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("GEOquery","getGEO")
+importFrom("GEOquery","getGEO","Table")
