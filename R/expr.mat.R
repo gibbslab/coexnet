@@ -11,7 +11,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     vsn <- expresso(affy,pmcorrect.method = "pmonly", bg.correct = F,
                     normalize.method = "vsn", summary.method = "avgdiff")
     
-    cat("summarizing")
+    cat("Summarizing")
     
     if(SummaryMethod == "max"){
       
@@ -32,7 +32,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     
     rma <- rma(affy) 
     
-    print("summarizing")
+    cat("Summarizing")
     
     if(SummaryMethod == "max"){
       
