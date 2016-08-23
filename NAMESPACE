@@ -1,4 +1,3 @@
 exportPattern("^[[:alpha:]]+")
 importFrom("GEOquery","getGEO","Table")
-importFrom("affy","ReadAffy","expresso")
-importFrom("siggenes","rma")
+importFrom("affy","ReadAffy","expresso","rma")
