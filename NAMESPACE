@@ -1,4 +1,4 @@
 exportPattern("^[[:alpha:]]+")
 importFrom("GEOquery","getGEO","Table")
 import("affy")
-importFrom("vsn","vsn")
+importFrom("vsn")
