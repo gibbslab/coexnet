@@ -44,7 +44,7 @@ dif.exprs <- function(eset,treatment,fdr,DifferentialMethod){
     
     # Shows the achieved fdr
     
-    print(paste0("Achieved FDR: ",value$FDR))
+    cat(paste0("Achieved FDR: ",value$FDR))
     
   }else if(DifferentialMethod == "acde"){
     
@@ -62,11 +62,11 @@ dif.exprs <- function(eset,treatment,fdr,DifferentialMethod){
     
     # Shows the achieved fdr
     
-    print(paste0("Achieved FDR: ",acde$astar))
+    cat(paste0("Achieved FDR: ",acde$astar))
     
     # Shows the threshold value
     
-    print(paste0("delta value: ",acde$tstar))
+    cat(paste0("delta value: ",acde$tstar))
     
     # Creates a data.frame object with the result of differential analysis
     
