@@ -10,7 +10,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     
     pvsn <- justvsn(affy)
     
-    vsn <- computeExprSet(vsn,"pmonly","avgdiff")
+    vsn <- computeExprSet(pvsn,"pmonly","avgdiff")
     
     cat("Summarizing")
     
