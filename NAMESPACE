@@ -1,4 +1,4 @@
 exportPattern("^[[:alpha:]]+")
 importFrom("GEOquery","getGEO","Table")
 importFrom("affy","ReadAffy","expresso","rma")
-import("vsn")
+import("vsn","vsn2","normalize.AffyBatch.vsn")
