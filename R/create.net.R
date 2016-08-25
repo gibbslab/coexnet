@@ -118,11 +118,15 @@ create.net <- function(difexp, method){
   
   C <- na.omit(C)
   
+  cat("Second filter")
+  
   # p-value to K-S test
   
   fit <-0.05
   
-  ifelse(length(C) == NULL, cat("Second filter"),no = stop(cat("No threshold values found")))
+  value <- NULL
+  
+  ifelse(length(C) == NULL, next(),no = stop(cat("No threshold values found")))
   
   for (z in as.vector(C)) {
     
@@ -164,6 +168,8 @@ create.net <- function(difexp, method){
       value <- z                     
     }
   }
+  
+  ifelse(value == NULL, stop("The network is randomly created"),next())
   
   # Creates an empty matrix
   
