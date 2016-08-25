@@ -18,17 +18,17 @@ cof.var <- function(data,type,treatment,complete = FALSE){
     type <- "1"
   }
   
-  if(complete == FALSE){
-    
-    # Uses the control samples or the case samples
-    
-    tdata <- data[names(data) == type]
-    
-  }else{
+  if(type == "complete"){
     
     # Uses all the samples
     
     tdata = data
+    
+  }else{
+    
+    # Uses the control samples or the case samples
+    
+    tdata <- data[names(data) == type]
   
   }
   
