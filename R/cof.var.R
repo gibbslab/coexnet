@@ -2,7 +2,7 @@
 # Juan David Henao Sanchez
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
-cof.var <- function(data,type,treatment,complete = FALSE){
+cof.var <- function(data,type,treatment){
   
   # Changes the names of samples to "0" or "1"
   
