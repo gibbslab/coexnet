@@ -118,7 +118,7 @@ create.net <- function(difexp, method){
   
   C <- na.omit(C)
   
-  ifelse(length(C) == 0, stop("No threshold values found"),next())
+  ifelse(length(C) == 0, stop("No threshold values found"),next)
   
   cat("Second filter")
   
@@ -167,7 +167,7 @@ create.net <- function(difexp, method){
     }
   }
   
-  ifelse(length(value) == 0, stop("The network is randomly created"),next())
+  ifelse(length(value) == 0, stop("The network is randomly created"),next)
   
   # Creates an empty matrix
   
