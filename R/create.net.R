@@ -118,15 +118,13 @@ create.net <- function(difexp, method){
   
   C <- na.omit(C)
   
+  ifelse(length(C) == 0, stop("No threshold values found"),next())
+  
   cat("Second filter")
   
   # p-value to K-S test
   
   fit <-0.05
-  
-  value <- NULL
-  
-  ifelse(length(C) == NULL, next(),no = stop(cat("No threshold values found")))
   
   for (z in as.vector(C)) {
     
@@ -169,7 +167,7 @@ create.net <- function(difexp, method){
     }
   }
   
-  ifelse(value == NULL, stop("The network is randomly created"),next())
+  ifelse(length(value) == 0, stop("The network is randomly created"),next())
   
   # Creates an empty matrix
   
@@ -196,11 +194,9 @@ create.net <- function(difexp, method){
   
   # Shows the final values of the co-expression network
   
-  print("")
-  print("Final Network")
-  print("")
-  print(paste("p-value =",fit,sep = " "))
-  print(paste("threshold =",value,sep = " "))
+  cat("Final Network")
+  cat(paste("p-value =",fit,sep = " "))
+  cat(paste("threshold =",value,sep = " "))
   
   # Returns the network as an igraph object
   
