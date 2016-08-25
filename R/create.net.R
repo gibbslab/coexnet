@@ -34,7 +34,7 @@ create.net <- function(difexp, method){
   Cis <- vector()
   C0s <- vector()
   
-  cat("First filter")
+  cat("First filter",sep = "\n")
   
   # Initial counter
   
@@ -120,7 +120,7 @@ create.net <- function(difexp, method){
   
   if (length(C) == 0) {stop("No threshold values found")}
   
-  cat("Second filter")
+  cat("Second filter",sep = "\n")
   
   # p-value to K-S test
   
@@ -153,11 +153,11 @@ create.net <- function(difexp, method){
     
     # Shows the threshold value
     
-    print(paste("Threshold:",z))
+    cat(paste("Threshold:",z),sep = "\n")
     
     # Shows the p-value to K-S test in the fit_power_law function
     
-    print(paste("p-value:",pvalue$KS.p))
+    cat(paste("p-value:",pvalue$KS.p),sep = "\n")
     
     # Obtains the higher p-value and the corresponding threshold value
     
@@ -194,9 +194,9 @@ create.net <- function(difexp, method){
   
   # Shows the final values of the co-expression network
   
-  cat("Final Network")
-  cat(paste("p-value =",fit,sep = " "))
-  cat(paste("threshold =",value,sep = " "))
+  cat("Final Network",sep = "\n")
+  cat(paste("p-value =",fit,sep = " "),sep = "\n")
+  cat(paste("threshold =",value,sep = " "),sep = "\n")
   
   # Returns the network as an igraph object
   
