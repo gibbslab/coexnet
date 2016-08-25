@@ -34,6 +34,8 @@ create.net <- function(difexp, method){
   Cis <- vector()
   C0s <- vector()
   
+  cat("First filter")
+  
   # Initial counter
   
   count <- 1
@@ -95,9 +97,6 @@ create.net <- function(difexp, method){
     
     count <- count + 1
     
-    # Shows the progress of the procedure
-    
-    print(paste0(val*100,"%"))
   }
   
   # Creates an empty vector
@@ -122,6 +121,8 @@ create.net <- function(difexp, method){
   # p-value to K-S test
   
   fit <-0.05
+  
+  ifelse(length(C) == NULL, cat("Second filter"),no = stop(cat("No threshold values found")))
   
   for (z in as.vector(C)) {
     
