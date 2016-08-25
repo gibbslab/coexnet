@@ -8,9 +8,8 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     
     # Normalizing with vsn method
     
-    pvsn <- justvsn(affy)
-    
-    vsn <- computeExprSet(pvsn,"pmonly","avgdiff")
+    vsn <- expresso(affy,pmcorrect.method = "pmonly", bg.correct = F,
+                    normalize.method = "vsn", summary.method = "avgdiff")
     
     cat("Summarizing")
     
