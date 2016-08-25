@@ -8,7 +8,7 @@ dif.exprs <- function(eset,treatment,fdr,DifferentialMethod){
     
     # Differential analysis using sam method
     
-    samr <- siggenes::sam(data = eset,cl = treatment,B=100,rand=100)
+    samr <- sam(data = eset,cl = treatment,B=100,rand=100)
     
     # Obtains the fdr to different thresholds
     
