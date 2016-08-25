@@ -24,7 +24,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
       
       # Summarizing using the median expression value
       
-      eset <- .median.probe(gene,vsn)
+      eset <- .median.probe(genes,vsn)
     }
     
   }else if(NormalizeMethod == "rma"){
