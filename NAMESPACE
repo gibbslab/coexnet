@@ -1,5 +1,6 @@
 exportPattern("^[[:alpha:]]+")
 importFrom("GEOquery","getGEO","Table","getGEOSuppFiles","getGEOfile")
-import("vsn","affy")
+importFrom("vsn","normalize.AffyBatch.vsn")
+importFrom("affy","ReadAffy","expresso","rma","computeExprSet")
 import("siggenes")
 importFrom("acde","stp")
