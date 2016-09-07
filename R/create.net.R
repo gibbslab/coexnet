@@ -198,6 +198,12 @@ create.net <- function(difexp, method){
   cat(paste("p-value =",fit,sep = " "),sep = "\n")
   cat(paste("threshold =",value,sep = " "),sep = "\n")
   
+  # Create a plot with local maximum.
+  
+  plot(x = pcv,y = abs(Cis-C0s),t="l",xlab="Threshold",ylab="|C-C0|")
+  
+  abline(v=value,col="red")
+  
   # Returns the network as an igraph object
   
   return(Gr) 
