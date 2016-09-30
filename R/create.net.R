@@ -146,15 +146,15 @@ create.net <- function(difexp, method){
     cntr <- cntr + 1
   }
   
-  
-  
-  # END WHILE #
-  
-#############################
-  
   # Compares the clustering coefficients
   
   plot(pcv,abs(C0s-Cis),t="l",xlab = "Threshold",ylab = "| C0-Ci |")
+  
+  abline(v=mthr, col="red")
+  
+  text(x=0.1,y=0.25,paste0("Threshold = ", mthr))
+  
+#############################
   
   
   
