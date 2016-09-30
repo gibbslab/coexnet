@@ -102,17 +102,61 @@ create.net <- function(difexp, method){
   # Creates an empty vector
   
   C <- vector()
+##############################
+  
+  thr <- abs(C0s-Cis)
+  
+  othr <- sort(thr,decreasing = T)
+  
+  dthr <- data.frame(pcv,thr)
+  
+  pvalue <- 0
+  
+  cntr <- 1
+  
+  while (pvalue <= 0.05) {
+    
+    mthr <- dthr[which(dthr$thr == othr[cntr]),][1]
+    
+    # Creates an empty matrix
+    
+    ad <- matrix(0,ncol = nrow(simil),nrow = nrow(simil))
+    
+    # Transforms to adjacency matrix
+    
+    for(i in 1:nrow(simil)){
+      ad[which(simil[,i]>=mthr),i]<-1
+      ad[which(simil[,i]<mthr),i]<-0
+    }
+    
+    # Diagonal equal to zero
+    
+    diag(ad)<-0
+    
+    # Creates the network from the adjacency matrix
+    
+    gr=graph.adjacency(ad,mode="undirected",diag=FALSE)
+    
+    # Uses the function fit_power_law
+    
+    fit <- fit_power_law(degree(gr))
+    
+    pvalue <- fit$KS.p
+    
+    cntr <- cntr + 1
+  }
+  
+  
+  
+  # END WHILE #
+  
+#############################
   
   # Compares the clustering coefficients
   
-  for (counter in 1:(length(pcv)-1)) {
-    if((Cis[counter] - C0s[counter]) > (Cis[counter+1] - C0s[counter+1])){
-      
-      # Adds only the thresholds that pass the condition
-      
-      C[counter] <- pcv[counter]
-    } 
-  }
+  plot(pcv,abs(C0s-Cis),t="l",xlab = "Threshold",ylab = "| C0-Ci |")
+  
+  
   
   # Omits the possible na values
   
