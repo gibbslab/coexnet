@@ -70,7 +70,7 @@
   return(final)
 }
 
-.correlation.matrix <- function(method){
+.correlation.matrix <- function(difexp,method){
   
   if(method == "correlation"){
     

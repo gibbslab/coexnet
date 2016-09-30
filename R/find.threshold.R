@@ -4,7 +4,7 @@
 
 find.threshold <- function(difexp, method){
   
-  simil <- .correlation.matrix(method)
+  simil <- .correlation.matrix(difexp,method)
   
   # Creates a sequence of threshold values
   
