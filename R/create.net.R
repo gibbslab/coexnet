@@ -2,7 +2,7 @@
 # Juan David Henao Sanchez
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
-create.net <- function(difexp, method){
+find.threshold <- function(difexp, method){
   
   if(method == "corelation"){
     
@@ -155,100 +155,4 @@ create.net <- function(difexp, method){
   text(x=0.1,y=0.25,paste0("Threshold = ", mthr))
   
 #############################
-  
-  
-  
-  # Omits the possible na values
-  
-  C <- na.omit(C)
-  
-  if (length(C) == 0) {stop("No threshold values found")}
-  
-  cat("Second filter",sep = "\n")
-  
-  # p-value to K-S test
-  
-  fit <-0.05
-  
-  for (z in as.vector(C)) {
-    
-    # Creates an empty matrix
-    
-    ad <- matrix(0,ncol = nrow(simil),nrow = nrow(simil))
-    
-    # Transforms to adjacency matrix
-    
-    for(i in 1:nrow(simil)){
-      ad[which(simil[,i]>=z),i]<-1
-      ad[which(simil[,i]<z),i]<-0
-    }
-    
-    # Diagonal equal to zero
-    
-    diag(ad)<-0
-    
-    # Creates the network from the adjacency matrix
-    
-    gr=graph.adjacency(ad,mode="undirected",diag=FALSE)
-    
-    # Uses the function fit_power_law
-    
-    pvalue <- fit_power_law(degree(gr))
-    
-    # Shows the threshold value
-    
-    cat(paste("Threshold:",z),sep = "\n")
-    
-    # Shows the p-value to K-S test in the fit_power_law function
-    
-    cat(paste("p-value:",pvalue$KS.p),sep = "\n")
-    
-    # Obtains the higher p-value and the corresponding threshold value
-    
-    if(pvalue$KS.p >= fit ){
-      fit <- pvalue$KS.p
-      value <- z                     
-    }
-  }
-  
-  if (length(value) == 0) {stop("The network is randomly created")}
-  
-  # Creates an empty matrix
-  
-  Ad <- matrix(0,ncol = nrow(simil),nrow = nrow(simil))
-  
-  # Transforms to adjacency matrix
-  
-  for(i in 1:nrow(simil)){
-    Ad[which(simil[,i]>=value),i]<-1
-    Ad[which(simil[,i]<value),i]<-0
-  }
-  
-  # Changes the names of adjacency matrix to the genes names
-  
-  colnames(Ad)<-rownames(Ad)<-rownames(simil)
-  
-  # Diagonal equal to zero
-  
-  diag(Ad)<-0
-  
-  # Creates the network from the adjacency matrix
-  
-  Gr=graph.adjacency(Ad,mode="undirected",add.colnames=NULL,diag=FALSE)
-  
-  # Shows the final values of the co-expression network
-  
-  cat("Final Network",sep = "\n")
-  cat(paste("p-value =",fit,sep = " "),sep = "\n")
-  cat(paste("threshold =",value,sep = " "),sep = "\n")
-  
-  # Create a plot with local maximum.
-  
-  plot(x = pcv,y = abs(Cis-C0s),t="l",xlab="Threshold",ylab="|C-C0|")
-  
-  abline(v=value,col="red")
-  
-  # Returns the network as an igraph object
-  
-  return(Gr) 
 }
