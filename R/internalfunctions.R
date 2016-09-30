@@ -69,3 +69,23 @@
   
   return(final)
 }
+
+.correlation.matrix <- function(method){
+  
+  if(method == "correlation"){
+    
+    
+    simil <- abs(cor(t(difexp),use =  "pairwise.complete.obs"))
+    
+  }else if(method == "mutual information"){
+    
+    presimil <- build.mim(t(difexp), estimator = "mi.shrink", disc = "globalequalwidth")
+    
+    simil<-sqrt(1-exp(-2*presimil))
+    
+    simil[which(is.na(simil))]<-0
+  }
+  
+  return(simil)
+  
+}

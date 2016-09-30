@@ -4,26 +4,7 @@
 
 find.threshold <- function(difexp, method){
   
-  if(method == "corelation"){
-    
-    # Creates the Pearson correlation matrix
-    
-    simil <- abs(cor(t(difexp),use =  "pairwise.complete.obs"))
-    
-  }else if(method == "mutual information"){
-    
-    # Creates the mutual information matrix
-    
-    presimil <- build.mim(t(difexp), estimator = "mi.shrink", disc = "globalequalwidth")
-    
-    # Transforms data [0,inf) to [0,1] data
-    
-    simil<-sqrt(1-exp(-2*presimil))
-    
-    # Transforms the na data in 0
-    
-    simil[which(is.na(simil))]<-0
-  }
+  simil <- .correlation.matrix(method)
   
   # Creates a sequence of threshold values
   
@@ -99,11 +80,6 @@ find.threshold <- function(difexp, method){
     
   }
   
-  # Creates an empty vector
-  
-  C <- vector()
-##############################
-  
   thr <- abs(C0s-Cis)
   
   othr <- sort(thr,decreasing = T)
@@ -153,6 +129,5 @@ find.threshold <- function(difexp, method){
   abline(v=mthr, col="red")
   
   text(x=0.1,y=0.25,paste0("Threshold = ", mthr))
-  
-#############################
+
 }
