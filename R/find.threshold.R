@@ -15,8 +15,6 @@ find.threshold <- function(difexp, method){
   Cis <- vector()
   C0s <- vector()
   
-  cat("First filter",sep = "\n")
-  
   # Initial counter
   
   count <- 1
