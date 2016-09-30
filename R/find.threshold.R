@@ -1,3 +1,7 @@
+# create.net
+# Juan David Henao Sanchez
+# Bioinformatics and Systems Biology | Universidad Nacional de Colombia
+
 create.net <- function(method, threshold){
   
   simil <- .correlation.matrix(method)

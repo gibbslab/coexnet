@@ -1,4 +1,4 @@
-# create.net
+# find.threshold
 # Juan David Henao Sanchez
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
