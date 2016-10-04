@@ -33,7 +33,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     
     rma <- rma(affy) 
     
-    cat("Summarizing")
+    cat("Summarizing",sep = "\n")
     
     if(SummaryMethod == "max"){
       
