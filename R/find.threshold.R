@@ -128,4 +128,6 @@ find.threshold <- function(difexp, method){
   
   text(x=0.1,y=0.25,paste0("Threshold = ", mthr[1,1]))
   
+  cat(paste0("Treshold= ",mthr[1,1])))
+  
 }
