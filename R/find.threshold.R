@@ -124,8 +124,8 @@ find.threshold <- function(difexp, method){
   
   plot(pcv,abs(C0s-Cis),t="l",xlab = "Threshold",ylab = "| C0-Ci |")
   
-  abline(v=mthr, col="red")
+  abline(v=mthr[1,1], col="red")
   
-  text(x=0.1,y=0.25,paste0("Threshold = ", mthr))
+  text(x=0.1,y=0.25,paste0("Threshold = ", mthr[1,1]))
   
 }
