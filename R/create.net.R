@@ -2,9 +2,9 @@
 # Juan David Henao Sanchez
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
-create.net <- function(method, threshold){
+create.net <- function(difexp,method, threshold){
   
-  simil <- .correlation.matrix(method)
+  simil <- .correlation.matrix(difexp,method)
   
   Ad <- matrix(0,ncol = nrow(simil),nrow = nrow(simil))
   
