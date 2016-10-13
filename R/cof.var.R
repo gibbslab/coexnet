@@ -1,6 +1,16 @@
-# cof.var
-# Juan David Henao Sanchez
+#'@export cof.var
+#' @author Juan David Henao <judhenaosa@unal.edu.co>
+
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
+
+#' @title Obtains the mean and the coeficient of variation per row of expression data to controls, cases or complite matrix.
+#' @description Using a expression matrix, calculates the mean and the coefficient of variation to the probeset or genes using
+#' only the cases samples or control samples or using all the samples.
+#' @param data A data frame with the expression matrix.
+#' @param type The samples to be used, can be "control", "case" or "complete".
+#' @param treatment A vector of 0 and 1 values, 0 are the control samples and 1 are the cases samples.
+#' @return A data frame with the expression matrix and two new colums. one to the mean and the another one to the 
+#' coefficient of variation values.
 
 cof.var <- function(data,type,treatment){
   
