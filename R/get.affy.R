@@ -4,7 +4,7 @@
 #' @description Charges the data from a file with the GSM samples compressed using the "filelist.txt" file to identify the GSM ID
 #' and create the AffyBatch object finally.
 #' @param GSE The name of the file with the compressed samples data.
-#' @seealso \code{\link{get.info}}
+#' @seealso \code{\link{get.info}} to download expression data from GEO DataSet.
 
 
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia

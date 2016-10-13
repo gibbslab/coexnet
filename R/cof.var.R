@@ -6,6 +6,7 @@
 #' @title Calculate the mean and coefficient of variation of the expression matrix to cases, controls or all the samples
 #' @description Using a expression matrix, calculates the mean and the coefficient of variation to the probeset or genes using
 #' only the cases samples or control samples or using all the samples.
+#' @usage cof.var(data, type = c("control", "case", "complete"), treatment)
 #' @param data A data frame with the expression matrix.
 #' @param type The samples to be used, can be "control", "case" or "complete".
 #' @param treatment A vector of 0 and 1 values, 0 are the control samples and 1 are the cases samples.

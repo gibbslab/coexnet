@@ -17,6 +17,6 @@ and create the AffyBatch object finally.
 Juan david Henao <judhenaosa@unal.edu.co>
 }
 \seealso{
-\code{\link{get.info}}
+\code{\link{get.info}} to download expression data from GEO DataSet.
 }
 
