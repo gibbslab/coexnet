@@ -2,3 +2,4 @@
 
 export(cof.var)
 export(get.affy)
+export(get.info)
