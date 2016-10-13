@@ -2,7 +2,7 @@
 % Please edit documentation in R/cof.var.R
 \name{cof.var}
 \alias{cof.var}
-\title{Obtains the mean and the coeficient of variation per row of expression data to controls, cases or complite matrix.}
+\title{Calculate the mean and coefficient of variation of the expression matrix to cases, controls or all the samples}
 \usage{
 cof.var(data, type, treatment)
 }
@@ -22,6 +22,6 @@ Using a expression matrix, calculates the mean and the coefficient of variation 
 only the cases samples or control samples or using all the samples.
 }
 \author{
-Juan David Henao
+Juan David Henao <judhenaosa@unal.edu.co>
 }
 

@@ -3,7 +3,7 @@
 
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
-#' @title Obtains the mean and the coeficient of variation per row of expression data to controls, cases or complite matrix.
+#' @title Calculate the mean and coefficient of variation of the expression matrix to cases, controls or all the samples
 #' @description Using a expression matrix, calculates the mean and the coefficient of variation to the probeset or genes using
 #' only the cases samples or control samples or using all the samples.
 #' @param data A data frame with the expression matrix.
