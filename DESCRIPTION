@@ -13,7 +13,7 @@ Description: Extracts the gene expression matrix from GEO DataSets as a
     be conduced using two different methods, Pearson Correlation Coefficient (PCC)
     or Mutual Information (MI) and choosing a threshold value using a graph theory
     approach.
-License: GPL-2
+License: LGPL
 LazyData: TRUE
 Imports:
     affy,

@@ -4,14 +4,14 @@
 \alias{get.info}
 \title{Download raw expression data from GEO DataSet}
 \usage{
-get.info(GSE, GPL, dir=".")
+get.info(GSE, GPL, dir = ".")
 }
 \arguments{
 \item{GSE}{The list of GSE ID.}
 
 \item{GPL}{The GPL ID of the chip used in the microarray experiment.}
 
-\item{dir}{The pathfile to download and uncompress the raw wxpewssion data, by default is the actual pathfile.}
+\item{dir}{The pathfile to download and uncompress the raw wxpewssion data, by default is the current pathfile.}
 }
 \value{
 A set of files with the uncompressed data and ready to use.

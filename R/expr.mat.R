@@ -1,6 +1,9 @@
-# expr.mat
-# Juan David Henao Sanchez
+#' @export expr.mat
+#' @author Juan David Henao <judhenaosa@unal.edu.co>
+
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
+
+#' @title Create a expression matrix 
 
 expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
   

@@ -1,6 +1,15 @@
-# gene.symbol
-# Juan David Henao Sanchez
+#' @export gene.symbol
+#' @author Juan David Henao <judhenaosa@unal.edu.co>
+
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
+
+#' @title Create a table relating probesets with genes.
+#' @description From the information in the .soft file, creates a data.frame with two columns, the first one with the probeset names
+#' and the second one with the name of the corresponding genes. 
+#' The genes are annotated using the gene symbol system.
+#' @param GPL The GPL ID.
+#' @param d The pathfile where the .soft file are, by default is the current pathfile.
+#' @return A data.frame with two columns, in the first one the probesets and in the second one the corresponding gene to each probeset.
 
 gene.symbol <- function(GPL, d = "."){
 
