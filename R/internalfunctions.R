@@ -1,10 +1,10 @@
-#' @importFrom("GEOquery","getGEO","Table","getGEOSuppFiles","getGEOfile")
-#' @importFrom("vsn","normalize.AffyBatch.vsn","exprs")
-#' @importFrom("affy","ReadAffy","expresso","rma","computeExprSet")
-#' @import("siggenes")
-#' @importFrom("acde","stp")
-#' @import("igraph")
-#' @importFrom("minet","build.mim")
+#' @importFrom GEOquery getGEO Table getGEOSuppFiles getGEOfile
+#' @importFrom vsn normalize.AffyBatch.vsn exprs
+#' @importFrom affy ReadAffy expresso rma computeExprSet
+#' @import siggenes
+#' @importFrom acde stp
+#' @import igraph
+#' @importFrom minet build.mim
 
 # internalfunctions
 # Juan David Henao Sanchez
