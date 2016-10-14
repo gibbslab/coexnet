@@ -1,6 +1,18 @@
-# find.threshold
-# Juan David Henao Sanchez
+#' @export find.threshold
+#' @author Juan David Henao Sanchez <judhenaosa@unal.edu.co>
+
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
+
+#' @title Find the threshold value to create a co-expression network
+#' @description Find the threshold value to establish the edges in a co-expression network based on correlation matrix
+#' using two different criteria. First, use the differential value between the clustering coefficient for the real network and
+#' random network build and second test the network using a Kolgomorov-Smirnov test to reject normality in the degree distribution of 
+#' the edges in the network.
+#' @param difexp The data.frame with the expression matrix for the expressed differential genes.
+#' @param method The method to create the correlation matrix, can be "correlation" to Pearson test or "mutual information" to test 
+#' based on entropy information.
+#' @return The best threshold value find using the to criteria and a plot with the result.
+#' @seealso \code{\link{dif.exprs}} to find the differential expressed genes matrix.
 
 find.threshold <- function(difexp, method){
   

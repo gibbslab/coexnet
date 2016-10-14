@@ -3,6 +3,7 @@
 export(cof.var)
 export(dif.exprs)
 export(expr.mat)
+export(find.threshold)
 export(gene.symbol)
 export(get.affy)
 export(get.info)
