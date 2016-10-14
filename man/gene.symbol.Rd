@@ -4,7 +4,7 @@
 \alias{gene.symbol}
 \title{Create a table relating probesets with genes.}
 \usage{
-gene.symbol(GPL, dir = ".")
+gene.symbol(GPL, d = ".")
 }
 \arguments{
 \item{GPL}{The GPL ID.}
