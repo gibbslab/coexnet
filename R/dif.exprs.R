@@ -1,6 +1,21 @@
-# dif.exprs
-# Juan David Henao Sanchez
+#' @export dif.exprs
+#' @author Juan David Henao <judhenaosa@unal.edu.co>
+
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
+
+#' @title Differential expression analysis using two different methods.
+#' @description Using the expression matrix calculate the differential expressed
+#' genes to two class analysis and fixing an expected FDR value. The methods
+#' are SAM and ACDE.
+#' @param eset A data.frame with the expression matrix.
+#' @param treatment A vector with the ientifiers of the classes, 0 to control
+#' and 1 to case.
+#' @param fdr The expected FDR value.
+#' @param DifferentialMethod The method to calculate the differential expressed
+#' genes, can be "sam" or "acde"
+#' @return A data.frame with the expression matrix to the expressed diferential 
+#' genes only.
+#' @seealso \code{\link{expr.mat}} to obtain the expression matrix.
 
 dif.exprs <- function(eset,treatment,fdr,DifferentialMethod){
   
