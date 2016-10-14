@@ -3,16 +3,6 @@
 
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
-#' @title Create a co-expression matrix using correlation matrix
-#' @description Create a co-expression network from the expressed diferential genes matrix and a threshold value using a 
-#' correlation matrix created from two different methods. The first one is the Pearson Correlation Coefficient and the second one is 
-#' the Mutual Information test.
-#' @param difexp A data.frame with the expressed diferential genes matrix.
-#' @param method The method to create the correlation matrix, can be "correlation" to use the Pearson Correlation Coefficient or
-#' "mutual information" to use the Mutual Information test.
-#' @param threshold The threshold value to establish the edges in the co-expression network.
-#' @return A igraph objecto with the co-expression network.
-#' @seealso \code{\link{find.threshold}} to find a threshold value.
 
 create.net <- function(difexp,method, threshold){
   
