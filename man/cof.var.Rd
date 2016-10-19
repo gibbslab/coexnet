@@ -2,22 +2,12 @@
 % Please edit documentation in R/cof.var.R
 \name{cof.var}
 \alias{cof.var}
-\title{Calculate the mean and coefficient of variation of the expression matrix to cases, controls or all the samples}
+\title{t}
 \usage{
 cof.var(data, type, treatment)
 }
-\arguments{
-\item{data}{A data frame with the expression matrix.}
-
-\item{type}{The samples to be used, can be "control", "case" or "complete".}
-
-\item{treatment}{A vector of 0 and 1 values, 0 are the control samples and 1 are the cases samples.}
-}
-\value{
-A data frame with the expression matrix and two new colums. one to the mean and the another one to the coefficient of variation values.
-}
 \description{
-Using a expression matrix, calculates the mean and the coefficient of variation to the probeset or genes using only the cases samples or control samples or using all the samples.
+f
 }
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
