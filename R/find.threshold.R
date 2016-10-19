@@ -111,8 +111,8 @@ find.threshold <- function(difexp, method){
     # Transforms to adjacency matrix
     
     for(i in 1:nrow(simil)){
-      ad[which(simil[,i]>=mthr),i]<-1
-      ad[which(simil[,i]<mthr),i]<-0
+      ad[which(simil[,i]>=mthr[1,cntr]),i]<-1
+      ad[which(simil[,i]<mthr[1,cntr]),i]<-0
     }
     
     # Diagonal equal to zero
