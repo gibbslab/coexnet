@@ -1,4 +1,4 @@
-#'@export cof.var
+#' @export cof.var
 #' @author Juan David Henao <judhenaosa@unal.edu.co>
 
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
