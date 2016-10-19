@@ -4,7 +4,7 @@
 \alias{cof.var}
 \title{Calculate the mean and coefficient of variation of the expression matrix to cases, controls or all the samples}
 \usage{
-cof.var(data, type = c("control", "case", "complete"), treatment)
+cof.var(data, type, treatment)
 }
 \arguments{
 \item{data}{A data frame with the expression matrix.}
