@@ -14,12 +14,10 @@ cof.var(data, type, treatment)
 \item{treatment}{A vector of 0 and 1 values, 0 are the control samples and 1 are the cases samples.}
 }
 \value{
-A data frame with the expression matrix and two new colums. one to the mean and the another one to the 
-coefficient of variation values.
+A data frame with the expression matrix and two new colums. one to the mean and the another one to the coefficient of variation values.
 }
 \description{
-Using a expression matrix, calculates the mean and the coefficient of variation to the probeset or genes using
-only the cases samples or control samples or using all the samples.
+Using a expression matrix, calculates the mean and the coefficient of variation to the probeset or genes using only the cases samples or control samples or using all the samples.
 }
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
