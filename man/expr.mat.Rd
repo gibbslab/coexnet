@@ -2,7 +2,7 @@
 % Please edit documentation in R/expr.mat.R
 \name{expr.mat}
 \alias{expr.mat}
-\title{Create a expression matrix}
+\title{gggg}
 \usage{
 expr.mat(affy, genes, NormalizeMethod, SummaryMethod)
 }

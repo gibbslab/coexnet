@@ -3,7 +3,7 @@
 
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
-#' @title Create a expression matrix 
+#' @title gggg
 
 expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
   
