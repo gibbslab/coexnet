@@ -36,7 +36,9 @@
 
 .max.probe <- function(array,gene){
   
-  eset <- exprs(array)
+  #eset <- exprs(array)
+  
+  eset <- array
   
   rows <- rowMeans(eset,na.rm = T)
   
