@@ -15,6 +15,24 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
    
     vsn <- computeExprSet(x = pvsn,pmcorrect.method = "pmonly",summary.method = "avgdiff")
     
+    dates <- protocolData(affy)$ScanDate
+    
+    strdates <- strsplit(dates," ")
+    
+    batch.dates <- vector()
+    
+    for (i in 1:length(strdates)) {
+      batch.dates[i]  <- strdates[[i]][1]
+    }
+    
+    tab <-names(table(batch.dates))
+    
+    for (n in 1:length(tab)) {
+      batch.dates[batch.dates == tab[n]] <- paste0("b", n)
+    }
+    
+    batch <- removeBatchEffect(vsn,batch.dates)
+    
     cat("Summarizing")
     
     if(SummaryMethod == "max"){

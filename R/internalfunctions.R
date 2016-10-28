@@ -5,6 +5,8 @@
 #' @importFrom acde stp
 #' @import igraph
 #' @importFrom minet build.mim
+#' @importFrom limma removeBatchEffect
+#' @importFrom Biobase protocolData
 
 # internalfunctions
 # Juan David Henao Sanchez
