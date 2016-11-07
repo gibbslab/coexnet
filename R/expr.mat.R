@@ -33,7 +33,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     
     batch <- removeBatchEffect(vsn,batch.dates)
     
-    cat("Summarizing")
+    cat("Summarizing",sep = "\n")
     
     if(SummaryMethod == "max"){
       
@@ -52,7 +52,25 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     
     # Normalizing using ram method
     
-    rma <- rma(affy) 
+    rma <- rma(affy)
+    
+    dates <- protocolData(affy)$ScanDate
+    
+    strdates <- strsplit(dates," ")
+    
+    batch.dates <- vector()
+    
+    for (i in 1:length(strdates)) {
+      batch.dates[i]  <- strdates[[i]][1]
+    }
+    
+    tab <-names(table(batch.dates))
+    
+    for (n in 1:length(tab)) {
+      batch.dates[batch.dates == tab[n]] <- paste0("b", n)
+    }
+    
+    batch <- removeBatchEffect(rma,batch.dates)
     
     cat("Summarizing",sep = "\n")
     
