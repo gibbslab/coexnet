@@ -54,37 +54,19 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     
     rma <- rma(affy)
     
-    dates <- protocolData(affy)$ScanDate
-    
-    strdates <- strsplit(dates," ")
-    
-    batch.dates <- vector()
-    
-    for (i in 1:length(strdates)) {
-      batch.dates[i]  <- strdates[[i]][1]
-    }
-    
-    tab <-names(table(batch.dates))
-    
-    for (n in 1:length(tab)) {
-      batch.dates[batch.dates == tab[n]] <- paste0("b", n)
-    }
-    
-    batch <- removeBatchEffect(rma,batch.dates)
-    
     cat("Summarizing",sep = "\n")
     
     if(SummaryMethod == "max"){
       
       # Summarizing using the high expression value
       
-      eset <- .max.probe(batch,genes) 
+      eset <- .max.probe(rma,genes) 
       
     }else if(SummaryMethod == "median"){
       
       # Summarizing using the median expression value
       
-      eset <- .median.probe(genes,batch)
+      eset <- .median.probe(genes,rma)
     }
   }
   
