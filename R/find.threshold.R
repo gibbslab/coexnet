@@ -138,7 +138,9 @@ find.threshold <- function(difexp, method){
   
   abline(v=mthr[1,1], col="red")
   
-  text(x=0.1,y=0.25,paste0("Threshold = ", mthr[1,1]))
+  #text(x=0.1,y=0.25,paste0("Threshold = ", mthr[1,1]))
+  
+  text(min(pcv)+0.1,max(abs(C0s-Cis))-0.1,paste0("Threshold = ", mthr[1,1]))
   
   return(mthr[1,1])
   
