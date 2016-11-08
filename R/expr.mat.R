@@ -31,7 +31,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     
     pvsn <- normalize.AffyBatch.vsn(affy)
    
-    vsn <- computeExprSet(x = pvsn,pmcorrect.method = "mas",summary.method = "medianpolish")
+    vsn <- computeExprSet(x = pvsn,pmcorrect.method = "pmonly",summary.method = "avgdiff")
     
     cat("Summarizing",sep = "\n")
     
