@@ -29,9 +29,13 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     
     # Normalizing with vsn method
     
-    pvsn <- normalize.AffyBatch.vsn(affy)
+    pvsn <- as.matrix.ExpressionSet(affy)
    
-    vsn <- computeExprSet(x = pvsn,pmcorrect.method = "pmonly",summary.method = "medianpolish")
+    norm <- normalizeVSN(pvsn) 
+    
+    exprs(affy) <- norm
+    
+    vsn <- computeExprSet(x = affy,pmcorrect.method = "pmonly",summary.method = "medianpolish")
     
     cat("Summarizing",sep = "\n")
     
