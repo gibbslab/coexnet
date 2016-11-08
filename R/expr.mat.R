@@ -36,7 +36,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = FAL
     
     vsn <- computeExprSet(x = affy,pmcorrect.method = "pmonly",summary.method = "medianpolish")
     
-    batch <- ifelse(batch.correct == T,removeBatchEffect(vsn,batch.dates),vsn)
+    batch <- ifelse(BatchCorrect == T,removeBatchEffect(vsn,batch.dates),vsn)
     
     cat("Summarizing",sep = "\n")
     
