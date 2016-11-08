@@ -5,7 +5,7 @@
 
 #' @title gggg
 
-expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
+expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = FALSE){
   
   dates <- protocolData(affy)$ScanDate
   
@@ -23,7 +23,6 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     batch.dates[batch.dates == tab[n]] <- paste0("b", n)
   }
   
-  # batch <- removeBatchEffect(vsn,batch.dates)
   
   if(NormalizeMethod == "vsn"){
     
@@ -37,19 +36,21 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod){
     
     vsn <- computeExprSet(x = affy,pmcorrect.method = "pmonly",summary.method = "medianpolish")
     
+    batch <- ifelse(batch.correct == T,removeBatchEffect(vsn,batch.dates),vsn)
+    
     cat("Summarizing",sep = "\n")
     
     if(SummaryMethod == "max"){
       
       # Summarizing using the high expression value
       
-      eset <- .max.probe(vsn,genes) 
+      eset <- .max.probe(batch,genes) 
       
     }else if(SummaryMethod == "median"){
       
       # Summarizing using the median expression value
       
-      eset <- .median.probe(genes,vsn)
+      eset <- .median.probe(genes,batch)
     }
     
   }else if(NormalizeMethod == "rma"){
