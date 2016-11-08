@@ -14,9 +14,7 @@
 
 .median.probe <- function(gene,array){
   
-  marray <- as.data.frame(exprs(array))
-  
-  #marray <- array
+  marray <- as.data.frame(array)
   
   names(marray) <- gsub(".CEL.gz","",names(marray),ignore.case = T)
   

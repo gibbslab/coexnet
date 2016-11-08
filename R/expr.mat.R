@@ -23,7 +23,6 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = FAL
     batch.dates[batch.dates == tab[n]] <- paste0("b", n)
   }
   
-  
   if(NormalizeMethod == "vsn"){
     
     # Normalizing with vsn method
@@ -36,7 +35,9 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = FAL
     
     vsn <- computeExprSet(x = affy,pmcorrect.method = "pmonly",summary.method = "medianpolish")
     
-    batch <- ifelse(BatchCorrect == T,removeBatchEffect(vsn,batch.dates),vsn)
+    evsn <- as.matrix.ExpressionSet(vsn)
+    
+    batch <- ifelse(BatchCorrect == T,removeBatchEffect(vsn,batch.dates),evsn)
     
     cat("Summarizing",sep = "\n")
     
