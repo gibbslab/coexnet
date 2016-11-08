@@ -5,7 +5,7 @@
 
 #' @title gggg
 
-expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = FALSE){
+expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE){
   
   dates <- protocolData(affy)$ScanDate
   
@@ -35,9 +35,11 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = FAL
     
     vsn <- computeExprSet(x = affy,pmcorrect.method = "pmonly",summary.method = "medianpolish")
     
-    evsn <- as.matrix.ExpressionSet(vsn)
-    
-    batch <- ifelse(BatchCorrect == T,removeBatchEffect(vsn,batch.dates),evsn)
+    if (BatchCorrect == TRUE) {
+      batch <- removeBatchEffect(vsn,batch.dates)
+    }else{
+      batch <- as.matrix.ExpressionSet(vsn)
+    }
     
     cat("Summarizing",sep = "\n")
     
