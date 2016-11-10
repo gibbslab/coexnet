@@ -33,7 +33,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRU
     
     exprs(affy) <- norm
     
-    vsn <- computeExprSet(x = affy,pmcorrect.method = "pmonly",summary.method = "medianpolish")
+    vsn <- computeExprSet(x = affy,pmcorrect.method = "pmonly",summary.method = "avgdiff")
     
     if (BatchCorrect == TRUE) {
       batch <- removeBatchEffect(vsn,batch.dates)
