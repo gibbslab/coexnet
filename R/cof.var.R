@@ -5,34 +5,23 @@
 
 #' @title t
 #' @description f
-cof.var <- function(data,type,treatment){
+cof.var <- function(data,complete=TRUE,treatment=NULL,type=NULL){
   
-  # Changes the names of samples to "0" or "1"
   
-  names(data) <- treatment
-  
-  # Replaces the value of "type" variable
-  
-  if(type == "control"){
+  if (complete == FALSE) {
     
-    type <- "0"
-  }else if(type == "case"){
+    names(data) <- treatment
     
-    type <- "1"
-  }
-  
-  if(type == "complete"){
-    
-    # Uses all the samples
-    
-    tdata = data
-    
-  }else{
-    
-    # Uses the control samples or the case samples
-    
+    if(type == "control"){
+      
+      type <- "0"
+    }else if(type == "case"){
+      
+      type <- "1"
+    }
     tdata <- data[names(data) == type]
-  
+  }else{
+    tdata = data
   }
   
   # Obtains the mean of the expression values
