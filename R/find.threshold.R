@@ -90,11 +90,13 @@ find.threshold <- function(difexp, method){
     
   }
   
-  thr <- abs(C0s-Cis)
+  thr <- vector()
   
-  othr <- sort(thr,decreasing = T)
-  
-  dthr <- data.frame(pcv,thr)
+  for(i in 1:length(Cis)){
+    if(Cis[i]-C0s[i] > Cis[i+1]-C0s[i+1]){
+      thr[i] <- pcv[i]
+    }
+  }
   
   pvalue <- 0
   
@@ -102,7 +104,7 @@ find.threshold <- function(difexp, method){
   
   while (pvalue <= 0.05) {
     
-    mthr <- dthr[which(dthr$thr == othr[cntr]),][1]
+    mtr <- thr[cntr]
     
     # Creates an empty matrix
     
@@ -111,8 +113,8 @@ find.threshold <- function(difexp, method){
     # Transforms to adjacency matrix
     
     for(i in 1:nrow(simil)){
-      ad[which(simil[,i]>=mthr[1,cntr]),i]<-1
-      ad[which(simil[,i]<mthr[1,cntr]),i]<-0
+      ad[which(simil[,i]>=thr[cntr]),i]<-1
+      ad[which(simil[,i]<thr[cntr]),i]<-0
     }
     
     # Diagonal equal to zero
@@ -134,13 +136,13 @@ find.threshold <- function(difexp, method){
   
   # Compares the clustering coefficients
   
-  plot(pcv,abs(C0s-Cis),t="l",xlab = "Threshold",ylab = "| C0-Ci |")
+  plot(pcv,abs(Cis-C0s),t="l",xlab = "Threshold",ylab = "| Ci-C0 |")
   
-  abline(v=mthr[1,1], col="red")
+  abline(v=mtr, col="red")
   
   #text(x=0.1,y=0.25,paste0("Threshold = ", mthr[1,1]))
   
-  text(min(pcv)+0.1,max(abs(C0s-Cis))-0.1,paste0("Threshold = ", mthr[1,1]))
+  text(min(pcv)+0.1,max(abs(C0s-Cis))-0.1,paste0("Threshold = ", mtr))
   
   return(mthr[1,1])
   
