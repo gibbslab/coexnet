@@ -99,24 +99,22 @@ find.threshold <- function(difexp, method){
   }
   
   thr <- na.omit(thr)
-  
-  pvalue <- 0
+
+  pval <- 0
   
   cntr <- 1
   
-  while (pvalue <= 0.05) {
-    
-    mtr <- thr[cntr]
-    
-    # Creates an empty matrix
+  pass <- vector()
+  
+  for(n in 1:length(thr)){
     
     ad <- matrix(0,ncol = nrow(simil),nrow = nrow(simil))
     
     # Transforms to adjacency matrix
     
     for(i in 1:nrow(simil)){
-      ad[which(simil[,i]>=thr[cntr]),i]<-1
-      ad[which(simil[,i]<thr[cntr]),i]<-0
+      ad[which(simil[,i]>=thr[n]),i]<-1
+      ad[which(simil[,i]<thr[n]),i]<-0
     }
     
     # Diagonal equal to zero
@@ -133,7 +131,14 @@ find.threshold <- function(difexp, method){
     
     pvalue <- fit$KS.p
     
-    cntr <- cntr + 1
+    print(pvalue)
+    
+    if(pvalue > 0.05){
+      if(pvalue>pval){
+        mtr <- thr[n]
+        pval <- pvalue
+      }
+    }
   }
   
   # Compares the clustering coefficients
