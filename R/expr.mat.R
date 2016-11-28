@@ -29,9 +29,32 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRU
     
     pvsn <- as.matrix.ExpressionSet(affy)
    
-    norm <- normalizeVSN(pvsn) 
+    norm <- normalizeVSN(pvsn)
     
-    exprs(affy) <- norm
+    izq <- 1
+    mat <- matrix(data = 0,nrow = nrow(pvsn),ncol = ncol(pvsn))
+    
+    if(ncol(pvsn) %% 2 == 0){
+      der <- 2
+      while(der <= ncol(pvsn)){
+        x <- normalizeVSN(x = pvsn[,izq:der],verbose=F)
+        mat[,izq:der] <- x
+        izq <- izq+2
+        der <- der+2
+      }
+    }else{
+      der <- 3
+      while(der <= ncol(pvsn)){
+        x <- normalizeVSN(x = pvsn[,izq:der],verbose=F)
+        mat[,izq:der] <- x
+        izq <- izq+2
+        der <- der+2
+      }
+    }
+    
+    colnames(mat) <- colnames(pvsn)
+    
+    exprs(affy) <- mat
     
     vsn <- computeExprSet(x = affy,pmcorrect.method = "pmonly",summary.method = "avgdiff")
     
