@@ -86,7 +86,6 @@
   
   if(method == "correlation"){
     
-    
     simil <- abs(cor(t(difexp),use =  "pairwise.complete.obs"))
     
   }else if(method == "mutual information"){

@@ -92,11 +92,13 @@ find.threshold <- function(difexp, method){
   
   thr <- vector()
   
-  for(i in 1:length(Cis)){
+  for(i in 1:(length(pcv)-1)){
     if(Cis[i]-C0s[i] > Cis[i+1]-C0s[i+1]){
-      thr[i] <- pcv[i]
+     thr[i] <- pcv[i]
     }
   }
+  
+  thr <- na.omit(thr)
   
   pvalue <- 0
   
@@ -136,7 +138,7 @@ find.threshold <- function(difexp, method){
   
   # Compares the clustering coefficients
   
-  plot(pcv,abs(Cis-C0s),t="l",xlab = "Threshold",ylab = "| Ci-C0 |")
+  plot(pcv,abs(Cis-C0s),t="l",xlab = "Threshold",ylab = "| Ci - C0 |")
   
   abline(v=mtr, col="red")
   
