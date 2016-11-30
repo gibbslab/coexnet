@@ -110,7 +110,7 @@ find.threshold <- function(difexp, method){
       thre[j] <- thr[j]
     }
   }
-
+  
   thre <- na.omit(thre)
   
   mtr <- vector()
@@ -140,14 +140,26 @@ find.threshold <- function(difexp, method){
     
     pvalue <- fit$KS.p
     
-    print(pvalue)
-    
     if(pvalue > 0.05){
       mtr[n] <- thre[n]
     }
   }
   
   mtr <- na.omit(mtr)
+  
+  if(length(mtr) == 0){
+    new_pass <- vector()
+    Cls <- round(Cis-C0s,digits = 3)
+    for(j in 1:length(pcv)){
+      if(Cls[j] > min(Cls)){
+        mtr[j] <- pcv[j]
+     }
+    }
+  }
+  
+  mtr <- na.omit(mtr)
+  
+  }
   
   # Compares the clustering coefficients
   
