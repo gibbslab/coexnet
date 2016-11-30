@@ -159,8 +159,6 @@ find.threshold <- function(difexp, method){
   
   mtr <- na.omit(mtr)
   
-  }
-  
   # Compares the clustering coefficients
   
   plot(pcv,abs(Cis-C0s),t="l",xlab = "Threshold",ylab = "| Ci - C0 |")
