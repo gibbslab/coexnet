@@ -22,12 +22,11 @@
   for(n in 1:nrow(g)){
     a <- batch[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$gene),]$probe),]
     a <- na.omit(a)
-    if(is.null(dim(a))){
-      g[n,] <- a
-    }else{
+    if(!is.null(dim(a))){
       g[n,] <- apply(a,2,median)
+    }else{
+      g[n,] <- a
     }
-    print(n)
   }
   rownames(g) <- newList
   colnames(g) <- colnames(array)
@@ -37,50 +36,27 @@
 
 .max.probe <- function(gene,array){
   
-  eset <- exprs(array)
+  colnames(array) <- gsub(".CEL.gz","",colnames(array),ignore.case = T)
+  list <- unique(gene$gene)
+  newList <- list[grep(paste0("^","$"),list,invert = T)]
+  g <- matrix(0,length(newList),dim(array)[2])
   
-  #eset <- array
-  
-  rows <- rowMeans(eset,na.rm = T)
-  
-  da <- data.frame(gene,stringsAsFactors = F)
-  
-  names(da) <- c("a","b")
-  
-  probemean <- data.frame(names(rows),rows, stringsAsFactors = F)
-  
-  names(probemean) <- c("a","b")
-  
-  merge <- merge.data.frame(probemean, da, by.x = "a", by.y = "a")
-  
-  dat <- data.frame(merge$b.y,merge$b.x, row.names = merge$a,stringsAsFactors = F)
-  
-  total <- dat[-c(grep(paste0("^","$"),dat[,1])),]
-  
-  onlygenes <- unique(total[,1])
-  
-  result <- data.frame()
-  
-  for(x in onlygenes){
+  for(n in 1:nrow(g)){
+    a <- batch[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$gene),]$probe),]
+    a <- na.omit(a)
     
-    genes  <- total[grep(x,total[,1],fixed = T),]
-    
-    max <- genes[grep(max(total[grep(paste0("^",x,"$"),total[,1]),2]),genes[,2]),]
-    
-    if(length(result) == 0){
-      result <- rbind(max)
+    if(!is.null(dim(a))){
+      g[n,] <- array[names(sort(rowMeans(a),decreasing = T))[1],]
     }else{
-      result <- rbind(result,max)
+      g[n,] <- a
     }
+    print(n)
   }
   
-  eset2 <- as.data.frame(eset)
+  rownames(g) <- newList
+  colnames(g) <- colnames(array)
   
-  final <- eset2[row.names(result),]
-  
-  row.names(final) <- result$merge.b.y
-  
-  return(final)
+  return(g)
 }
 
 .correlation.matrix <- function(difexp,method){

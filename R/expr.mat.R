@@ -47,13 +47,13 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRU
       
       # Summarizing using the high expression value
       
-      eset <- .max.probe(batch,genes) 
+      eset <- .max.probe(genes,batch) 
       
     }else if(SummaryMethod == "median"){
       
       # Summarizing using the median expression value
       
-      eset <- median.probe(genes,batch)
+      eset <- .median.probe(genes,batch)
     }
     
   }else if(NormalizeMethod == "rma"){
