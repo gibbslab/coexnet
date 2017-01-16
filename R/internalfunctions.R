@@ -14,27 +14,28 @@
 
 .median.probe <- function(gene,array){
   
-  marray <- as.data.frame(array)
+  colnames(array) <- gsub(".CEL.gz","",colnames(array),ignore.case = T)
+  list <- unique(gene$gene)
+  newList <- list[grep(paste0("^","$"),list,invert = T)]
+  g <- matrix(0,length(newList),dim(array)[2])
   
-  names(marray) <- gsub(".CEL.gz","",names(marray),ignore.case = T)
-  
-  uni <- data.frame(gene$gene,marray)
-  
-  wowithw <- uni[grep(paste0("^","$"),uni$gene.gene,ignore.case = T,invert = T),]
-  
-  g <- data.frame()
-  
-  for(i in unique(na.omit(wowithw$gene.gene))){
-    
-    a <- as.data.frame(t(sapply(wowithw[grep(paste0("^",i,"$"),wowithw$gene.gene),
-                                        2:ncol(wowithw)],median)),row.names = i)
-    g <- rbind.data.frame(g,a)
+  for(n in 1:nrow(g)){
+    a <- batch[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$gene),]$probe),]
+    a <- na.omit(a)
+    if(is.null(dim(a))){
+      g[n,] <- a
+    }else{
+      g[n,] <- apply(a,2,median)
+    }
+    print(n)
   }
+  rownames(g) <- newList
+  colnames(g) <- colnames(array)
   
   return(g)
 }
 
-.max.probe <- function(array,gene){
+.max.probe <- function(gene,array){
   
   eset <- exprs(array)
   
