@@ -27,6 +27,8 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRU
     
     # Normalizing with vsn method
     
+    cat("Normalizing", sep = "\n")
+    
     pvsn <- as.matrix.ExpressionSet(affy)
    
     norm <- normalizeVSN(pvsn, verbose = F)

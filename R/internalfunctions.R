@@ -50,7 +50,6 @@
     }else{
       g[n,] <- a
     }
-    print(n)
   }
   
   rownames(g) <- newList
