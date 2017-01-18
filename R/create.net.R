@@ -1,7 +1,18 @@
 #' @export create.net
 #' @author Juan David Henao Sanchez <judhenaosa@unal.edu.co>
+#' @author Liliana Lopez Kleine <llopezk@unal.edu.co>
 
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
+
+#' @title Create a co-expression network from expression matrix.
+#' @description From a expression matrix, this function create a co-expression network like a igrph object using a threshold value and
+#' one similarity function.
+#' @param difexp  A whole expression matrix or the expression matrix to differentially expressed genes.
+#' @param method  The function to calculate the similarity among the genes. "correlation" to use Pearson function or 
+#' "mutual information" to use a function based on entropy information.
+#' @param threshold  A value (between 0.1 to 0.99) to cut off the adjacency matrix and create the co-expression network.
+#' @return A undirected co-expression network like igraph object.
+
 
 
 create.net <- function(difexp,method, threshold){
