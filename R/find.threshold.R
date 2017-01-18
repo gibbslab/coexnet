@@ -14,6 +14,7 @@
 #' based on entropy information.
 #' @return The best threshold value find using the two criteria and a plot with the result.
 #' @seealso \code{\link{dif.exprs}} to find the differential expressed genes matrix.
+#' @references Elo, L. L., Järvenpää, H., Orešič, M., Lahesmaa, R., & Aittokallio, T. (2007). Systematic construction of gene coexpression networks with applications to human T helper cell differentiation process. Bioinformatics, 23(16), 2096-2103.
 
 find.threshold <- function(difexp, method){
   

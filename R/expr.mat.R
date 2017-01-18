@@ -3,7 +3,21 @@
 
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
-#' @title gggg
+#' @title Calculate the expression matrix from the raw expression data.
+#' @description This function use a affyBatch object with the raw expression data to normalize and transform the matrix from
+#' probeset to gene considering the option to remove the batch effect in the long microarray data.
+#' @param affy  A affyBatch object with the raw expression data.
+#' @param genes  A data.frame with two columns, in the firt one the name of each probe 
+#' in the microarray and in the second one the corresponding gene or ID.
+#' @param NormalizeMethod  The method to normalize the raw data. Can be "vsn" to apply 
+#' Variance Stabilizing Normalization function or "rma" to apply Robust Multi-Array Average function.
+#' @param SummaryMethod  The method to pass from probeset to genes or ID. Can be "max" to selecto the probeset with the most
+#' average expression value or "median" to obtain the median of each sample of the set of probeset corresponding to particular
+#' gen or ID.
+#' @param BatchCorrect  The option to apply batch effect correction, by default TRUE.
+#' @return A expression matrix, in the rows each one of the gene/ID and in the columns each one of the samples.
+#' @references Huber, W., Von Heydebreck, A., Sültmann, H., Poustka, A., & Vingron, M. (2002). Variance stabilization applied to microarray data calibration and to the quantification of differential expression. Bioinformatics, 18(suppl 1), S96-S104.
+#' @references Irizarry, R. A., Hobbs, B., Collin, F., Beazer‐Barclay, Y. D., Antonellis, K. J., Scherf, U., & Speed, T. P. (2003). Exploration, normalization, and summaries of high density oligonucleotide array probe level data. Biostatistics, 4(2), 249-264.
 
 expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE){
   
