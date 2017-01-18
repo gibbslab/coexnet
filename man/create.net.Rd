@@ -27,6 +27,6 @@ Juan David Henao Sanchez <judhenaosa@unal.edu.co>
 Liliana Lopez Kleine <llopezk@unal.edu.co>
 }
 \seealso{
-find.threshold
+\code{\link{find.threshold}} to obtain a threshold value based on biology network assumptions.
 }
 

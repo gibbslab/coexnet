@@ -1,5 +1,6 @@
 #' @export find.threshold
 #' @author Juan David Henao Sanchez <judhenaosa@unal.edu.co>
+#' @author Liliana Lopez Kleine <llopezk@unal.edu.co>
 
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
@@ -8,13 +9,15 @@
 #' using two different criteria. First, use the differential value between the clustering coefficient for the real network and
 #' random network build and second test the network using a Kolgomorov-Smirnov test to reject normality in the degree distribution of 
 #' the edges in the network.
-#' @param difexp The data.frame with the expression matrix for the expressed differential genes.
-#' @param method The method to create the correlation matrix, can be "correlation" to Pearson test or "mutual information" to test 
+#' @param difexp  A whole expression matrix or the expression matrix to differentially expressed genes.
+#' @param method  The method to create the correlation matrix, can be "correlation" to Pearson test or "mutual information" to test 
 #' based on entropy information.
-#' @return The best threshold value find using the to criteria and a plot with the result.
+#' @return The best threshold value find using the two criteria and a plot with the result.
 #' @seealso \code{\link{dif.exprs}} to find the differential expressed genes matrix.
 
 find.threshold <- function(difexp, method){
+  
+  # Obtains the similarity values
   
   simil <- .correlation.matrix(difexp,method)
   
@@ -90,10 +93,10 @@ find.threshold <- function(difexp, method){
     
   }
   
-  #############################
-  
   thr <- vector()
   pass <- vector()
+  
+  # Find the differencies between the clustering coefficient to random network anthe real network
   
   for(i in 1:(length(pcv)-1)){
     if(Cis[i]-C0s[i] > Cis[i+1]-C0s[i+1]){
@@ -102,18 +105,25 @@ find.threshold <- function(difexp, method){
     }
   }
   
-  ##############################
+  # Deletes NA values
   
   thr <- na.omit(thr)
+  
+  # Rounds the result of the difference between the clustering coefficients.
+  
   pass <- round(na.omit(pass))
   
   thre <- vector()
+  
+  # Deletes the minimun values of the difference between the clustering coefficients.
   
   for(j in 1:length(thr)){
     if(pass[j] > min(pass)){
       thre[j] <- thr[j]
     }
   }
+  
+  # Deletes the NA values
   
   thre <- na.omit(thre)
   
@@ -142,14 +152,22 @@ find.threshold <- function(difexp, method){
     
     fit <- fit_power_law(degree(gr))
     
+    # Obtaines the p-value
+    
     pvalue <- fit$KS.p
+    
+    # Adds the threshold value if p-value > 0.05
     
     if(pvalue > 0.05){
       mtr[n] <- thre[n]
     }
   }
   
+  # Deletes NA values
+  
   mtr <- na.omit(mtr)
+  
+  # Deletes the minimun values of the difference between the clustering coefficients.
   
   if(length(mtr) == 0){
     new_pass <- vector()
@@ -161,15 +179,23 @@ find.threshold <- function(difexp, method){
     }
   }
   
+  # Deletes NA values
+  
   mtr <- na.omit(mtr)
   
-  # Compares the clustering coefficients
+  # Creates a plot comparing the clustering coefficients 
   
   plot(pcv,abs(Cis-C0s),t="l",xlab = "Threshold",ylab = "| Ci - C0 |")
   
+  # Creates the line to show the final threshold value
+  
   abline(v=mtr[1], col="red")
   
+  # Text to complete the plot
+  
   text(min(pcv)+0.1,max(abs(C0s-Cis))-0.1,paste0("Threshold = ", mtr[1]))
+  
+  # return the value corrisponding to the final threshold value
   
   return(mtr[1])
   

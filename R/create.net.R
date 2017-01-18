@@ -12,7 +12,7 @@
 #' "mutual information" to use a function based on entropy information.
 #' @param threshold  A value (between 0.1 to 0.99) to cut off the adjacency matrix and create the co-expression network.
 #' @return A undirected co-expression network like igraph object.
-#' @seealso find.threshold
+#' @seealso \code{\link{find.threshold}} to obtain a threshold value based on biology network assumptions.
 
 create.net <- function(difexp,method, threshold){
   

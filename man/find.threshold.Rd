@@ -7,13 +7,13 @@
 find.threshold(difexp, method)
 }
 \arguments{
-\item{difexp}{The data.frame with the expression matrix for the expressed differential genes.}
+\item{difexp}{A whole expression matrix or the expression matrix to differentially expressed genes.}
 
 \item{method}{The method to create the correlation matrix, can be "correlation" to Pearson test or "mutual information" to test 
 based on entropy information.}
 }
 \value{
-The best threshold value find using the to criteria and a plot with the result.
+The best threshold value find using the two criteria and a plot with the result.
 }
 \description{
 Find the threshold value to establish the edges in a co-expression network based on correlation matrix
@@ -23,6 +23,8 @@ the edges in the network.
 }
 \author{
 Juan David Henao Sanchez <judhenaosa@unal.edu.co>
+
+Liliana Lopez Kleine <llopezk@unal.edu.co>
 }
 \seealso{
 \code{\link{dif.exprs}} to find the differential expressed genes matrix.
