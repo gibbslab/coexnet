@@ -16,7 +16,7 @@ Extracts the gene expression matrix from GEO DataSets as a
 
 ## Install
 
-To install **coexnet** from GitHub you needs *devtools* package:
+To install **coexnet** from GitHub you need *devtools* package:
 
 ```
 # Install devtools
