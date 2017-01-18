@@ -3,10 +3,13 @@
 
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
-#' @title t
-#' @description f
+#' @title Calculate the coefficient of variation to expression matrix 
+#' @description 
+
+
 cof.var <- function(data,complete=TRUE,treatment=NULL,type=NULL){
   
+  # Replace the sample name for case/control ID
   
   if (complete == FALSE) {
     
