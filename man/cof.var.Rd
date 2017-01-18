@@ -4,7 +4,7 @@
 \alias{cof.var}
 \title{t}
 \usage{
-cof.var(data, type, treatment)
+cof.var(data, complete = TRUE, treatment = NULL, type = NULL)
 }
 \description{
 f

@@ -4,7 +4,7 @@
 \alias{expr.mat}
 \title{gggg}
 \usage{
-expr.mat(affy, genes, NormalizeMethod, SummaryMethod)
+expr.mat(affy, genes, NormalizeMethod, SummaryMethod, BatchCorrect = TRUE)
 }
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
