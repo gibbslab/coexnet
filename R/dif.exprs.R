@@ -16,6 +16,9 @@
 #' @return A data.frame with the expression matrix to the expressed diferential 
 #' genes only.
 #' @seealso \code{\link{expr.mat}} to obtain the expression matrix.
+#' @references Tusher, V. G., Tibshirani, R., & Chu, G. (2001). Significance analysis of 
+#' microarrays applied to the ionizing radiation response. Proceedings of the National Academy of Sciences, 98(9), 5116-5121.
+#' @references Acosta J and Lopez-Kleine L (2015). acde: Artificial Components Detection of Differentially Expressed Genes. R package version 1.4.0.
 
 dif.exprs <- function(eset,treatment,fdr,DifferentialMethod){
   

@@ -29,6 +29,12 @@ are SAM and ACDE.
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
 }
+\references{
+Tusher, V. G., Tibshirani, R., & Chu, G. (2001). Significance analysis of 
+microarrays applied to the ionizing radiation response. Proceedings of the National Academy of Sciences, 98(9), 5116-5121.
+
+Acosta J and Lopez-Kleine L (2015). acde: Artificial Components Detection of Differentially Expressed Genes. R package version 1.4.0.
+}
 \seealso{
 \code{\link{expr.mat}} to obtain the expression matrix.
 }
