@@ -17,6 +17,8 @@ gene.symbol <- function(GPL, d = "."){
   
   gpl <- getGEO(filename = paste0(GPL,".soft"))
   
+  options(warn=0)
+  
   # Creates a table object with all the data in the .soft file
   
   sym <- Table(gpl)
