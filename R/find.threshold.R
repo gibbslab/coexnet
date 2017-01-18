@@ -90,18 +90,22 @@ find.threshold <- function(difexp, method){
     
   }
   
+  #############################
+  
   thr <- vector()
   pass <- vector()
   
   for(i in 1:(length(pcv)-1)){
     if(Cis[i]-C0s[i] > Cis[i+1]-C0s[i+1]){
      thr[i] <- pcv[i]
-     pass[i] <- Cis[i]-C0s[i]
+     pass[i] <- Cis[i]*100-C0s[i]*100
     }
   }
   
+  ##############################
+  
   thr <- na.omit(thr)
-  pass <- round(na.omit(pass),digits = 3)
+  pass <- round(na.omit(pass))
   
   thre <- vector()
   
