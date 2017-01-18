@@ -36,4 +36,9 @@ Huber, W., Von Heydebreck, A., Sültmann, H., Poustka, A., & Vingron, M. (2002).
 
 Irizarry, R. A., Hobbs, B., Collin, F., Beazer‐Barclay, Y. D., Antonellis, K. J., Scherf, U., & Speed, T. P. (2003). Exploration, normalization, and summaries of high density oligonucleotide array probe level data. Biostatistics, 4(2), 249-264.
 }
+\seealso{
+\code{\link{get.affy}} to obtain the affyBatch object.
+
+\code{\link{gene.symbol}} to obtain the data.frame with probeset and genes/ID from .SOFT file.
+}
 
