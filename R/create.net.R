@@ -29,6 +29,14 @@ create.net <- function(difexp,method, threshold){
   
   Gr=graph.adjacency(Ad,mode="undirected",add.colnames=NULL,diag=FALSE)
   
-  return(Gr)
+  de <- degree(Gr,loops = F)
+  
+  Ad <- Ad[which(de > 0), which(de > 0)]
+  
+  net <- graph.adjacency(Ad,mode="undirected",add.colnames=NULL,diag=FALSE)
+  
+  write.graph(graph = net,file = "~/testEN2.net","ncol")
+  
+  return(net)
   
 }
