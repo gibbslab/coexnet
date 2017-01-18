@@ -12,12 +12,13 @@
 #' @return A data.frame with two columns, in the first one the probesets and in the second one the corresponding gene to each probeset.
 
 gene.symbol <- function(GPL, d = "."){
+  
+  options(warn=-1)
 
   # Information extracted from the file .soft
   
   gpl <- getGEO(filename = paste0(GPL,".soft"))
   
-  options(warn=0)
   
   # Creates a table object with all the data in the .soft file
   
