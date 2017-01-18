@@ -2,12 +2,28 @@
 % Please edit documentation in R/cof.var.R
 \name{cof.var}
 \alias{cof.var}
-\title{t}
+\title{Calculate the coefficient of variation to expression matrix.}
 \usage{
 cof.var(data, complete = TRUE, treatment = NULL, type = NULL)
 }
+\arguments{
+\item{data}{The whole normalize expression matrix, rows: genes or probeset, columns: samples.}
+
+\item{complete}{Boolean to define if the function use the whole expression matrix, by default TRUE.}
+
+\item{type}{Can be "case" to obtain the mean and the coefficient of variation to the case samples or, otherwise, "control" to 
+obtain these two values to the control samples.}
+
+\item{A}{vector with 0 and 1 to each one of the samples in the expression matrix, the 0 express 
+the control samples and 1 express the case samples, by default NULL.}
+}
+\value{
+The expression matrix with two new columns, the first one with the averages and 
+the another one with the coefficient of variation values.
+}
 \description{
-f
+This function calculate the mean and the coefficient of variation to each one of the row (gene or probeset)
+in a expression matrix in two ways: i) in the whole matrix ii) to specific phenotype (case or control).
 }
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
