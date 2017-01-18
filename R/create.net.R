@@ -12,12 +12,15 @@
 #' "mutual information" to use a function based on entropy information.
 #' @param threshold  A value (between 0.1 to 0.99) to cut off the adjacency matrix and create the co-expression network.
 #' @return A undirected co-expression network like igraph object.
-
-
+#' @seealso find.threshold
 
 create.net <- function(difexp,method, threshold){
   
+  # Obtains the similarity values
+  
   simil <- .correlation.matrix(difexp,method)
+  
+  # Creates a empty matrix
   
   Ad <- matrix(0,ncol = nrow(simil),nrow = nrow(simil))
   
@@ -40,13 +43,19 @@ create.net <- function(difexp,method, threshold){
   
   Gr=graph.adjacency(Ad,mode="undirected",add.colnames=NULL,diag=FALSE)
   
+  # Obtains the degree value for each node in the network
+  
   de <- degree(Gr,loops = F)
+  
+  # Deletes the node without any edge
   
   Ad <- Ad[which(de > 0), which(de > 0)]
   
+  # Creates the final network from the adjacency matrix filtered
+  
   net <- graph.adjacency(Ad,mode="undirected",add.colnames=NULL,diag=FALSE)
   
-  write.graph(graph = net,file = "~/testEN2.net","ncol")
+  # return the network like igraph object
   
   return(net)
   
