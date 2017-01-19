@@ -1,5 +1,4 @@
 #' @importFrom GEOquery getGEO Table getGEOSuppFiles getGEOfile
-#' @importFrom vsn normalize.AffyBatch.vsn exprs
 #' @importFrom affy ReadAffy expresso rma computeExprSet
 #' @import siggenes
 #' @importFrom acde stp
