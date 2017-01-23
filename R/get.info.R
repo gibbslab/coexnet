@@ -13,6 +13,11 @@
 #' @param dir The pathfile to download and uncompress the raw wxpewssion data, by default is the current pathfile.
 #' @return A set of files with the uncompressed data and ready to use.
 #' @seealso \code{\link{get.affy}} to charge the expression data.
+#' @examples 
+#' 
+#' # Extract data from GEO DataSet
+#' 
+#' get.info(GSE = "GSE8216", GPL = "GPL2025")
 
 get.info <- function(GSE,GPL,dir="."){
   
