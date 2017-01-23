@@ -55,7 +55,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRU
     
     cat("Normalizing", sep = "\n")
     
-    # Extracts the raw expression matrix from affyBatch object
+    # Extracts the raw expression matrix from AffyBatch object
     
     pvsn <- as.matrix.ExpressionSet(affy)
     
