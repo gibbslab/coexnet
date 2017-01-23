@@ -10,7 +10,7 @@
 #' @usage get.info(GSE, GPL, dir = ".")
 #' @param GSE The list of GSE ID.
 #' @param GPL The GPL ID of the chip used in the microarray experiment.
-#' @param dir The pathfile to download and uncompress the raw wxpewssion data, by default is the current pathfile.
+#' @param dir The pathfile to download and uncompress the raw expression data, by default is the current pathfile.
 #' @return A set of files with the uncompressed data and ready to use.
 #' @seealso \code{\link{get.affy}} to charge the expression data.
 #' @examples 

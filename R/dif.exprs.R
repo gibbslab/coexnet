@@ -7,7 +7,7 @@
 #' @description Using the expression matrix calculate the differential expressed
 #' genes to two class analysis and fixing an expected FDR value. The methods
 #' are SAM and ACDE.
-#' @param eset A data.frame with the expression matrix.
+#' @param eset A matrix with the expression matrix.
 #' @param treatment A vector with the ientifiers of the classes, 0 to control
 #' and 1 to case.
 #' @param fdr The expected FDR value.
@@ -19,6 +19,28 @@
 #' @references Tusher, V. G., Tibshirani, R., & Chu, G. (2001). Significance analysis of 
 #' microarrays applied to the ionizing radiation response. Proceedings of the National Academy of Sciences, 98(9), 5116-5121.
 #' @references Acosta J and Lopez-Kleine L (2015). acde: Artificial Components Detection of Differentially Expressed Genes. R package version 1.4.0.
+#' @examples 
+#' 
+#' ## Creating the expression matrix
+#' 
+#' # The matrix have 200 genes and 20 samples
+#' 
+#' n <- 200
+#' m <- 20
+#' 
+#' # The vector with treatment samples and control samples
+#' 
+#' t <- c(rep(0,10),rep(1,10))
+#' 
+#' # Calculating the expression values normalized
+#' 
+#' mat <- as.matrix(rexp(n, rate = 1))
+#' norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
+#' 
+#' ## Running the function using the two approaches
+#' 
+#' sam <- dif.exprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
+#' acde <- dif.exprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "acde")
 
 dif.exprs <- function(eset,treatment,fdr,DifferentialMethod){
   
@@ -84,7 +106,7 @@ dif.exprs <- function(eset,treatment,fdr,DifferentialMethod){
     
     # Shows the threshold value
     
-    cat(paste0("delta value: ",acde$tstar))
+    cat(paste0("; Delta value: ",acde$tstar))
     
     # Creates a data.frame object with the result of differential analysis
     
