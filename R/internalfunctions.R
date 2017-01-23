@@ -4,7 +4,7 @@
 #' @importFrom acde stp
 #' @import igraph
 #' @importFrom minet build.mim
-#' @importFrom limma removeBatchEffect
+#' @importFrom limma removeBatchEffect as.matrix.ExpressionSet
 #' @import Biobase
 
 # internalfunctions
