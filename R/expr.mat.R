@@ -6,7 +6,7 @@
 #' @title Calculate the expression matrix from the raw expression data.
 #' @description This function use a affyBatch object with the raw expression data to normalize and transform the matrix from
 #' probeset to gene considering the option to remove the batch effect in the long microarray data.
-#' @param affy  A affyBatch object with the raw expression data.
+#' @param affy  A AffyBatch object with the raw expression data.
 #' @param genes  A data.frame with two columns, in the firt one the name of each probe 
 #' in the microarray and in the second one the corresponding gene or ID.
 #' @param NormalizeMethod  The method to normalize the raw data. Can be "vsn" to apply 
