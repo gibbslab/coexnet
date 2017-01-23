@@ -10,10 +10,30 @@
 #' @param GPL The GPL ID.
 #' @param d The pathfile where the .soft file are, by default is the current pathfile.
 #' @return A data.frame with two columns, in the first one the probesets and in the second one the corresponding gene to each probeset.
+#' @examples 
+#' 
+#' # Create the table with probesets and genes/IDs.
+#' 
+#' gene_table <- gene.symbol(GPL = "GPL2025",d = system.file("data",package = "coexnet"))
+#' 
+#' # Cleaning the NA information.
+#' 
+#' gene_na <- na.omit(gene_table)
+#' 
+#' # Cleaning empty gene/ID information.
+#' 
+#' final_table <- gene_na[gene_na$gene != "",]
+#' 
+#' head(final_table)
+
 
 gene.symbol <- function(GPL, d = "."){
   
   options(warn=-1)
+  
+  # Move to pathfile with the .soft file
+  
+  setwd(d)
 
   # Information extracted from the file .soft
   
@@ -30,7 +50,7 @@ gene.symbol <- function(GPL, d = "."){
   
   # Names of each column
   
-  names(ta) <- c("probe","gene")
+  names(ta) <- c("probe","gene/ID")
   
   return(ta)
 }
