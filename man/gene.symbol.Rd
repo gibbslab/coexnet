@@ -19,6 +19,22 @@ From the information in the .soft file, creates a data.frame with two columns, t
 and the second one with the name of the corresponding genes. 
 The genes are annotated using the gene symbol system.
 }
+\examples{
+
+# Create the table with probesets and genes/IDs.
+
+gene_table <- gene.symbol(GPL = "GPL2025",d = system.file("data",package = "coexnet"))
+
+# Cleaning the NA information.
+
+gene_na <- na.omit(gene_table)
+
+# Cleaning empty gene/ID information.
+
+final_table <- gene_na[gene_na$gene != "",]
+
+head(final_table)
+}
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
 }

@@ -4,7 +4,7 @@
 \alias{get.affy}
 \title{Charge and create an AffyBatch object}
 \usage{
-data(GSE8216)
+get.affy(GSE)
 }
 \arguments{
 \item{GSE}{The name of the file with the compressed samples data.}

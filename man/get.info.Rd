@@ -25,7 +25,7 @@ Adittionally, this function search and downloaded the information of the chip us
 
 # Extract data from GEO DataSet
 
-get.info(GSE = "GSE8216", GPL = "GPL2025")
+get.info(GSE = "GSE8216", GPL = "GPL2025",dir = tempdir())
 }
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
