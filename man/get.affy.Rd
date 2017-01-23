@@ -4,10 +4,12 @@
 \alias{get.affy}
 \title{Charge and create an AffyBatch object}
 \usage{
-get.affy(GSE)
+get.affy(GSE, dir = ".")
 }
 \arguments{
 \item{GSE}{The name of the file with the compressed samples data.}
+
+\item{dir}{The pathfile where the samples and the filelist file are to create the AffyBatch object, by default is the current directory.}
 }
 \description{
 Charges the data from a file with the GSM samples compressed using the "filelist.txt" file to identify the GSM ID
@@ -16,13 +18,14 @@ and create the AffyBatch object finally.
 \examples{
 
 # Load the AffyBatch from downloaded raw data
+# The data is from partial experiment results from Greene JG (GSE4773)
 
-affy <- get.affy("GSE8216")
+affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
 }
 \author{
 Juan david Henao <judhenaosa@unal.edu.co>
 }
 \seealso{
-\code{\link{get.info}} to download expression data from GEO DataSet.
+\code{\link{get.info}} to download expression data from GEO DataSet included the filelist file.
 }
 
