@@ -17,7 +17,7 @@
 #' 
 #' # Extract data from GEO DataSet
 #' 
-#' get.info(GSE = "GSE8216", GPL = "GPL2025")
+#' get.info(GSE = "GSE8216", GPL = "GPL2025",dir = tempdir())
 
 get.info <- function(GSE,GPL,dir="."){
   

@@ -5,7 +5,6 @@
 #' and create the AffyBatch object finally.
 #' @param GSE The name of the file with the compressed samples data.
 #' @seealso \code{\link{get.info}} to download expression data from GEO DataSet.
-#' @usage data(GSE8216)
 #' @examples 
 #' 
 #' # Load the AffyBatch from downloaded raw data
