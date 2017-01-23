@@ -14,6 +14,35 @@
 #' obtain these two values to the control samples.
 #' @return The expression matrix with two new columns, the first one with the averages and 
 #' the another one with the coefficient of variation values.
+#' @examples 
+#' 
+#' ## Creating the expression matrix
+#' 
+#' # The matrix have 200 genes and 20 samples
+#' 
+#' n <- 200
+#' m <- 20
+#' 
+#' # The vector with treatment samples and control samples
+#' 
+#' t <- c(rep(0,10),rep(1,10))
+#' 
+#' # Calculating the expression values normalized
+#' 
+#' mat <- as.matrix(rexp(n, rate = 1))
+#' norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
+#' 
+#' ## Calculating the mean and the coefficient of variation
+#' 
+#' # In whole expression matrix
+#' 
+#' complete <- cof.var(norm)
+#' head(complete)
+#' 
+#' # In case samples
+#' 
+#' case <- cof.var(data = norm,complete = FALSE,treatment = t,type = "case")
+#' head(case)
 
 
 cof.var <- function(data,complete=TRUE,treatment=NULL,type=NULL){
@@ -21,6 +50,8 @@ cof.var <- function(data,complete=TRUE,treatment=NULL,type=NULL){
   # Replace the sample name for case/control ID
   
   if (complete == FALSE) {
+    
+    data <- as.data.frame(data)
     
     names(data) <- treatment
     
@@ -33,7 +64,7 @@ cof.var <- function(data,complete=TRUE,treatment=NULL,type=NULL){
     }
     tdata <- data[names(data) == type]
   }else{
-    tdata = data
+    tdata = as.data.frame(data)
   }
   
   # Obtains the mean of the expression values
