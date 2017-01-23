@@ -21,6 +21,12 @@ Using a GSE ID list, from the GEO DtaSet ftp, search and download each one of th
 separate file with the GSE ID as the name, after that, this function uncompress the downloaded file to be ready to use.
 Adittionally, this function search and downloaded the information of the chip using the GPL ID to obtain the .soft file.
 }
+\examples{
+
+# Extract data from GEO DataSet
+
+get.info(GSE = "GSE8216", GPL = "GPL2025")
+}
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
 }
