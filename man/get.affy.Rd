@@ -4,7 +4,7 @@
 \alias{get.affy}
 \title{Charge and create an AffyBatch object}
 \usage{
-get.affy(GSE)
+data(GSE8216)
 }
 \arguments{
 \item{GSE}{The name of the file with the compressed samples data.}
@@ -12,6 +12,12 @@ get.affy(GSE)
 \description{
 Charges the data from a file with the GSM samples compressed using the "filelist.txt" file to identify the GSM ID
 and create the AffyBatch object finally.
+}
+\examples{
+
+# Load the AffyBatch from downloaded raw data
+
+affy <- get.affy("GSE8216")
 }
 \author{
 Juan david Henao <judhenaosa@unal.edu.co>
