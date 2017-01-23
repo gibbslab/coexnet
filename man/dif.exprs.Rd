@@ -7,7 +7,7 @@
 dif.exprs(eset, treatment, fdr, DifferentialMethod)
 }
 \arguments{
-\item{eset}{A data.frame with the expression matrix.}
+\item{eset}{A matrix with the expression matrix.}
 
 \item{treatment}{A vector with the ientifiers of the classes, 0 to control
 and 1 to case.}
@@ -25,6 +25,29 @@ genes only.
 Using the expression matrix calculate the differential expressed
 genes to two class analysis and fixing an expected FDR value. The methods
 are SAM and ACDE.
+}
+\examples{
+
+## Creating the expression matrix
+
+# The matrix have 200 genes and 20 samples
+
+n <- 200
+m <- 20
+
+# The vector with treatment samples and control samples
+
+t <- c(rep(0,10),rep(1,10))
+
+# Calculating the expression values normalized
+
+mat <- as.matrix(rexp(n, rate = 1))
+norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
+
+## Running the function using the two approaches
+
+sam <- dif.exprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
+acde <- dif.exprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "acde")
 }
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>

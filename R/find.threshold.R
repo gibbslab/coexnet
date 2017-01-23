@@ -15,7 +15,20 @@
 #' @return The best threshold value find using the two criteria and a plot with the result.
 #' @seealso \code{\link{dif.exprs}} to find the differential expressed genes matrix.
 #' @references Elo, L. L., Järvenpää, H., Orešič, M., Lahesmaa, R., & Aittokallio, T. (2007). Systematic construction of gene coexpression networks with applications to human T helper cell differentiation process. Bioinformatics, 23(16), 2096-2103.
-
+#' @examples 
+#' 
+#' # Loading data
+#' 
+#' data <- read.table(system.file("extdata","expression_example.txt",package = "coexnet"),stringsAsFactors = F)
+#' 
+#' # Find threshold value
+#' 
+#' cor_pearson <- find.threshold(difexp = data,method = "correlation")
+#' cor_pearson
+#' 
+#' mut_inf <- find.threshold(difexp = data,method = "mutual information")
+#' mut_info
+ 
 find.threshold <- function(difexp, method){
   
   # Obtains the similarity values

@@ -21,6 +21,20 @@ using two different criteria. First, use the differential value between the clus
 random network build and second test the network using a Kolgomorov-Smirnov test to reject normality in the degree distribution of 
 the edges in the network.
 }
+\examples{
+
+# Loading data
+
+data <- read.table(system.file("extdata","expression_example.txt",package = "coexnet"),stringsAsFactors = F)
+
+# Find threshold value
+
+cor_pearson <- find.threshold(difexp = data,method = "correlation")
+cor_pearson
+
+mut_inf <- find.threshold(difexp = data,method = "mutual information")
+mut_info
+}
 \author{
 Juan David Henao Sanchez <judhenaosa@unal.edu.co>
 

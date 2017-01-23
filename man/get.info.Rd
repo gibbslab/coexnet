@@ -11,7 +11,7 @@ get.info(GSE, GPL, dir = ".")
 
 \item{GPL}{The GPL ID of the chip used in the microarray experiment.}
 
-\item{dir}{The pathfile to download and uncompress the raw wxpewssion data, by default is the current pathfile.}
+\item{dir}{The pathfile to download and uncompress the raw expression data, by default is the current pathfile.}
 }
 \value{
 A set of files with the uncompressed data and ready to use.

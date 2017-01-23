@@ -21,6 +21,20 @@ A undirected co-expression network like igraph object.
 From a expression matrix, this function create a co-expression network like a igrph object using a threshold value and
 one similarity function.
 }
+\examples{
+
+# Loading data
+
+data <- read.table(system.file("extdata","expression_example.txt",package = "coexnet"),stringsAsFactors = F)
+
+# Building the network
+
+cor_pearson <- create.net(difexp = a,threshold = 0.7,method = "correlation")
+cor_pearson
+
+mut_inf <- create.net(difexp = a,threshold = 0.5,method = "mutual information")
+mut_inf
+}
 \author{
 Juan David Henao Sanchez <judhenaosa@unal.edu.co>
 

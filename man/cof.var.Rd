@@ -25,6 +25,36 @@ the another one with the coefficient of variation values.
 This function calculate the mean and the coefficient of variation to each one of the row (gene or probeset)
 in a expression matrix in two ways: i) in the whole matrix ii) to specific phenotype (case or control).
 }
+\examples{
+
+## Creating the expression matrix
+
+# The matrix have 200 genes and 20 samples
+
+n <- 200
+m <- 20
+
+# The vector with treatment samples and control samples
+
+t <- c(rep(0,10),rep(1,10))
+
+# Calculating the expression values normalized
+
+mat <- as.matrix(rexp(n, rate = 1))
+norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
+
+## Calculating the mean and the coefficient of variation
+
+# In whole expression matrix
+
+complete <- cof.var(norm)
+head(complete)
+
+# In case samples
+
+case <- cof.var(data = norm,complete = FALSE,treatment = t,type = "case")
+head(case)
+}
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
 }
