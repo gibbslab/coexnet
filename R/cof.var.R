@@ -8,7 +8,7 @@
 #' in a expression matrix in two ways: i) in the whole matrix ii) to specific phenotype (case or control).
 #' @param data  The whole normalize expression matrix, rows: genes or probeset, columns: samples.
 #' @param complete  Boolean to define if the function use the whole expression matrix, by default TRUE.
-#' @param A vector with 0 and 1 to each one of the samples in the expression matrix, the 0 express 
+#' @param treatment A vector with 0 and 1 to each one of the samples in the expression matrix, the 0 express 
 #' the control samples and 1 express the case samples, by default NULL.
 #' @param type  Can be "case" to obtain the mean and the coefficient of variation to the case samples or, otherwise, "control" to 
 #' obtain these two values to the control samples.
