@@ -1,0 +1,2 @@
+#Archive/File	Name	Time	Size	Type
+File	GSM1070311_1181.CEL.gz	08/12/2009 12:37:03	9190673	CEL
