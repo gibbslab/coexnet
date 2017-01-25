@@ -19,7 +19,8 @@
 #' 
 #' # Loading data
 #' 
-#' data <- read.table(system.file("extdata","expression_example.txt",package = "coexnet"),stringsAsFactors = FALSE)
+#' data <- read.table(system.file("extdata","expression_example.txt",
+#' package = "coexnet"),stringsAsFactors = FALSE)
 #' 
 #' # Find threshold value
 #' 
