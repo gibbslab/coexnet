@@ -7,7 +7,7 @@
 expr.mat(affy, genes, NormalizeMethod, SummaryMethod, BatchCorrect = TRUE)
 }
 \arguments{
-\item{affy}{A affyBatch object with the raw expression data.}
+\item{affy}{A AffyBatch object with the raw expression data.}
 
 \item{genes}{A data.frame with two columns, in the firt one the name of each probe 
 in the microarray and in the second one the corresponding gene or ID.}
