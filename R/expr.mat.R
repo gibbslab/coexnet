@@ -25,7 +25,7 @@
 #' 
 #' # Creating AffyBatch object
 #' 
-#' a <- get.affy("GSE1234",dir = system.file("extdata",package = "coexnet"))
+#' a <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
 #' 
 #' # Loading table with probeset and gene/ID information
 #' 

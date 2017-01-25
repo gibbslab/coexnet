@@ -14,7 +14,7 @@
 .median.probe <- function(gene,array){
   
   colnames(array) <- gsub(".CEL.gz","",colnames(array),ignore.case = T)
-  list <- unique(gene$gene)
+  list <- unique(gene$ID)
   newList <- list[grep(paste0("^","$"),list,invert = T)]
   g <- matrix(0,length(newList),dim(array)[2])
   
@@ -36,7 +36,7 @@
 .max.probe <- function(gene,array){
   
   colnames(array) <- gsub(".CEL.gz","",colnames(array),ignore.case = T)
-  list <- unique(gene$gene)
+  list <- unique(gene$ID)
   newList <- list[grep(paste0("^","$"),list,invert = T)]
   g <- matrix(0,length(newList),dim(array)[2])
   
