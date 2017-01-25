@@ -24,5 +24,8 @@ Imports:
     acde,
     Biobase,
     limma,
+    graphics,
+    stats,
+    utils,
     minet
 RoxygenNote: 5.0.1

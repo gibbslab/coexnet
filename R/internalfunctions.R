@@ -6,6 +6,9 @@
 #' @importFrom minet build.mim
 #' @importFrom limma removeBatchEffect as.matrix.ExpressionSet normalizeVSN
 #' @import Biobase
+#' @importFrom graphics abline text
+#' @importFrom stats cor median na.omit sd
+#' @importFrom utils read.table untar
 
 # internalfunctions
 # Juan David Henao Sanchez
