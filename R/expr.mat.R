@@ -24,25 +24,25 @@
 #' @examples 
 #' \dontrun{
 #' 
-#' # Creating AffyBatch object
+#' # Loading AffyBatch object
 #' 
-#' a <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+#' data("affy")
 #' 
 #' # Loading table with probeset and gene/ID information
 #' 
-#' info <- read.table(system.file("extdata","gene_ID.txt",package = "coexnet"))
+#' data("info")
 #' 
 #' # Calculating the expression matrix
 #' 
 #' ## RMA
 #' 
-#' rma <- expr.mat(affy = a,genes = info,NormalizeMethod = "rma",
+#' rma <- expr.mat(affy = affy,genes = info,NormalizeMethod = "rma",
 #' SummaryMethod = "median",BatchCorrect = FALSE)
 #' head(rma)
 #' 
 #' ## VSN
 #' 
-#' vsn <- expr.mat(affy = a,genes = info,NormalizeMethod = "vsn",
+#' vsn <- expr.mat(affy = affy,genes = info,NormalizeMethod = "vsn",
 #' SummaryMethod = "median",BatchCorrect = FALSE)
 #' head(vsn)
 #' 
