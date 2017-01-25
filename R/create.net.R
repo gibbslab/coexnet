@@ -22,10 +22,10 @@
 #' 
 #' # Building the network
 #' 
-#' cor_pearson <- create.net(difexp = a,threshold = 0.7,method = "correlation")
+#' cor_pearson <- create.net(difexp = data,threshold = 0.7,method = "correlation")
 #' cor_pearson
 #' 
-#' mut_inf <- create.net(difexp = a,threshold = 0.5,method = "mutual information")
+#' mut_inf <- create.net(difexp = data,threshold = 0.5,method = "mutual information")
 #' mut_inf
 
 create.net <- function(difexp,method, threshold){

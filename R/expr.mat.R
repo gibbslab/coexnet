@@ -36,12 +36,14 @@
 #' 
 #' ## RMA
 #' 
-#' rma <- expr.mat(affy = a,genes = info,NormalizeMethod = "rma",SummaryMethod = "median",BatchCorrect = FALSE)
+#' rma <- expr.mat(affy = a,genes = info,NormalizeMethod = "rma",
+#' SummaryMethod = "median",BatchCorrect = FALSE)
 #' head(rma)
 #' 
 #' ## VSN
 #' 
-#' vsn <- expr.mat(affy = a,genes = info,NormalizeMethod = "vsn",SummaryMethod = "median",BatchCorrect = FALSE)
+#' vsn <- expr.mat(affy = a,genes = info,NormalizeMethod = "vsn",
+#' SummaryMethod = "median",BatchCorrect = FALSE)
 #' head(vsn)
 #' 
 #' }
