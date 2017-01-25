@@ -20,6 +20,8 @@ and create the AffyBatch object finally.
 # Load the AffyBatch from downloaded raw data
 # The data is from partial experiment results from Greene JG(2006), GEO accession: GSE4773
 
+# Data whitout CDF enviroment information
+
 affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
 }
 \author{
