@@ -1,10 +1,10 @@
 Package: coexnet
 Type: Package
-Title: CO-EXpression NETwork Builder to Microarray Data
+Title: CO-EXpression NETwork Builder from GEO DataSet Microarray Data
 Version: 0.1.0
 Author: Juan David Henao [aut,cre], Andres Pinzon-Velasco [aut]
 Maintainer: Juan David Henao <judhenaosa@unal.edu.co>
-Description: Extracts the gene expression matrix from GEO DataSets as a
+Description: Extracts the gene expression matrix from GEO DataSets (.CEL files) as a
     AffyBatch object. Additionally, can make the normalization process using two
     different methods (vsn and rma). The summarization (pass from multi-probe to
     one gene) uses two different criteria (Maximum value and Median of the samples
@@ -22,5 +22,7 @@ Imports:
     vsn,
     igraph,
     acde,
+    Biobase,
+    limma,
     minet
 RoxygenNote: 5.0.1
