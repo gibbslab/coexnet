@@ -17,8 +17,8 @@
 #' 
 #' # Loading data
 #' 
-#' data <- read.table(system.file("extdata","expression_example.txt",
-#' package = "coexnet"),stringsAsFactors = FALSE)
+#' pathfile <- system.file("extdata","expression_example.txt",package = "coexnet")
+#' data <- read.table(pathfile,stringsAsFactors = FALSE)
 #' 
 #' # Building the network
 #' 

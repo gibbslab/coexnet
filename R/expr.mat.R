@@ -18,8 +18,8 @@
 #' @return A expression matrix, in the rows each one of the gene/ID and in the columns each one of the samples.
 #' @seealso \code{\link{get.affy}} to obtain the affyBatch object.
 #' @seealso \code{\link{gene.symbol}} to obtain the data.frame with probeset and genes/ID from .SOFT file.
-#' @references Huber, W., Von Heydebreck, A., Sültmann, H., Poustka, A., & Vingron, M. (2002). Variance stabilization applied to microarray data calibration and to the quantification of differential expression. Bioinformatics, 18(suppl 1), S96-S104.
-#' @references Irizarry, R. A., Hobbs, B., Collin, F., Beazer‐Barclay, Y. D., Antonellis, K. J., Scherf, U., & Speed, T. P. (2003). 
+#' @references Huber, W., Von Heydebreck, A., Sultmann, H., Poustka, A., & Vingron, M. (2002). Variance stabilization applied to microarray data calibration and to the quantification of differential expression. Bioinformatics, 18(suppl 1), S96-S104.
+#' @references Irizarry, R. A., Hobbs, B., Collin, F., Beazer Barclay, Y. D., Antonellis, K. J., Scherf, U., & Speed, T. P. (2003). 
 #' Exploration, normalization, and summaries of high density oligonucleotide array probe level data. Biostatistics, 4(2), 249-264.
 #' @example 
 #' \dontrun{
