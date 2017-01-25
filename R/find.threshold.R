@@ -28,7 +28,7 @@
 #' cor_pearson
 #' 
 #' mut_inf <- find.threshold(difexp = data,method = "mutual information")
-#' mut_info
+#' mut_inf
  
 find.threshold <- function(difexp, method){
   

@@ -34,7 +34,7 @@ cor_pearson <- find.threshold(difexp = data,method = "correlation")
 cor_pearson
 
 mut_inf <- find.threshold(difexp = data,method = "mutual information")
-mut_info
+mut_inf
 }
 \author{
 Juan David Henao Sanchez <judhenaosa@unal.edu.co>

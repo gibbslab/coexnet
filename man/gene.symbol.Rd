@@ -23,7 +23,7 @@ The genes are annotated using the gene symbol system.
 
 # Create the table with probesets and genes/IDs.
 
-gene_table <- gene.symbol(GPL = "GPL570",d = system.file("extdata",package = "coexnet"))
+gene_table <- gene.symbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
 
 # Cleaning the NA information.
 
