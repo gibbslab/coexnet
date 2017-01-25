@@ -14,7 +14,7 @@
 #' 
 #' # Create the table with probesets and genes/IDs.
 #' 
-#' gene_table <- gene.symbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
+#' gene_table <- gene.symbol(GPL = "GPL570",d = system.file("extdata",package = "coexnet"))
 #' 
 #' # Cleaning the NA information.
 #' 
@@ -22,7 +22,7 @@
 #' 
 #' # Cleaning empty gene/ID information.
 #' 
-#' final_table <- gene_na[gene_na$gene != "",]
+#' final_table <- gene_na[gene_na$ID != "",]
 #' 
 #' head(final_table)
 
