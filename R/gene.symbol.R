@@ -50,7 +50,7 @@ gene.symbol <- function(GPL, d = "."){
   
   # Names of each column
   
-  names(ta) <- c("probe","gene/ID")
+  names(ta) <- c("probe","ID")
   
   return(ta)
 }
