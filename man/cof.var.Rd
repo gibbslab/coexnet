@@ -11,11 +11,11 @@ cof.var(data, complete = TRUE, treatment = NULL, type = NULL)
 
 \item{complete}{Boolean to define if the function use the whole expression matrix, by default TRUE.}
 
+\item{treatment}{A vector with 0 and 1 to each one of the samples in the expression matrix, the 0 express 
+the control samples and 1 express the case samples, by default NULL.}
+
 \item{type}{Can be "case" to obtain the mean and the coefficient of variation to the case samples or, otherwise, "control" to 
 obtain these two values to the control samples.}
-
-\item{A}{vector with 0 and 1 to each one of the samples in the expression matrix, the 0 express 
-the control samples and 1 express the case samples, by default NULL.}
 }
 \value{
 The expression matrix with two new columns, the first one with the averages and 
