@@ -19,7 +19,7 @@
   g <- matrix(0,length(newList),dim(array)[2])
   
   for(n in 1:nrow(g)){
-    a <- array[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$gene/ID),]$probe),]
+    a <- array[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$`gene/ID`),]$probe),]
     a <- na.omit(a)
     if(!is.null(dim(a))){
       g[n,] <- apply(a,2,median)
@@ -41,7 +41,7 @@
   g <- matrix(0,length(newList),dim(array)[2])
   
   for(n in 1:nrow(g)){
-    a <- array[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$gene/ID),]$probe),]
+    a <- array[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$`gene/ID`),]$probe),]
     a <- na.omit(a)
     
     if(!is.null(dim(a))){
