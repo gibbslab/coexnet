@@ -8,7 +8,7 @@
 GEO Dataset from NCBI, GEO accession: GSE4773.
 }
 \description{
-AffyBatch object, has a part of raw expression value obtained from microarray chip.
+AffyBatch object, has a part of raw expression values obtained from microarray chip.
 }
 \author{
 Greene JG, 2006.
