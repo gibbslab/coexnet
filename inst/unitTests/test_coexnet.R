@@ -31,3 +31,35 @@ test_cof.var <- function(){
   checkException(cof.var(norm,complete = FALSE,treatment = t,type = "tratment"),silent = TRUE)
   checkException(cof.var(norm,complete = FALSE,treatment = c(0,1),type = "control"),silent = TRUE)
 }
+
+## test for create.net function ##
+
+test_create.net <- function(){
+  
+  ## Correct cases
+  
+  pathfile <- system.file("extdata","expression_example.txt",package = "coexnet")
+  data <- read.table(pathfile,stringsAsFactors = FALSE)
+  
+  # correlation
+  
+  cor_pearson <- create.net(difexp = data,threshold = 0.7,method = "correlation")
+
+  checkEquals(names(cor_pearson["RFC2"][4]),"PTPN21")
+  checkEquals(names(cor_pearson["RFC2"][137]),"IL28A")
+  checkEqualsNumeric(cor_pearson["RFC2"][137],1)
+  
+  # mutual information
+  
+  mut_inf <- create.net(difexp = data,threshold = 0.5,method = "mutual information")
+  
+  checkEquals(names(mut_inf["PXK"][40]),"NEDD1")
+  checkEqualsNumeric(mut_inf["PXK"][40],0)
+  checkEqualsNumeric(table(mut_inf["RFC2"] == 1)[2],3)
+  
+  ## Errors
+  
+  checkException(create.net(),silent = TRUE)
+  checkException(create.net(difexp = data,threshold = 0.3),silent = TRUE)
+  checkException(create.net(difexp = data[1,5],method = "mutual information",threshold = 0.5),silent = TRUE)
+}
