@@ -63,3 +63,29 @@ test_create.net <- function(){
   checkException(create.net(difexp = data,threshold = 0.3),silent = TRUE)
   checkException(create.net(difexp = data[1,5],method = "mutual information",threshold = 0.5),silent = TRUE)
 }
+
+## test for find.threshold ##
+
+test_find.threshold <- function(){
+  
+  ## Correct cases
+  
+  pathfile <- system.file("extdata","expression_example.txt",package = "coexnet")
+  data <- read.table(pathfile,stringsAsFactors = FALSE)
+  
+  # correlation
+  
+  checkEqualsNumeric(find.threshold(difexp = data,method = "correlation"),0.72)
+  checkEqualsNumeric(find.threshold(difexp = data[1:5,],method = "correlation"),0.01)
+  
+  # mutual information
+  
+  checkEqualsNumeric(find.threshold(difexp = data,method = "mutual information"),0.03)
+  checkEqualsNumeric(find.threshold(difexp = data[1:100,],method = "mutual information"),0.03)
+  
+  ## Errors
+  
+  checkException(find.threshold(),silent = TRUE)
+  checkException(find.threshold(difexp = data),silent = TRUE)
+  checkException(find.threshold(difexp = data[1,5],method = "mutual information"),silent = TRUE)
+}
