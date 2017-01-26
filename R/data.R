@@ -1,6 +1,7 @@
 ## affy documentation
 
-#' @name affy.
+#' @title Greene-5P01NS017771-220003: Microarray expression experiment related with Parkinson disease.
+#' @name affy
 #' @docType data
 #' @description AffyBatch object, has a part of raw expression value obtained from microarray chip.
 #' @source GEO Dataset from NCBI, GEO accession: GSE4773.
