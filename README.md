@@ -12,7 +12,7 @@ Extracts the gene expression matrix from GEO DataSets as a
     or Mutual Information (MI) and choosing a threshold value using a graph theory
     approach.
 
-**coexnet** run under R version 3.3.
+**coexnet** run under R version 2.10 or higher.
 
 ## Install
 
