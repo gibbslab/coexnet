@@ -89,3 +89,37 @@ test_find.threshold <- function(){
   checkException(find.threshold(difexp = data),silent = TRUE)
   checkException(find.threshold(difexp = data[1,5],method = "mutual information"),silent = TRUE)
 }
+
+## test for dif.exprs function ##
+
+test_dif.exprs <- function(){
+  
+  ## Correct cases
+  
+  t <- c(rep(0,10),rep(1,10))
+  
+  norm <- read.table(system.file("extdata","expression_example.txt",package = "coexnet"))
+  
+  # sam
+  
+  sam <- dif.exprs(eset = norm,treatment = t,fdr = 0.05,DifferentialMethod = "sam")
+  
+  checkTrue(dim(sam)[1] >= 1)
+  checkTrue(is.data.frame(sam))
+  checkEqualsNumeric(nrow(sam),24)
+  
+  # acde
+  
+  acde <- dif.exprs(eset = norm,treatment = t,fdr = 0.05,DifferentialMethod = "acde")
+  
+  checkTrue(dim(acde)[1] >= 1)
+  checkTrue(is.data.frame(acde))
+  checkEqualsNumeric(nrow(acde),14)
+  
+  ## Errors
+  
+  checkException(dif.exprs(),silent = TRUE)
+  checkException(dif.exprs(eset = norm,treatment = t,fdr = 3,DifferentialMethod = "sam"),silent = TRUE)
+  checkException(dif.exprs(eset = norm[1:10,],treatment = t,fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
+  checkException(dif.exprs(eset = norm,treatment = c(0,1),fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
+}
