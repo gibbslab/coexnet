@@ -164,3 +164,25 @@ test_gene.symbol <- function(){
   checkException(gene.smbol(GPL = "GPL2025.soft",d = system.file("extdata",package = "coexnet")),silent = TRUE)
   checkException(gene.smbol(GPL = "GPL2025"),silent = TRUE)
 }
+
+## test for get.affy function
+
+test_get.affy <- function(){
+  
+  affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+  
+  ## Correct cases
+  
+  checkTrue(is.object(affy))
+  checkEqualsNumeric(affy@nrow,500)
+  checkEqualsNumeric(affy@ncol,500)
+  checkEqualsNumeric(round(affy@assayData$exprs[1],digits = 1),77.3)
+  checkEqualsNumeric(length(affy@assayData$exprs),250000)
+  checkEquals(affy@protocolData@data$ScanDate,"06/30/04 10:20:15")
+  
+  ## Errors
+  
+  checkException(get.affy(),silent = TRUE)
+  checkException(get.affy(dir = system.file("extdata",package = "coexnet")),silent = TRUE)
+  checkException(get.affy(GSE = "1234",dir = system.file("extdata",package = "coexnet")),silent = TRUE)
+}
