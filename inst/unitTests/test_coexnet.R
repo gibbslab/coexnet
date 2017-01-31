@@ -123,3 +123,21 @@ test_dif.exprs <- function(){
   checkException(dif.exprs(eset = norm[1:10,],treatment = t,fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
   checkException(dif.exprs(eset = norm,treatment = c(0,1),fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
 }
+
+## test for get.info function ##
+
+test_get.info <- function(){
+  
+  test <- get.info(GSE = "GSE8216", GPL = "GPL2025",dir = tempdir())
+  dir <- dir()
+  
+  ## Correct cases
+  
+  checkEquals(test,"./GPL2025.soft")
+  checkTrue(any(dir == "GSE8216"))
+  
+  ## Errors
+  
+  checkException(get.info(),silent = TRUE)
+  checkException(get.info(GPL = "GPL2025",dir = tempdir()),silent = TRUE)
+}
