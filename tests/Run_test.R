@@ -1,6 +1,3 @@
-if (require("BioGenerics")) {
+if (requireNamespace("BiocGenerics", quietly = TRUE)) {
   BiocGenerics:::testPackage("coexnet")
-} else {
-  stop("BiocGenerics package not installed")
-} 
-
+}
