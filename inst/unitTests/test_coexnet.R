@@ -141,3 +141,26 @@ test_get.info <- function(){
   checkException(get.info(),silent = TRUE)
   checkException(get.info(GPL = "GPL2025",dir = tempdir()),silent = TRUE)
 }
+
+## test gene.symbol function ##
+
+test_gene.symbol <- function(){
+  
+  gene_table <- gene.symbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
+  gene_na <- na.omit(gene_table)
+  final_table <- gene_na[gene_na$ID != "",]
+  
+  ## Correct cases
+  
+  checkEquals(final_table$ID[1],"Os03g0669200")
+  checkEqualsNumeric(dim(final_table)[1],6)
+  checkEquals(rownames(final_table)[1],"118")
+  checkTrue(is.factor(final_table$probe))
+  
+  ## Errors
+  
+  checkException(gene.smbol(),silent = TRUE)
+  checkException(gene.smbol(d = system.file("extdata",package = "coexnet")),silent = TRUE)
+  checkException(gene.smbol(GPL = "GPL2025.soft",d = system.file("extdata",package = "coexnet")),silent = TRUE)
+  checkException(gene.smbol(GPL = "GPL2025"),silent = TRUE)
+}
