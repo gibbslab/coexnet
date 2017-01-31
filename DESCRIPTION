@@ -30,4 +30,7 @@ Imports:
     stats,
     utils,
     minet
+Suggests: 
+    RUnit, 
+    BiocGenerics
 RoxygenNote: 5.0.1
