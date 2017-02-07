@@ -2,9 +2,11 @@
 title: "coexnet: An R package to build CO-EXpression NETworks from Microarray Data"
 author: "Juan David Henao"
 date: "`r Sys.Date()`"
-output: pdf_document
+output: 
+  pdf_document: 
+    number_sections: yes
+    toc: yes
 ---
-
 
 #Abstract
 
@@ -12,7 +14,7 @@ output: pdf_document
 
 #Workflow
 
-##1. get.info
+##get.info
 
 All microarray raw data associated with the same study is stored in a CEL file, this file containe the GSM files, each one corresponding to each sample inside of the study, you can obtain each GSM file in a individual way, but, is rather obtain all the samples in the CEL file to avoid the work to join each GSM and additionally the way to analyse this kind of data is simultainously (in future normalization process for example). Therefore, all the micrroarray chips are documented in the GEO Datasets database. Each one of them are identify with the letters GPL follows of a unique number. The information in the GPL file is related with the information of every probeset in the microarray chip, including the gene, funtion, type and another information to take advantage of the analysis of the results.
 
@@ -20,7 +22,7 @@ This function will create in your actual pathfile a folder with the GSE(unique n
 
 **Take account:** In some cases the information in the GPL file are partial, take this in mind in the future analysis and is recomended not store the files in a temporal folder due to in many cases you will need the raw data to re-process the expression values using different methods.
 
-##2. get.affy
+##get.affy
 
 The AffyBatch object is one of the most widely kind of data used to process and analyse microarray expression data. The AffyBatch object store information about the data of scan to each one of the samples, the information related with the phenotype, the raw expression values to each probe in the microarray chip, the kind of library to read the expression data and anther one.
 
@@ -30,14 +32,14 @@ You can use the AffyBatch object in many different packages mainly in the affy p
 
 **Take account** 
 
-##3. gene.symbol
+##gene.symbol
 
-##4. exprs.mat
+##exprs.mat
 
-##5. cof.var
+##cof.var
 
-##6. dif.exprs
+##dif.exprs
 
-##7. find.threshold
+##find.threshold
 
-##8. create.net
+##create.net
