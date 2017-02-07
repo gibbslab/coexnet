@@ -6,10 +6,30 @@ output: pdf_document
 ---
 
 
-** Abstract **
+#Abstract
 
-** Introduction **
+#Introduction
 
-** get.affy **
+#Workflow
+
+##get.info
+
+All microarray raw data is stored in a CEL file, this file containe the GSM files, each one corresponding to each sample beyond the study, you can obtain each GSM file in a individual way, but, is rather obtain all the samples in the CEL file to avoid the work to join each GSM and additionally the way to analyse this kind of data is simultainously (in future normalization process for example). Therefore, all the micrroarray chips are documented in the GEO Datasets database. Each one of them are identify with the letters GPL follows of a unique number. The information in the GPL file is related with the information of every probeset in the microarray chip, including the gene, funtion, type and another information to take advantage of the analysis of the results.
 
 
+
+**Take account:** is necessary, in the case of the GSE file, that all information
+
+##get.affy
+
+##gene.symbol
+
+##exprs.mat
+
+##cof.var
+
+##dif.exprs
+
+##find.threshold
+
+##create.net
