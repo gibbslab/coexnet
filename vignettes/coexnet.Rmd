@@ -65,10 +65,44 @@ In some cases the AffyBatch doesn't have all the information and a warining mess
 affy@cdfName <- "HG-U133_Plus_2"
 
 ```
-
 ##gene.symbol
 
+In most cases, the idea of create a co-expression network is to visualize the relations among diferent genes, proteins, specific DNA or RNA fragments or another kind of molecular entity identify with a specific ID. For this reason, is very useful to have the information about the corresponding ID to each one of the probeset in the microarray. This kind of information will use when you need pass from a matrix of probeset-sample to one of gene(or another ID)-sample before of the construction of the co-expression network.
+
+The .soft file, downloaded from GEO Datasets database using the GPL identifier have the information to create a table with the relationship between probeset and one molecular ID, in this table one ID can be related with two or more probeset, the process to create only one expression values to one ID from different probeset is called *summarization* (see bellow).
+
+This function search in the actual or the designaded pathfile the .soft file and from this searchand create a data.frame where the first column have each one of the probeset names and in the second one have the corrisponding ID (gene symbol, protein name or symbol, etc).
+
+```{r, eval=FALSE}
+
+# Create the table with the relationship between probesets and IDs.
+
+gene_table <- gene.symbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
+
+head(gene_table)
+
+```
+
 **Take account**
+
+In some cases, the .soft file dosen't have all the IDs to each one of the probeset inside of the microarray, you can ignore this probeset under the assumption of the another probeset can have the ID and correspond at the no identify probeset. On the other hand, one ID can be related with more than two names, this function create a ID with all the related names separed by "-", that is useful in future analysis when the biological information is related at one specific name among the several names to one ID.
+
+```{r, eval=FALSE}
+
+# The before table have NA and empty information in the IDs.
+# We can delete this unuseful information.
+
+# Deletion of IDs with NA information
+
+gene_na <- na.omit(gene_table)
+
+# Deletion of empty IDs
+
+final_table <- gene_na[gene_na$ID != "",]
+
+head(final_table)
+
+```
 
 ##exprs.mat
 
@@ -79,3 +113,5 @@ affy@cdfName <- "HG-U133_Plus_2"
 ##find.threshold
 
 ##create.net
+
+##References
