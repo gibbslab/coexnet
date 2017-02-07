@@ -48,7 +48,7 @@ This function search in your actual or designaded pathfile the folder with the G
 ```{r, eval=FALSE}
 
 # Reading some GSM samples from GSE4773 study, the folder with the 
-# GSM files are called GSE1234
+# GSM files are called GSE1234.
 
 affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
 
@@ -106,7 +106,67 @@ head(final_table)
 
 ##exprs.mat
 
+**Take account**
+
 ##cof.var
+
+In some cases, the co-expression network is built from two or more microarrays studies, in this sense, is necessary to define wich of this studies represent the most source of background noise and probably affect in a negative way the future results. One way to determinate the most harmful studies is from variation analysis, the study with more variation among the normalized expression values can be the source of the future background noise and is necessary to consider the use of this studies in the construction of the co-expression network.
+
+To define the variation among the normalized expression values can be determinated the *coefficient of variation* of each one of gene or ID in each one of the studies and generate the boxplot from the results. So, in a graphical way is possible to define the studies that will generate background noise watching the atipic data. On the other hand, is posible to define the number of atipic data and determinate the more variant studies using the boxplot and the number of atipic data defing a threshold value, for example the studies with more of 10% of atipic data wont be take account in the construction of the co-expression network.
+
+This function take the normalized ID-sample matrix and claculate the median and the coefficient of variation to each one of the ID, this process is neccesary to do study-by-study. Additionally, this function allow to calculate the median and the coefficient of variation to cases and controls samples separately using a vector of 0s and 1s to identify the case and control samples. This vector is possible be defined in the description of each sample in the GEO Datasets database and is necessary no identify the gene (or another ID as proteins) differentially expressed (see bellow).
+
+```{r, eval=FALSE}
+
+# Simulated expression data
+
+n <- 200
+m <- 20
+
+# The vector with treatment samples and control samples
+
+t <- c(rep(0,10),rep(1,10))
+
+# Calculating the expression values normalized
+
+mat <- as.matrix(rexp(n, rate = 1))
+norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
+
+# Calculating the coefficient of variation to case samples
+
+case <- cof.var(data = norm,complete = FALSE,treatment = t,type = "case")
+head(case)
+
+# Creating the boxplot to coefficient of variation results
+
+boxplot(case$cv)
+
+# Extracting the number of atipic data
+
+length(boxplot.stats(case$cv)$out)
+
+```
+
+**Take account**
+
+The desition of delete a microarray study from the result of coefficient of variation result depend of the data and the criteria of the researcher to filter the studies (the selection of a threshold value), don't exist a gold rule  to discard a study, is advisable calculate the coefficient of variation of all samples at time to compare and determinate the most variant.
+
+```{r, eval=FALSE}
+
+# Calculating the coefficient of variation to whole matrix
+
+complete <- cof.var(norm)
+head(complete)
+
+# Creating the boxplot to coefficient of variation results
+
+boxplot(complete$cv)
+
+# Extracting the number of atipic data
+
+length(boxplot.stats(complete$cv)$out)
+
+```
 
 ##dif.exprs
 
