@@ -1,0 +1,15 @@
+---
+title: "coexnet: An R package to build CO-EXpression NETworks from Microarray Data"
+author: "Juan David Henao"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+
+** Abstract **
+
+** Introduction **
+
+** get.affy **
+
+
