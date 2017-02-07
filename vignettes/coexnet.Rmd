@@ -18,11 +18,17 @@ All microarray raw data associated with the same study is stored in a CEL file, 
 
 This function will create in your actual pathfile a folder with the GSE(unique number) name where are stored the GSM download files and otherwise the file GPL(unique number).soft file with the information of the microaaray chip.
 
-**Take account:** In some cases the information in the GSE and the GPL files are partial, take this in mind in the future analysis and is recomended not store the files in a temporal folder due to in many cases you will need the raw data to re-process the expression values using different methods.
+**Take account:** In some cases the information in the GPL file are partial, take this in mind in the future analysis and is recomended not store the files in a temporal folder due to in many cases you will need the raw data to re-process the expression values using different methods.
 
 ##2. get.affy
 
+The AffyBatch object is one of the most widely kind of data used to process and analyse microarray expression data. The AffyBatch object store information about the data of scan to each one of the samples, the information related with the phenotype, the raw expression values to each probe in the microarray chip, the kind of library to read the expression data and anther one.
 
+You can use the AffyBatch object in many different packages mainly in the affy package, additionally you can modify the AffyBatch object if you consider it necessary.
+
+
+
+**Take account** 
 
 ##3. gene.symbol
 
