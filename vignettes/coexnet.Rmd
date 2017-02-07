@@ -20,7 +20,22 @@ All microarray raw data associated with the same study is stored in a CEL file, 
 
 This function will create in your actual pathfile a folder with the GSE(unique number) name where are stored the GSM download files and otherwise the file GPL(unique number).soft file with the information of the microaaray chip.
 
-**Take account:** In some cases the information in the GPL file are partial, take this in mind in the future analysis and is recomended not store the files in a temporal folder due to in many cases you will need the raw data to re-process the expression values using different methods.
+```{r, eval=FALSE}
+
+# Downloading the microarray raw data from GSE8216 study 
+# The accession number of the microarray chip related with this study is GPL2025
+
+get.info(GSE = "GSE8216", GPL = "GPL2025",dir = ".")
+
+# Show the actual pathfile with the folder with the GSE number and the .soft file
+
+dir()
+
+```
+
+**Take account**
+
+In some cases the information in the GPL file are partial, take this in mind in the future analysis and is recomended not store the files in a temporal folder due to in many cases you will need the raw data to re-process the expression values using different methods.
 
 ##get.affy
 
@@ -28,11 +43,32 @@ The AffyBatch object is one of the most widely kind of data used to process and 
 
 You can use the AffyBatch object in many different packages mainly in the affy package, additionally you can modify the AffyBatch object if you consider it necessary.
 
+This function search in your actual or designaded pathfile the folder with the GSE accession number and read the filelist.txt file with the name of the every GSM samples to recognize them and join in an only AffyBatch object.
 
+```{r, eval=FALSE}
 
-**Take account** 
+# Reading some GSM samples from GSE4773 study, the folder with the 
+# GSM files are called GSE1234
+
+affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+
+```
+**Take account**
+
+In some cases the AffyBatch doesn't have all the information and a warining messege is shown when you view the variable with the AffyBatch object, but you can edit the AffyBatch to fill all the requiered information. If you try to process the AffyBatch in some of the packages that use this kind of object you will recieved an error messege.
+
+```{r, eval=FALSE}
+
+# The variable affy doesn't have the CDF (Chip Definition File) information.
+# You can include this information modifying the AffyBatch object.
+
+affy@cdfName <- "HG-U133_Plus_2"
+
+```
 
 ##gene.symbol
+
+**Take account**
 
 ##exprs.mat
 
