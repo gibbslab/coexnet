@@ -12,24 +12,26 @@ output: pdf_document
 
 #Workflow
 
-##get.info
+##1. get.info
 
-All microarray raw data is stored in a CEL file, this file containe the GSM files, each one corresponding to each sample beyond the study, you can obtain each GSM file in a individual way, but, is rather obtain all the samples in the CEL file to avoid the work to join each GSM and additionally the way to analyse this kind of data is simultainously (in future normalization process for example). Therefore, all the micrroarray chips are documented in the GEO Datasets database. Each one of them are identify with the letters GPL follows of a unique number. The information in the GPL file is related with the information of every probeset in the microarray chip, including the gene, funtion, type and another information to take advantage of the analysis of the results.
+All microarray raw data associated with the same study is stored in a CEL file, this file containe the GSM files, each one corresponding to each sample inside of the study, you can obtain each GSM file in a individual way, but, is rather obtain all the samples in the CEL file to avoid the work to join each GSM and additionally the way to analyse this kind of data is simultainously (in future normalization process for example). Therefore, all the micrroarray chips are documented in the GEO Datasets database. Each one of them are identify with the letters GPL follows of a unique number. The information in the GPL file is related with the information of every probeset in the microarray chip, including the gene, funtion, type and another information to take advantage of the analysis of the results.
+
+This function will create in your actual pathfile a folder with the GSE(unique number) name where are stored the GSM download files and otherwise the file GPL(unique number).soft file with the information of the microaaray chip.
+
+**Take account:** In some cases the information in the GSE and the GPL files are partial, take this in mind in the future analysis and is recomended not store the files in a temporal folder due to in many cases you will need the raw data to re-process the expression values using different methods.
+
+##2. get.affy
 
 
 
-**Take account:** is necessary, in the case of the GSE file, that all information
+##3. gene.symbol
 
-##get.affy
+##4. exprs.mat
 
-##gene.symbol
+##5. cof.var
 
-##exprs.mat
+##6. dif.exprs
 
-##cof.var
+##7. find.threshold
 
-##dif.exprs
-
-##find.threshold
-
-##create.net
+##8. create.net
