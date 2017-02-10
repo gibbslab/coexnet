@@ -106,6 +106,12 @@ head(final_table)
 
 ##exprs.mat
 
+The raw expression data in a microarray experiment mut be processed to transform the original dat in the correct way to be analyzed and obtain confidence results. The first step is the normalizaion of the data, that consist in a background correction of the raw data and the follow transformation of the result in a normalize way. The second one is the pass of probeset to gene or any other ID to represent the molecular entity to analyze. Additionally, exist the posibility to make a second kind of background correction based on the batch of sampes scaned in a separete way due to the large number of samples and the limitation in the size of the microarray chip used, this correction is knowledge as *Bactch Effect Correction*.
+
+Exist different methods to normalize raw expression data from microrray experiments, each one of this methodologies consider a way to generate a background correction, the process of normalization and the pass from probes to probesets. The differencies of this methods consist in the underliying mathematics assumptions used and the range of the noralized reults, in som cases the expression data with a range more wide than anothers. In the same way, the process to transform the probeset-samples matrix in a gene(or another ID)-sample matrix consider diferent methodologies to do that including the obtantion of the average of the expression values of each one of the probeset corresponding to the same gene or protein, the selection of the maximum or minimum value, among others.
+
+
+
 **Take account**
 
 ##cof.var
