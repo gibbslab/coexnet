@@ -110,9 +110,13 @@ The raw expression data in a microarray experiment mut be processed to transform
 
 Exist different methods to normalize raw expression data from microrray experiments, each one of this methodologies consider a way to generate a background correction, the process of normalization and the pass from probes to probesets. The differencies of this methods consist in the underliying mathematics assumptions used and the range of the noralized reults, in som cases the expression data with a range more wide than anothers. In the same way, the process to transform the probeset-samples matrix in a gene(or another ID)-sample matrix consider diferent methodologies to do that including the obtantion of the average of the expression values of each one of the probeset corresponding to the same gene or protein, the selection of the maximum or minimum value, among others.
 
+This function have the possibility to choose among two different methods to normalize the raw expression values, including the process of background correction and the pass from probes to probeset. The first one is *rma* (), this method do a background correction and normalization in a separate calculations (). The second one is *vsn* (), this method, contrary to *rma*, generate the background correction and the normalization in the same equation (). On the other hand, the function have the option to do a *Batch Effect Correction* wheter you know if the samples were scaned in a separate way using the *Scan Date* data inside the AffyBatch object (one of the input in the function).
 
+Additionally, this method consider two ways to calculate the values in the process to pass from probesets to gene/ID. The first one is selecting a representative probeset to each one of the gene, protein or another kind of ID. To do that, is calculated the average of each one of the probeset associated with the same gene/ID, and the probeset with the most high value in the average is selected. The second one is obtain the median of the each one of the samples to the probesets associated with the same gene/ID, obtained a only one expression value for sample as the transformation of the normalized data.
 
 **Take account**
+
+Consider that *rma* is a method whose results have less range of amplitude than *vsn*, take account this to select the method to normalize the raw expresion values. 
 
 ##cof.var
 
