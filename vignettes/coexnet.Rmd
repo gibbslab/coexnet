@@ -201,6 +201,10 @@ length(boxplot.stats(complete$cv)$out)
 
 ##create.net
 
+The last step in the construction of a co-expression matrix is the construction of the network. Once you had defined a threshold value, the last step is transform the expression value in a adjacency matrix using the correlation or the mutual information method to obtain the values of relationship between the diferent genes or proteins (or another kind of ID). 
+
+**Take account**
+
 #References
 
 * Huber, W., Von Heydebreck, A., Sultmann, H., Poustka, A., & Vingron, M. (2002). Variance stabilization applied to microarray data calibration and to the quantification of differential expression. Bioinformatics, 18(suppl 1), S96-S104.
