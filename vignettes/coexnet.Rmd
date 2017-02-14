@@ -203,7 +203,7 @@ length(boxplot.stats(complete$cv)$out)
 
 The last step in the construction of a co-expression matrix is the construction of the network. Once you had defined a threshold value, the last step is transform the expression value in a adjacency matrix using the correlation or the mutual information method to obtain the values of relationship between the diferent genes or proteins (or another kind of ID).
 
-The process to pass from expression matrix to network consist of two steps. The first one is the build of a correlation matrix, to do that is necessary to apply some of the two method to calculate the relation among the genes/ID (Pearson correlation or mutual information, see above) (). The second one is the pass from expression matrix to adjacency matrix, to create this kind of matrix is necessary the threshold value, every correlation value inside the matrix less than the threshold will be replace by zero, while all remainded values will be replaced by one. Aditionally, the product of related one gene/ID with itself will be always zero.
+The process to pass from expression matrix to network consist of two steps. The first one is the build of a correlation matrix, to do that is necessary to apply some of the two method to calculate the relation among the genes/ID (Pearson correlation or mutual information, see above) (López-Kleine, *et al*. 2013). The second one is the pass from expression matrix to adjacency matrix, to create this kind of matrix is necessary the threshold value, every correlation value inside the matrix less than the threshold will be replace by zero, while all remainded values will be replaced by one. Aditionally, the product of related one gene/ID with itself will be always zero.
 
 Finally, from the adjacency matrix, is created a list where one gene/ID and another one conected to the first are related separated by a space. It means, if *gene A* and the *gene B*, in the adjacency matrix have a value of one, then, in the final adjacency matrix they appear as:
 
@@ -235,3 +235,5 @@ In the process of construction of adjacency matrix, some gene/ID could not be re
 * Huber, W., Von Heydebreck, A., Sultmann, H., Poustka, A., & Vingron, M. (2002). Variance stabilization applied to microarray data calibration and to the quantification of differential expression. Bioinformatics, 18(suppl 1), S96-S104.
 
 * Irizarry, R. A., Hobbs, B., Collin, F., Beazer Barclay, Y. D., Antonellis, K. J., Scherf, U., & Speed, T. P. (2003). Exploration, normalization, and summaries of high density oligonucleotide array probe level data. Biostatistics, 4(2), 249-264.
+
+* López-Kleine, L., Leal, L., & López, C. (2013). Biostatistical approaches for the reconstruction of gene co-expression networks based on transcriptomic data. Briefings in functional genomics, elt003.
