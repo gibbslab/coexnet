@@ -201,9 +201,27 @@ length(boxplot.stats(complete$cv)$out)
 
 When you have the final expression matrix, is necessary analyze that in a way to obtain the co-expression network. Exist two methods widely used to do this process, both of them are related with the definition of correlation value between all the genes/IDs creating a square matrix. In one hand you can calculate the *Pearson Correlation Coefficient*, this method calculate the correlation between every genes/IDs from the expression values of each one, as result, the square matrix will have values between zero and one, due to in the future construction of co-expression network is necessary to use the absolute value of the results. On the other hand, the *Mutual Information* is calculated in a same way in the aforementioned method, but, in this case, is necessary an additional transformation of the results to obtain a square matrix with values between zero and one.
 
+The obtaintion of a square matrix with a range of values from zero to one is necessary to the future transformation of this correlation matrix to the adjacency matrix (see bellow). Additionally, is necessary this range of values due to a threshold value must be defined to establish the final relations between the genes/IDs, to do this, a value among zero to one is difened and the values of correlation less than threshold value will indicate the no existance of a real correlation among them, obtianed finally the relations among the genes/IDs as co-expression network.
 
+This function calculate a threshold value using a novel method based in two *Biological Systems* approachs. First, each possible threshold value, from 0.01 to 0.99 with an increase of 0.01. Each one of this possible threshold values is then analyzed in the first approche aforementioned mentioned. To each value, is calculated the *Clustering Coefficient* to the network creating using the actual threshold value under test. After, is calculated an artificial *Clustering Coefficient* to simulate a random network created using the same threshold value. Then, is calculated the difference among the two *Clustering Coefficient* values, and the result that do acomplishment of the criteria of Elo, *et al* (2008), will be take account to the next analysis. Finally, the remain threshold values will be analyze using the *Degree Distribution* under normal distribution using *Kolgomorov-Smirnov* test, expecting the resulting p-value rejecting the distribution, that as result of the assumption that the biological networks dosen't have normal distribution when the *Degree Distribution* is analyzed. Finally, the minimum threshold value that comply this two criteria will be selected as the final threshold value to the construction of the co-expression network.
+
+```{r, eval=FALSE}
+
+# Loading data
+
+pathfile <- system.file("extdata","expression_example.txt",package = "coexnet")
+data <- read.table(pathfile,stringsAsFactors = FALSE)
+
+# Find threshold value
+
+cor_pearson <- find.threshold(difexp = data,method = "correlation")
+cor_pearson
+
+```
 
 **Take account**
+
+
 
 ##create.net
 
@@ -237,6 +255,8 @@ head(cor_pearson)
 In the process of construction of adjacency matrix, some gene/ID could not be related with another one and in the process to pass from matrix to adjacency list, this gene/ID will be deleted. Additionally, the network in the igraph object can be export as adjacency list using the igraph package to viualize the network in another program as *Cytoscape* or *Gephi*.
 
 #References
+
+* Elo, L. L., Järvenpää, H., Orešič, M., Lahesmaa, R., & Aittokallio, T. (2007). Systematic construction of gene coexpression networks with applications to human T helper cell differentiation process. Bioinformatics, 23(16), 2096-2103.
 
 * Huber, W., Von Heydebreck, A., Sultmann, H., Poustka, A., & Vingron, M. (2002). Variance stabilization applied to microarray data calibration and to the quantification of differential expression. Bioinformatics, 18(suppl 1), S96-S104.
 
