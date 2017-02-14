@@ -199,6 +199,12 @@ length(boxplot.stats(complete$cv)$out)
 
 ##find.threshold
 
+When you have the final expression matrix, is necessary analyze that in a way to obtain the co-expression network. Exist two methods widely used to do this process, both of them are related with the definition of correlation value between all the genes/IDs creating a square matrix. In one hand you can calculate the *Pearson Correlation Coefficient*, this method calculate the correlation between every genes/IDs from the expression values of each one, as result, the square matrix will have values between zero and one, due to in the future construction of co-expression network is necessary to use the absolute value of the results. On the other hand, the *Mutual Information* is calculated in a same way in the aforementioned method, but, in this case, is necessary an additional transformation of the results to obtain a square matrix with values between zero and one.
+
+
+
+**Take account**
+
 ##create.net
 
 The last step in the construction of a co-expression matrix is the construction of the network. Once you had defined a threshold value, the last step is transform the expression value in a adjacency matrix using the correlation or the mutual information method to obtain the values of relationship between the diferent genes or proteins (or another kind of ID).
