@@ -1,5 +1,5 @@
 ---
-title: "coexnet: An R package to build CO-EXpression NETworks from Microarray Data"
+title: "coexnet: A R package to build CO-EXpression NETworks from Microarray Data"
 author: "Juan David Henao"
 date: "`r Sys.Date()`"
 output: 
@@ -16,9 +16,9 @@ The analysis of biological data through networks has been increasing in the last
 
 ##get.info
 
-All microarray raw data associated with the same study is stored in the CEL file, this file containe the GSM files, each one corresponding to one sample inside the study, you can obtain each GSM file in the individual way, but, is preferable to obtain All the samples in the CEL file to avoid the work of join each GSM and additionally the way to analyze this kind of data is simultainously (in future normalization process for example). Furthermore, all the microarray chips are documented in the GEO Datasets database. Each one of them are identified with the letters GPL adding a unique number. The information in the GPL file is related to the information of each probeset in the microarray chip, including the gene, function, type and other information to take advantage of the analysis of the results.
+All microarray raw data associated with the same study is stored in the *CEL* file, this file containe the *GSM* files, each one corresponding to one sample inside the study, you can obtain each *GSM* file in the individual way, but, is preferable to obtain all the samples in the *CEL* file to avoid the work of join each *GSM* and additionally the way to analyze this kind of data is simultainously (in future normalization process for example). Furthermore, all the microarray chips are documented in the *GEO Datasets* database. Each one of them are identified with the letters *GPL* adding a unique number. The information in the *GPL* file is related to the information of each probeset in the microarray chip, including the gene, function, type and other information to take advantage of the analysis of the results.
 
-This function will create in your current pathfile a folder with the GSE (unique number) name where the GSM download files are stored and on the other hand the GPL (unique number) .soft file with the information of the microarray chip.
+This function will create in your current pathfile a folder with the *GSE* (unique number) name where the GSM download files are stored and on the other hand the *GPL* (unique number) *.soft* file with the information of the microarray chip.
 
 ```{r, eval=FALSE}
 
@@ -35,15 +35,15 @@ dir()
 
 **Take account**
 
-In some cases the information in the GPL file are partial, take this in mind in the future analysis and is recomended not store the files in a temporal folder due to in many cases you will need the raw data to re-process the expression values using different methods.
+In some cases the information in the *GPL* file are partial, take this in mind in the future analysis and is recomended not store the files in a temporal folder due to in many cases you will need the raw data to re-process the expression values using different methods.
 
 ##get.affy
 
-The AffyBatch object is one of the most widely kind of data used to process and analyse microarray expression data. The AffyBatch object store information about the data of scan to each one of the samples, the information related with the phenotype, the raw expression values to each probe in the microarray chip, the kind of library to read the expression data and anther one.
+The *AffyBatch object* is one of the most kind of data widely used to process and analyse microarray expression data. The AffyBatch object store information about the date of scan to each one of the samples, the information related with the phenotype, the raw expression values to each probe in the microarray chip, the kind of library to read the expression data among others.
 
-You can use the AffyBatch object in many different packages mainly in the affy package, additionally you can modify the AffyBatch object if you consider it necessary.
+You can use the *AffyBatch object* in many different packages mainly in the affy package, additionally you can modify the *AffyBatch object* if you consider it necessary.
 
-This function search in your actual or designaded pathfile the folder with the GSE accession number and read the filelist.txt file with the name of the every GSM samples to recognize them and join in an only AffyBatch object.
+This function search in your current or designaded pathfile the folder with the *GSE* accession number and read the *filelist.txt* file with the name of the every *GSM* samples to recognize them and join in an only *AffyBatch object*.
 
 ```{r, eval=FALSE}
 
@@ -55,7 +55,7 @@ affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"
 ```
 **Take account**
 
-In some cases the AffyBatch doesn't have all the information and a warining messege is shown when you view the variable with the AffyBatch object, but you can edit the AffyBatch to fill all the requiered information. If you try to process the AffyBatch in some of the packages that use this kind of object you will recieved an error messege.
+In some cases the *AffyBatch object* doesn't have all the information and a warning message is shown when you view the variable with the AffyBatch object, but you can edit the AffyBatch to fill all the requiered information. If you try to process the AffyBatch in some of the packages that use this kind of object you will recieved an error message.
 
 ```{r, eval=FALSE}
 
