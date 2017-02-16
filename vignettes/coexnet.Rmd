@@ -257,17 +257,17 @@ cor_pearson
 
 ##create.net
 
-The last step in the construction of a co-expression matrix is the construction of the network. Once you had defined a threshold value, the last step is transform the expression value in a adjacency matrix using the correlation or the mutual information method to obtain the values of relationship between the diferent genes or proteins (or another kind of ID).
+The last step in the construction of a co-expression network is the creation of a kind of structure that will be read and store the information ncessary to create a network. Once you had defined a threshold value, the last step is transform the expression matrix in a adjacency matrix using the correlation or the mutual information method to obtain the values of relationship between the diferent genes or proteins (or another kind of ID).
 
 The process to pass from expression matrix to network consist of two steps. The first one is the build of a correlation matrix, to do that is necessary to apply some of the two method to calculate the relation among the genes/ID (Pearson correlation or mutual information, see above) (López-Kleine, *et al*. 2013). The second one is the pass from expression matrix to adjacency matrix, to create this kind of matrix is necessary the threshold value, every correlation value inside the matrix less than the threshold will be replace by zero, while all remainded values will be replaced by one. Aditionally, the product of related one gene/ID with itself will be always zero.
 
-Finally, from the adjacency matrix, is created a list where one gene/ID and another one conected to the first are related separated by a space. It means, if *gene A* and the *gene B*, in the adjacency matrix have a value of one, then, in the final adjacency matrix they appear as:
+Finally, from the adjacency matrix, is created a list where one gene/ID and another one conected to the first are related separated by a space. It means, if *gene A* and the *gene B*, in the adjacency matrix have a value of one, then, in the final edge list they appear as:
 
 *gene A* -- *gene B*
 
-and so on to the every genes/IDs connected in the final co-expression matrix.
+and so on to the every genes/IDs connected in the final co-expression network.
 
-This function takes the expression matrix and create the correlation matrix using or *Pearson Correlation Coefficient* or *Mutual Informtion*. After that, create the adjacency matrix taking account the threshold vlue given by the user and finally create the network from the adjacency list as a igraph object to be analyze using the igraph R package or another one that recognize this kind of object.
+This function takes the expression matrix and create the correlation matrix using *Pearson Correlation Coefficient* or *Mutual Informtion*. After that, creates the adjacency matrix taking account the threshold value given by the user and finally create the network from the adjacency matrix as an igraph object to be analyze using the igraph R package or another one that recognize this kind of object.
 
 ```{r, eval=FALSE}
 
@@ -284,18 +284,18 @@ head(cor_pearson)
 
 **Take account**
 
-In the process of construction of adjacency matrix, some gene/ID could not be related with another one and in the process to pass from matrix to adjacency list, this gene/ID will be deleted. Additionally, the network in the igraph object can be export as adjacency list using the igraph package to viualize the network in another program as *Cytoscape* or *Gephi*.
+In the process of construction of adjacency matrix, some gene/ID could not be related with another one and in the process to pass from matrix to edge list, this gene/ID will be deleted. Additionally, the network in the igraph object can be export as edge list using the igraph package to viualize the network in another program as *Cytoscape* or *Gephi*.
 
 #References
 
-* Acosta, J. P., & López-Kleine, L. Identification of Differentially Expressed Genes with Artificial Components–the acde Package.
+1. Acosta, J. P., & López-Kleine, L. Identification of Differentially Expressed Genes with Artificial Components–the acde Package.
 
-* Elo, L. L., Järvenpää, H., Orešič, M., Lahesmaa, R., & Aittokallio, T. (2007). Systematic construction of gene coexpression networks with applications to human T helper cell differentiation process. Bioinformatics, 23(16), 2096-2103.
+2. Elo, L. L., Järvenpää, H., Orešič, M., Lahesmaa, R., & Aittokallio, T. (2007). Systematic construction of gene coexpression networks with applications to human T helper cell differentiation process. Bioinformatics, 23(16), 2096-2103.
 
-* Huber, W., Von Heydebreck, A., Sultmann, H., Poustka, A., & Vingron, M. (2002). Variance stabilization applied to microarray data calibration and to the quantification of differential expression. Bioinformatics, 18(suppl 1), S96-S104.
+3. Huber, W., Von Heydebreck, A., Sultmann, H., Poustka, A., & Vingron, M. (2002). Variance stabilization applied to microarray data calibration and to the quantification of differential expression. Bioinformatics, 18(suppl 1), S96-S104.
 
-* Irizarry, R. A., Hobbs, B., Collin, F., Beazer Barclay, Y. D., Antonellis, K. J., Scherf, U., & Speed, T. P. (2003). Exploration, normalization, and summaries of high density oligonucleotide array probe level data. Biostatistics, 4(2), 249-264.
+4. Irizarry, R. A., Hobbs, B., Collin, F., Beazer Barclay, Y. D., Antonellis, K. J., Scherf, U., & Speed, T. P. (2003). Exploration, normalization, and summaries of high density oligonucleotide array probe level data. Biostatistics, 4(2), 249-264.
 
-* López-Kleine, L., Leal, L., & López, C. (2013). Biostatistical approaches for the reconstruction of gene co-expression networks based on transcriptomic data. Briefings in functional genomics, elt003.
+5. López-Kleine, L., Leal, L., & López, C. (2013). Biostatistical approaches for the reconstruction of gene co-expression networks based on transcriptomic data. Briefings in functional genomics, elt003.
 
-* Tusher, V. G., Tibshirani, R., & Chu, G. (2001). Significance analysis of microarrays applied to the ionizing radiation response. Proceedings of the National Academy of Sciences, 98(9), 5116-5121.
+6. Tusher, V. G., Tibshirani, R., & Chu, G. (2001). Significance analysis of microarrays applied to the ionizing radiation response. Proceedings of the National Academy of Sciences, 98(9), 5116-5121.
