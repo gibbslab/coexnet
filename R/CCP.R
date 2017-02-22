@@ -1,11 +1,9 @@
-neta <- read.graph(file = "Esclerosis.net",format = "ncol")
-netb <- read.graph(file = "Parkinson.net",format = "ncol")
-
-intersect <- graph.intersection(neta,netb,keep.all.vertices = FALSE)
-
-
-#### Funcion
-
-members <- which(degree(intersect) == 0)
-
-remove.vertex.attribute(graph = intersect,name = names(members)[1])
+CCP <- function(...){
+  
+  intersect <- graph.intersection(...,keep.all.vertices = FALSE)
+  
+  members <- which(degree(intersect) == 0)
+  CCP <- delete.vertices(graph = intersect,v = names(members))
+  
+  return(CCP)
+}
