@@ -50,8 +50,8 @@ ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighbo
   }
   
   edge_list <- matrix()
-  edge_list <- cbind(rapply(graph_ppi$interactions.from,c))
-  edge_list <- cbind(edge_list,rapply(graph_ppi$interactions.to,c))
+  edge_list <- cbind(as.vector(graph_ppi[,1],mode = "character"))
+  edge_list <- cbind(edge_list,as.vector(graph_ppi[,2],mode = "character"))
   
   final_graph <- graph.edgelist(edge_list,directed = FALSE)
   
