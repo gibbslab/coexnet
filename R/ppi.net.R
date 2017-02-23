@@ -30,10 +30,17 @@ for(i in 1:nrow(graph_relations)){
   }
 }
 
-for(n in row.names(graph_ppi)){
-  print(n)
+for(n in 1:nrow(graph_ppi)){
+  graph_ppi$interactions.from[n] <- mapped[
+    graph_ppi$interactions.from[n] == mapped$STRING_id,][1]
 }
 
+for(n in 1:nrow(graph_ppi)){
+  graph_ppi$interactions.to[n] <- mapped[
+    graph_ppi$interactions.to[n] == mapped$STRING_id,][1]
+}
+
+edge_list <- data.frame(graph_ppi$interactions.from,graph_ppi$interactions.to,stringsAsFactors = FALSE)
 
 
-
+final_graph <- graph.edgelist(el,directed = FALSE)
