@@ -5,19 +5,23 @@ genes <- as.vector(row.names(PRK))
 
 for(n in genes){
   if(grepl("-",n) == TRUE){
-    temp <- n
+    temp <- strsplit(n,"-")
     genes <- genes[genes != n]
-    
+    sepstr <- rapply(temp,c)
+    genes <- c(genes,sepstr)
   }
 }
 
+new_genes <- as.data.frame(genes,stringsAsFactors = FALSE)
+names(new_genes) <- "gene"
+
 database <- STRINGdb$new(version="10",species=9606,score_threshold=0,input_directory="")
-mapped <- database$map(genes,"gene",removeUnmappedRows = TRUE)
+mapped <- database$map(new_genes,"gene",removeUnmappedRows = TRUE)
 
 interactions <- database$get_interactions(mapped$STRING_id)
 
 evidence <- c("neighborhood","coexpression","experiments")
-graph_relations <- data.frame(interactions$from,interactions$to,stringsAsFactors = F)
+graph_relations <- data.frame(interactions$from,interactions$to,stringsAsFactors = FALSE)
 
 for(i in evidence){
   for(j in names(interactions)){
