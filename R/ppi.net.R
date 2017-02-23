@@ -50,8 +50,8 @@ for(n in 1:nrow(graph_ppi)){
     graph_ppi$interactions.to[n] == mapped$STRING_id,][1]
 }
 
-c(t(as.character(graph_ppi$interactions.from)), t(as.character(graph_ppi$interactions.to)))
-
-edge_list <- as.matrix(graph_ppi[,1:2])
+edge_list <- matrix()
+edge_list <- cbind(rapply(graph_ppi$interactions.from,c))
+edge_list <- cbind(edge_list,rapply(graph_ppi$interactions.to,c))
 
 final_graph <- graph.edgelist(edge_list,directed = FALSE)
