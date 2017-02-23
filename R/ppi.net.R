@@ -1,14 +1,13 @@
 PRK <- read.table(file = "GSE9807_0,3.txt",stringsAsFactors = FALSE)
-genes <- as.data.frame(row.names(PRK),stringsAsFactors = FALSE)
-names(genes) <- "gene"
-
-
+genes <- as.vector(row.names(PRK))
 
 ### Function
 
-for(n in genes[,1]){
-  if(grepl("-",n)){
-    print(n)
+for(n in genes){
+  if(grepl("-",n) == TRUE){
+    temp <- n
+    genes <- genes[genes != n]
+    
   }
 }
 
