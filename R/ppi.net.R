@@ -6,9 +6,9 @@ names(genes) <- "gene"
 
 ### Function
 
-for(n in 1:nrow(genes)){
-  if(grepl("-",genes[n,]) == TRUE){
-    print("find")
+for(n in genes[,1]){
+  if(grepl("-",n)){
+    print(n)
   }
 }
 
