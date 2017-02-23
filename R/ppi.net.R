@@ -29,8 +29,8 @@ for(i in 1:nrow(graph_relations)){
   }
 }
 
-for(n in graph_ppi$interactions.from){
-  mapped[n == mapped$STRING_id,][1]
+for(n in 1:length(graph_ppi$interactions.from)){
+  graph_ppi$interactions.from[n] <- mapped[graph_ppi$interactions.from[n] == mapped$STRING_id,][1]
 }
   
   
