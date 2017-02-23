@@ -29,3 +29,10 @@ for(i in 1:nrow(graph_relations)){
   }
 }
 
+for(n in graph_ppi$interactions.from){
+  mapped[n == mapped$STRING_id,][1]
+}
+  
+  
+  
+  
