@@ -25,6 +25,7 @@ graph_ppi <- data.frame()
 
 for(i in 1:nrow(graph_relations)){
   if(any(graph_relations[i,3:ncol(graph_relations)] > 0)){
-    graph_ppi <- nrow(graph_relations[i,])
+    graph_ppi <- rbind.data.frame(graph_ppi,graph_relations[i,])
   }
 }
+
