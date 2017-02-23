@@ -1,9 +1,16 @@
-PRK <- read.table(file = "GSE9807_0,3.txt")
-genes <- as.data.frame(row.names(PRK))
+PRK <- read.table(file = "GSE9807_0,3.txt",stringsAsFactors = FALSE)
+genes <- as.data.frame(row.names(PRK),stringsAsFactors = FALSE)
 names(genes) <- "gene"
 
 
+
 ### Function
+
+for(n in 1:nrow(genes)){
+  if(grepl("-",genes[n,]) == TRUE){
+    print("find")
+  }
+}
 
 database <- STRINGdb$new(version="10",species=9606,score_threshold=0,input_directory="")
 mapped <- database$map(genes,"gene",removeUnmappedRows = TRUE)
@@ -40,7 +47,8 @@ for(n in 1:nrow(graph_ppi)){
     graph_ppi$interactions.to[n] == mapped$STRING_id,][1]
 }
 
-edge_list <- data.frame(graph_ppi$interactions.from,graph_ppi$interactions.to,stringsAsFactors = FALSE)
+c(t(as.character(graph_ppi$interactions.from)), t(as.character(graph_ppi$interactions.to)))
 
+edge_list <- as.matrix(graph_ppi[,1:2])
 
-final_graph <- graph.edgelist(el,directed = FALSE)
+final_graph <- graph.edgelist(edge_list,directed = FALSE)
