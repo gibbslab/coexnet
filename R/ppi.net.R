@@ -10,4 +10,14 @@ mapped <- database$map(genes,"gene",removeUnmappedRows = TRUE)
 
 interactions <- database$get_interactions(mapped$STRING_id)
 
+evidence <- c("neighborhood","coexpression","experiments")
+graph_relations <- data.frame(interactions$from,interactions$to)
+
+for(i in evidence){
+  for(j in names(interactions)){
+    if(i == j){
+      graph_relations <- cbind(graph_relations,interactions[j])
+    }
+  }
+}
 
