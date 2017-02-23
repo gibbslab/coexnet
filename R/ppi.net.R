@@ -21,3 +21,10 @@ for(i in evidence){
   }
 }
 
+graph_ppi <- data.frame()
+
+for(i in 1:nrow(graph_relations)){
+  if(any(graph_relations[i,3:ncol(graph_relations)] > 0)){
+    graph_ppi <- nrow(graph_relations[i,])
+  }
+}
