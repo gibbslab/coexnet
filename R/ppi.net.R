@@ -11,7 +11,7 @@ mapped <- database$map(genes,"gene",removeUnmappedRows = TRUE)
 interactions <- database$get_interactions(mapped$STRING_id)
 
 evidence <- c("neighborhood","coexpression","experiments")
-graph_relations <- data.frame(interactions$from,interactions$to)
+graph_relations <- data.frame(interactions$from,interactions$to,stringsAsFactors = F)
 
 for(i in evidence){
   for(j in names(interactions)){
@@ -25,14 +25,15 @@ graph_ppi <- data.frame()
 
 for(i in 1:nrow(graph_relations)){
   if(any(graph_relations[i,3:ncol(graph_relations)] > 0)){
-    graph_ppi <- rbind.data.frame(graph_ppi,graph_relations[i,])
+    graph_ppi <- rbind.data.frame(graph_ppi,graph_relations[i,],
+                                  stringsAsFactors = FALSE)
   }
 }
 
-for(n in 1:length(graph_ppi$interactions.from)){
-  graph_ppi$interactions.from[n] <- mapped[graph_ppi$interactions.from[n] == mapped$STRING_id,][1]
+for(n in row.names(graph_ppi)){
+  print(n)
 }
-  
-  
-  
-  
+
+
+
+
