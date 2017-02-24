@@ -11,8 +11,7 @@ ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighbo
     }
   }
   
-  for_gen <- unique(for_gen)
-  
+  for_gen <- unique(sort(for_gen))
   
   new_genes <- as.data.frame(for_gen,stringsAsFactors = FALSE)
   names(new_genes) <- "gene"
