@@ -5,12 +5,16 @@ ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighbo
   
   for(n in genes){
     if(grepl("-",n) == TRUE){
-      temp <- strsplit(n,"-")
+      temp <- rapply(strsplit(n,"-"),c)
       genes <- genes[genes != n]
-      sepstr <- rapply(temp,c)
-      genes <- c(genes,sepstr)
+      for(i in temp){
+        genes <- c(genes,i)
+      }
     }
   }
+  
+  genes <- unique(sort(genes))
+  
   
   new_genes <- as.data.frame(genes,stringsAsFactors = FALSE)
   names(new_genes) <- "gene"
