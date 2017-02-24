@@ -42,12 +42,15 @@ ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighbo
   
   for(n in 1:nrow(graph_ppi)){
     graph_ppi$interactions.from[n] <- mapped[
-      graph_ppi$interactions.from[n] == mapped$STRING_id,][1]
+      graph_ppi$interactions.from[n] == mapped$STRING_id,][1][1]
   }
   
   for(n in 1:nrow(graph_ppi)){
     graph_ppi$interactions.to[n] <- mapped[
-      graph_ppi$interactions.to[n] == mapped$STRING_id,][1]
+      graph_ppi$interactions.to[n] == mapped$STRING_id,][1][1]
+    if(length(as.character(graph_ppi$interactions.to[n])) > 1){
+      print("finde")
+    }
   }
   
   edge_list <- matrix()
