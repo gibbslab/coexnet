@@ -19,6 +19,8 @@ ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighbo
   database <- STRINGdb$new(version="10",species=species_ID,score_threshold=0,input_directory="")
   mapped <- database$map(new_genes,"gene",removeUnmappedRows = TRUE)
   
+  mapped <- mapped[!duplicated(mapped$STRING_id),]
+  
   interactions <- database$get_interactions(mapped$STRING_id)
   
   graph_relations <- data.frame(interactions$from,interactions$to,stringsAsFactors = FALSE)
@@ -42,15 +44,12 @@ ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighbo
   
   for(n in 1:nrow(graph_ppi)){
     graph_ppi$interactions.from[n] <- mapped[
-      graph_ppi$interactions.from[n] == mapped$STRING_id,][1][1]
+      graph_ppi$interactions.from[n] == mapped$STRING_id,][1]
   }
   
   for(n in 1:nrow(graph_ppi)){
     graph_ppi$interactions.to[n] <- mapped[
-      graph_ppi$interactions.to[n] == mapped$STRING_id,][1][1]
-    if(length(as.character(graph_ppi$interactions.to[n])) > 1){
-      print("finde")
-    }
+      graph_ppi$interactions.to[n] == mapped$STRING_id,][1]
   }
   
   edge_list <- matrix()
