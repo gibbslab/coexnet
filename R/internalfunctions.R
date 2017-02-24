@@ -3,6 +3,7 @@
 #' @import siggenes
 #' @importFrom acde stp
 #' @import igraph
+#' @import STRINGdb
 #' @importFrom minet build.mim
 #' @importFrom limma removeBatchEffect as.matrix.ExpressionSet normalizeVSN
 #' @import Biobase
