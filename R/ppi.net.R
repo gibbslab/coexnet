@@ -2,17 +2,19 @@ ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighbo
             "fusion","cooccurence","homology","coexpression","coexpression_transferred",
             "experiments","experiments_transferred","database","database_transferred","textmining",
             "textmining_transferred","combined_score")){
-  
+  # Creating the vector to store the unique identifiers
   for_gen <- vector()
-  
+  # To each ID in the vector input
   for(i in genes){
+    # Split each ID with two or more different identifiers
     for(j in strsplit(i,"-")){
+      # Add each of the ID such as 
       for_gen <- append(for_gen,j)
     }
   }
-  
+  # Remove de dupicated identifiers
   for_gen <- unique(sort(for_gen))
-  
+  # 
   new_genes <- as.data.frame(for_gen,stringsAsFactors = FALSE)
   names(new_genes) <- "gene"
   
