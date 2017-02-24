@@ -14,20 +14,23 @@ ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighbo
   }
   # Remove de dupicated identifiers
   for_gen <- unique(sort(for_gen))
-  # 
+  # Transform the vector into data-frame 
   new_genes <- as.data.frame(for_gen,stringsAsFactors = FALSE)
+  # The name of column must be "gene"
   names(new_genes) <- "gene"
-  
+  # Charge the STRING database
   database <- STRINGdb$new(version="10",species=species_ID,score_threshold=0,input_directory="")
+  # Obtain the STRING ID to each identifier
   mapped <- database$map(new_genes,"gene",removeUnmappedRows = TRUE)
-  
+  # Remove the STRING ID duplicated
   mapped <- mapped[!duplicated(mapped$STRING_id),]
-  
+  # Obtain the interactions among STRING IDs from diferent types of evidences
   interactions <- database$get_interactions(mapped$STRING_id)
-  
+  # Extract the relations deleting the evidences
   graph_relations <- data.frame(interactions$from,interactions$to,stringsAsFactors = FALSE)
-  
+  # Read each given evidence
   for(i in evidence){
+    
     for(j in names(interactions)){
       if(i == j){
         graph_relations <- cbind(graph_relations,interactions[j])
