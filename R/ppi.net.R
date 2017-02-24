@@ -3,20 +3,18 @@ ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighbo
             "experiments","experiments_transferred","database","database_transferred","textmining",
             "textmining_transferred","combined_score")){
   
-  for(n in genes){
-    if(grepl("-",n) == TRUE){
-      temp <- rapply(strsplit(n,"-"),c)
-      genes <- genes[genes != n]
-      for(i in temp){
-        genes <- c(genes,i)
-      }
+  for_gen <- vector()
+  
+  for(i in genes){
+    for(j in strsplit(i,"-")){
+      for_gen <- append(for_gen,j)
     }
   }
   
-  genes <- unique(sort(genes))
+  for_gen <- unique(for_gen)
   
   
-  new_genes <- as.data.frame(genes,stringsAsFactors = FALSE)
+  new_genes <- as.data.frame(for_gen,stringsAsFactors = FALSE)
   names(new_genes) <- "gene"
   
   database <- STRINGdb$new(version="10",species=species_ID,score_threshold=0,input_directory="")
