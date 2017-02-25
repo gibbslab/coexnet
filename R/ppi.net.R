@@ -1,3 +1,20 @@
+#' @export ppi.net
+#' @author Juan David Henao <judhenaosa@unal.edu.co>
+
+# Bioinformatics and Systems Biology | Universidad Nacional de Colombia
+
+#' @title Create a protein-protein interaction network from STRING database
+#' @description From a molecular identifiers (gene symbol or protein symbol), create a protein-protein
+#' network using the different kind of evidence from STRING database.
+#' @param genes A vector with the molecular identifiers, they could be two IDs united for the "-"
+#' character.
+#' @param species_ID The numerical ID from STRING database to the specie of interest, by defect is
+#' "9006" corresponding to human specie.
+#' @param evidence A vector with the evicences to support the interactions bewtween the proteins
+#' by default are all te evidences given in STRING database.
+#' @return An igraph object as the protein-protein interaction network where the nodes are the
+#' molecular identifiers given in the vector input.
+
 ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
             "fusion","cooccurence","homology","coexpression","coexpression_transferred",
             "experiments","experiments_transferred","database","database_transferred","textmining",
