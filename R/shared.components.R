@@ -3,7 +3,11 @@
 
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
-#' @title 
+#' @title Finding shared components between diferent networks.
+#' @description From the intersected network, obtain the nodes without any value of degree. There are
+#' the molecular shared components without biological relation among them.
+#' @param ... The networks (igraph objects) to obtain the shared components.
+#' @return A vector with the names of the shared components.
 
 shared.components <- function(...){
   # Obtain the intersection set of the networks
