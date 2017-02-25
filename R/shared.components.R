@@ -1,3 +1,9 @@
+#' @export shared.components
+#' @author Juan David Henao <judhenaosa@unal.edu.co>
+
+# Bioinformatics and Systems Biology | Universidad Nacional de Colombia
+
+#' @title 
 
 shared.components <- function(...){
   # Obtain the intersection set of the networks
