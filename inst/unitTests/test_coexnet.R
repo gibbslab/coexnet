@@ -186,3 +186,24 @@ test_get.affy <- function(){
   checkException(get.affy(dir = system.file("extdata",package = "coexnet")),silent = TRUE)
   checkException(get.affy(GSE = "1234",dir = system.file("extdata",package = "coexnet")),silent = TRUE)
 }
+
+## test CCP function
+
+test_CCP <- function(){
+  
+  data("net1")
+  data("net2")
+  
+  ccp <- CCP(net1,net2)
+  
+  # Correct cases
+  
+  checkTrue(is.object(ccp))
+  checkTrue(is.list(ccp))
+  checkEqualsNumeric(length(ccp),10)
+  
+  # Errors
+  
+  checkException(CCP(),silent = TRUE)
+  checkException(CCP(c(net1,net2)),silent = TRUE)
+}
