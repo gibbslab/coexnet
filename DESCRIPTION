@@ -29,6 +29,7 @@ Imports:
     graphics,
     stats,
     utils,
+    STRINGdb,
     minet
 Suggests: 
     RUnit, 
