@@ -9,7 +9,7 @@
 #' @param ... The networks (igraph objects) to obtain the Common Connection Patterns.
 #' @return An igraph object with all the Common Connection Pattern in the same network.
 #' @examples 
-#' # Charge data
+#' # Loading data
 #' 
 #' data("net1")
 #' data("net2")

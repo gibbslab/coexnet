@@ -9,7 +9,7 @@
 #' @param ... The networks (igraph objects) to obtain the shared components.
 #' @return A vector with the names of the shared components.
 #' @examples 
-#' # Charge data
+#' # Loading data
 #' 
 #' data("net1")
 #' data("net2")

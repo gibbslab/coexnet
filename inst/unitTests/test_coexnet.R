@@ -187,7 +187,7 @@ test_get.affy <- function(){
   checkException(get.affy(GSE = "1234",dir = system.file("extdata",package = "coexnet")),silent = TRUE)
 }
 
-## test CCP function
+## test for CCP function
 
 test_CCP <- function(){
   
@@ -206,4 +206,27 @@ test_CCP <- function(){
   
   checkException(CCP(),silent = TRUE)
   checkException(CCP(c(net1,net2)),silent = TRUE)
+}
+
+## test for shared.components function
+
+test_shared.components <- function(){
+  
+  data("net1")
+  data("net2")
+  
+  share <- shared.components(net1,net2)
+  
+  # Correct cases
+  
+  checkTrue(is.vector(share))
+  checkTrue(is.character(share))
+  checkEqualsNumeric(length(share),4)
+  checkEquals(share[1],"P")
+  
+  # Errors
+  
+  checkException(shared.components(),silent = TRUE)
+  checkException(shared.components(c(net1,net2)),silent = TRUE)
+  checkException(shared.components(c("P","M","N")),silent = TRUE)
 }
