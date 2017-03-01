@@ -55,9 +55,6 @@ head(vsn)
 
 }
 }
-\author{
-Juan David Henao <judhenaosa@unal.edu.co>
-}
 \references{
 Huber, W., Von Heydebreck, A., Sultmann, H., Poustka, A., & Vingron, M. (2002). Variance stabilization applied to microarray data calibration and to the quantification of differential expression. Bioinformatics, 18(suppl 1), S96-S104.
 
@@ -69,4 +66,6 @@ Exploration, normalization, and summaries of high density oligonucleotide array 
 
 \code{\link{gene.symbol}} to obtain the data.frame with probeset and genes/ID from .SOFT file.
 }
-
+\author{
+Juan David Henao <judhenaosa@unal.edu.co>
+}

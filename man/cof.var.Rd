@@ -58,4 +58,3 @@ head(case)
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
 }
-

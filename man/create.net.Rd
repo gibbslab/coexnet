@@ -36,12 +36,11 @@ cor_pearson
 mut_inf <- create.net(difexp = data,threshold = 0.5,method = "mutual information")
 mut_inf
 }
+\seealso{
+\code{\link{find.threshold}} to obtain a threshold value based on biology network assumptions.
+}
 \author{
 Juan David Henao Sanchez <judhenaosa@unal.edu.co>
 
 Liliana Lopez Kleine <llopezk@unal.edu.co>
 }
-\seealso{
-\code{\link{find.threshold}} to obtain a threshold value based on biology network assumptions.
-}
-

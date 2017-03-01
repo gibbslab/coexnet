@@ -13,4 +13,3 @@ AffyBatch object, has a part of raw expression values obtained from microarray c
 \author{
 Greene JG, 2006.
 }
-

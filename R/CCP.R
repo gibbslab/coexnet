@@ -8,6 +8,15 @@
 #' the alone nodes in the intersection network. The networks must be igraph objects.
 #' @param ... The networks (igraph objects) to obtain the Common Connection Patterns.
 #' @return An igraph object with all the Common Connection Pattern in the same network.
+#' @example 
+#' # Charge data
+#' 
+#' net1 <- data(net1)
+#' net2 <- data(net2)
+#' 
+#' # Obtain Common Connection Patterns
+#' 
+#' ccp <- CCP(net1,net2)
 
 CCP <- function(...){
   # Obtain the intersection set of the networks

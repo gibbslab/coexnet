@@ -24,10 +24,9 @@ and create the AffyBatch object finally.
 
 affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
 }
-\author{
-Juan david Henao <judhenaosa@unal.edu.co>
-}
 \seealso{
 \code{\link{get.info}} to download expression data from GEO DataSet included the filelist file.
 }
-
+\author{
+Juan david Henao <judhenaosa@unal.edu.co>
+}

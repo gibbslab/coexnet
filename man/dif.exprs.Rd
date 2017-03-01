@@ -49,9 +49,6 @@ norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
 sam <- dif.exprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
 acde <- dif.exprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "acde")
 }
-\author{
-Juan David Henao <judhenaosa@unal.edu.co>
-}
 \references{
 Tusher, V. G., Tibshirani, R., & Chu, G. (2001). Significance analysis of 
 microarrays applied to the ionizing radiation response. Proceedings of the National Academy of Sciences, 98(9), 5116-5121.
@@ -61,4 +58,6 @@ Acosta J and Lopez-Kleine L (2015). acde: Artificial Components Detection of Dif
 \seealso{
 \code{\link{expr.mat}} to obtain the expression matrix.
 }
-
+\author{
+Juan David Henao <judhenaosa@unal.edu.co>
+}

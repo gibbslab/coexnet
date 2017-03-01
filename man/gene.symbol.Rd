@@ -38,4 +38,3 @@ head(final_table)
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
 }
-
