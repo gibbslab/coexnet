@@ -8,7 +8,7 @@
 #' the alone nodes in the intersection network. The networks must be igraph objects.
 #' @param ... The networks (igraph objects) to obtain the Common Connection Patterns.
 #' @return An igraph object with all the Common Connection Pattern in the same network.
-#' @example 
+#' @examples 
 #' # Charge data
 #' 
 #' data("net1")

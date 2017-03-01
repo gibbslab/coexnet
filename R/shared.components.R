@@ -8,7 +8,7 @@
 #' the molecular shared components without biological relation among them.
 #' @param ... The networks (igraph objects) to obtain the shared components.
 #' @return A vector with the names of the shared components.
-#' @example 
+#' @examples 
 #' # Charge data
 #' 
 #' data("net1")

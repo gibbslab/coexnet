@@ -16,6 +16,17 @@ An igraph object with all the Common Connection Pattern in the same network.
 From the ntersection of two or more networks, obntain the connected components deleting
 the alone nodes in the intersection network. The networks must be igraph objects.
 }
+\examples{
+# Charge data
+
+data("net1")
+data("net2")
+
+# Obtain Common Connection Patterns
+
+ccp <- CCP(net1,net2)
+ccp
+}
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
 }

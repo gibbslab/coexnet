@@ -28,6 +28,19 @@ molecular identifiers given in the vector input.
 From a molecular identifiers (gene symbol or protein symbol), create a protein-protein
 network using the different kind of evidence from STRING database.
 }
+\examples{
+\dontrun{
+# Creating vector with identifiers
+
+ID <- c("FN1","HAMP","ILK","MIF","NME1","PROCR","RAC1","RBBP7",
+"TMEM176A","TUBG1","UBC","VKORC1")
+
+# Creating the PPI network
+
+ppi <- ppi.net(genes = ID,evidence = c("neighborhood","coexpression","experiments"))
+ppi
+}
+}
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
 }

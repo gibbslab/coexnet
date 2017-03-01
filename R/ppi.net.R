@@ -14,6 +14,18 @@
 #' by default are all te evidences given in STRING database.
 #' @return An igraph object as the protein-protein interaction network where the nodes are the
 #' molecular identifiers given in the vector input.
+#' @examples
+#' \dontrun{
+#' # Creating vector with identifiers
+#' 
+#' ID <- c("FN1","HAMP","ILK","MIF","NME1","PROCR","RAC1","RBBP7",
+#' "TMEM176A","TUBG1","UBC","VKORC1")
+#' 
+#' # Creating the PPI network
+#' 
+#' ppi <- ppi.net(genes = ID,evidence = c("neighborhood","coexpression","experiments"))
+#' ppi
+#' }
 
 ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
             "fusion","cooccurence","homology","coexpression","coexpression_transferred",

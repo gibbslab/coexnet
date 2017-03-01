@@ -16,6 +16,17 @@ A vector with the names of the shared components.
 From the intersected network, obtain the nodes without any value of degree. There are
 the molecular shared components without biological relation among them.
 }
+\examples{
+# Charge data
+
+data("net1")
+data("net2")
+
+# Obtain shared components
+
+share <- shared.components(net1,net2)
+share
+}
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>
 }
