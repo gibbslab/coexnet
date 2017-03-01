@@ -15,3 +15,18 @@ NULL
 #' @source GEO Dataset from NCBI, GPL accession: GPL570.
 #' @author Greene JG, 2006.
 NULL
+
+## Networks documantation
+
+#' @title Simulated network #1
+#' @name net1
+#' @docType data
+#' @description Simulated network in an igraph object.
+#' @author Henao, 2017
+NULL
+
+#' @title Simulated network #2
+#' @name net2
+#' @docType data
+#' @description Simulated network in an igraph object.
+#' @author Henao, 2017
