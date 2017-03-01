@@ -30,3 +30,4 @@ NULL
 #' @docType data
 #' @description Simulated network in an igraph object.
 #' @author Henao, 2017
+NULL
