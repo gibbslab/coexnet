@@ -17,7 +17,7 @@ From the intersected network, obtain the nodes without any value of degree. Ther
 the molecular shared components without biological relation among them.
 }
 \examples{
-# Charge data
+# Loading data
 
 data("net1")
 data("net2")

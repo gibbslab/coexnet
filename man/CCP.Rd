@@ -17,7 +17,7 @@ From the ntersection of two or more networks, obntain the connected components d
 the alone nodes in the intersection network. The networks must be igraph objects.
 }
 \examples{
-# Charge data
+# Loading data
 
 data("net1")
 data("net2")
