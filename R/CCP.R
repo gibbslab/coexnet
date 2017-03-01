@@ -11,12 +11,13 @@
 #' @example 
 #' # Charge data
 #' 
-#' net1 <- data(net1)
-#' net2 <- data(net2)
+#' data("net1")
+#' data("net2")
 #' 
 #' # Obtain Common Connection Patterns
 #' 
 #' ccp <- CCP(net1,net2)
+#' ccp
 
 CCP <- function(...){
   # Obtain the intersection set of the networks

@@ -8,6 +8,17 @@
 #' the molecular shared components without biological relation among them.
 #' @param ... The networks (igraph objects) to obtain the shared components.
 #' @return A vector with the names of the shared components.
+#' @example 
+#' # Charge data
+#' 
+#' data("net1")
+#' data("net2")
+#' 
+#' # Obtain shared components
+#' 
+#' share <- shared.components(net1,net2)
+#' share
+
 
 shared.components <- function(...){
   # Obtain the intersection set of the networks
