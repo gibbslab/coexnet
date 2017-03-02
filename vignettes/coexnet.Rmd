@@ -289,9 +289,9 @@ In the process of construction of adjacency matrix, sometime a gene/ID can not b
 
 ##ppi.net
 
-In many cases, it is necessary to consider additional information to have more robust analysis. Within that additional information, protein-protein interaction (PPI) is the most used, this additional information has the proposal of support, in a functional fashion, the relationships in the co-expression network. One way to relate the protein-protein interaction with the co-expression data is building a PPI network and comparing them. To create this kind of networks are useful to start with the list of genes obtained from the differential expression analysis results (see above). From this list of genes, the network will be created based on a different kind of pieces of evidence like experimental data, the distances of the genes inside in the genome, among others.
+In many cases, it is necessary to consider additional information to have more robust analysis. Within that additional information, protein-protein interaction (PPI) is the most used, this additional information has the proposal of support, in a functional fashion, the relationships in the co-expression network. One way to relate the protein-protein interaction with the co-expression data is building a PPI network. To create this kind of networks are useful to start with the list of genes obtained from the differential expression analysis results (see above). From this list of genes, the network will be created based on a different kind of pieces of evidence like experimental data, the distances of the genes inside in the genome, among others.
 
-This function, creates a PPI network from a vector of genes or another kind of widely used identifier to be recognized from STRING database, this database has information on protein-protein interaction to many species and support the relations between proteins with different types of pieces of evidence like experimental data, co-occurrence of the proteins among related species, text mining, among others. Inside STRING database, each relationship between proteins is supported finally using the information in KEGG database, a widely used and curated database of information on metabolic pathways. Finally returning the PPI network as an igraph object to be compared with the co-expression network.
+This function, creates a PPI network from a vector of genes or another kind of widely used identifier to be recognized from STRING database, this database has information on protein-protein interaction to many species and support the relations between proteins with different types of pieces of evidence like experimental data, co-occurrence of the proteins among related species, text mining, among others. Inside STRING database, each relationship between proteins is supported finally using the information in KEGG database, a widely used and curated database of information on metabolic pathways. Finally returning the PPI network as an igraph object to be analyzed in the same way that co-expression network.
 
 ```{r, eval=FALSE}
 
@@ -309,6 +309,10 @@ ccp
 **Take into account**
 
 It is too important that the IDs are those used in the principal databases to will be identified by STRING and being to able to use them. Additionally, this database uses its own IDs to recognize the species of interest, in this case, by default, the function has the ID "9606" which corresponds to the human species, for additional information about species IDs, visit the database website (http://string-db.org/).
+
+##CCP
+
+
 
 #References
 
