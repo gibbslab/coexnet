@@ -312,7 +312,25 @@ It is too important that the IDs are those used in the principal databases to wi
 
 ##CCP
 
+In some cases, the purpose of creating co-expression networks or even creating PPI networks are to compare several phenotypes related. The most used method is comparing the modules in the different networks, another one consists in to get the intersection of them, including all the shared nodes between them whether they are connected or not. However, the most useful information are related to the connected nodes due to they are implicated in a specific molecular process. Hence, we propose a method to extract only these Common Connection Patterns between networks created from the same molecular information (co-expression, protein-protein interaction, SNPs, TF factors, among them).
 
+This function obtains the Common Connection Patterns by comparing two or more networks in two steps. In the first one, the intersection between the networks is obtained. In the second one, the solitary nodes are removed to getting the Common Connection Patterns of the networks as an igraph object. On the other hand, if there are no Common Connection Patterns exists, the function returns an igraph object without edges or nodes (empty network).
+
+```{r, eval=FALSE}
+# Loading data
+ 
+data("net1")
+data("net2")
+ 
+# Obtain Common Connection Patterns
+
+ccp <- CCP(net1,net2)
+ccp
+```
+
+**Take into account**
+
+We consider each of the individual components connected as Common Connection Patterns, but they are all on the same graph object. Additionally, the networks must be created using the same molecular information to consider the final results as Common Connection Patterns, although this function can compare any of network type as long as they are a graph object.
 
 #References
 
