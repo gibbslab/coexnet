@@ -332,6 +332,31 @@ ccp
 
 We consider each of the individual components connected as Common Connection Patterns, but they are all on the same graph object. Additionally, the networks must be created using the same molecular information to consider the final results as Common Connection Patterns, although this function can compare any of network type as long as they are a graph object.
 
+##shared.components
+
+Solitary nodes obtained when two or more biological networks are compared also have relevant information associated because these nodes are molecular components implicated in more than two phenotypes. The reason for obtaining solitary nodes may be due to the researchers don't have the enough information to relate them with another component in the network or them may be related to another component in another layer of molecular abstraction (protein-protein interaction layer, genetic regulation layer, SNP layer, among others).
+
+Thus, obtaining these solitary nodes can enrich the comparisons made between generated networks from the same type of molecular information and also seeks to find common elements among related phenotypes how are the Common Connection Patterns (see above). Additionally, it is possible not to find Common Connection Patterns between networks but if it is possible to find shared nodes between them and they can generate information about the common origin or development in the related phenotypes.
+
+This function obtains the shared components between two or more biological networks making two steps. In the first one, it gets the intersection from the networks in the input as igraph objects. In the second one, it extracts the solitary nodes only in the intersected network resulting. Finally, the result is a vector with the names of each solitary node. On the other hand, the nodes connected in the intersection network won't be taken into account because they are considered inside of some Common Connection Pattern (see above).
+
+```{r, eval=FALSE}
+
+# Loading data
+
+data("net1")
+data("net2")
+
+# Obtain shared components
+ 
+share <- shared.components(net1,net2)
+share
+```
+
+**Take into account**
+
+The assumption behind the solitary nodes in the intersection network as molecular elements associated with related phenotypes includes the fact that all the networks were created using the same molecular information (gene co-expression, protein-protein interaction, TF site or any other). But, this function is able to find shared components between any biological network types when they are compared.
+
 #References
 
 1. Acosta, J. P., & López-Kleine, L. Identification of Differentially Expressed Genes with Artificial Components–the acde Package.
