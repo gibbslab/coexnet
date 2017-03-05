@@ -26,6 +26,10 @@
 #' ppi <- ppi.net(input = ID,evidence = c("neighborhood","coexpression","experiments"))
 #' plot(ppi)
 #' }
+#' 
+#' # Creating a ppi network from external data
+#' 
+#' ppi <- ppi.net(input = System.file)
 
 ppi.net <- function(input,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
             "fusion","cooccurence","homology","coexpression","coexpression_transferred",
