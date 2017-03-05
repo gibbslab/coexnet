@@ -2,24 +2,22 @@
 % Please edit documentation in R/create.net.R
 \name{create.net}
 \alias{create.net}
-\title{Create a co-expression network from expression matrix.}
+\title{Creating a co-expression network from expression matrix.}
 \usage{
 create.net(difexp, method, threshold)
 }
 \arguments{
-\item{difexp}{A whole expression matrix or the expression matrix to differentially expressed genes.}
+\item{difexp}{A whole expression matrix or differentially expressed genes matrix.}
 
-\item{method}{The function to calculate the similarity among the genes. "correlation" to use Pearson function or 
-"mutual information" to use a function based on entropy information.}
+\item{method}{A function to calculate the similarity matrix between genes. It can be "correlation" to use Pearson function or "mutual information" to use a based on entropy information function.}
 
-\item{threshold}{A value (between 0.1 to 0.99) to cut off the adjacency matrix and create the co-expression network.}
+\item{threshold}{A value between 0 and 1 to filter the similarity matrix and create the co-expression network.}
 }
 \value{
-A undirected co-expression network like igraph object.
+An undirected co-expression network as igraph object.
 }
 \description{
-From a expression matrix, this function create a co-expression network like a igrph object using a threshold value and
-one similarity function.
+From an expression matrix, this function creates a co-expression network like a graph object using a threshold value and one similarity function.
 }
 \examples{
 

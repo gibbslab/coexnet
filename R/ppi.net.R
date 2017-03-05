@@ -3,11 +3,13 @@
 
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
-#' @title Create a protein-protein interaction network from STRING database
-#' @description From a molecular identifiers (gene symbol or protein symbol), create a protein-protein
-#' network using the different kind of evidence from STRING database.
-#' @param genes A vector with the molecular identifiers, they could be two IDs united for the "-"
-#' character.
+#' @title Create a protein-protein interaction network
+#' @description Creates a protein-protein interaction network using or a edge list with 
+#' the relations beween proteins or a vector with the gene symbols or another kind of 
+#' molecular identifier widely used in biological databases to create a predictive ppi
+#' network using information of pieces of evidence in STRING database.
+#' @param input This parameter may be two types. A vector with the molecular identifiers, they could be two IDs united for the "-"
+#' character or a pathfile with the relations between proteins as edge list to create the network.
 #' @param species_ID The numerical ID from STRING database to the specie of interest, by defect is
 #' "9006" corresponding to human specie.
 #' @param evidence A vector with the evicences to support the interactions bewtween the proteins
@@ -29,7 +31,8 @@
 #' 
 #' # Creating a ppi network from external data
 #' 
-#' ppi <- ppi.net(input = System.file)
+#' ppi <- ppi.net(input = system.file("extdata","ppi.txt",package = "coexnet"))
+#' plot(ppi)
 
 ppi.net <- function(input,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
             "fusion","cooccurence","homology","coexpression","coexpression_transferred",

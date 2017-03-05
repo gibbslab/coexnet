@@ -13,8 +13,8 @@ CCP(...)
 An igraph object with all the Common Connection Pattern in the same network.
 }
 \description{
-From the ntersection of two or more networks, obntain the connected components deleting
-the alone nodes in the intersection network. The networks must be igraph objects.
+From the intersection of two or more networks, it obtains the connected components 
+by deleting the solitary nodes in the intersection network. They must be graph objects.
 }
 \examples{
 # Loading data
@@ -22,7 +22,7 @@ the alone nodes in the intersection network. The networks must be igraph objects
 data("net1")
 data("net2")
 
-# Obtain Common Connection Patterns
+# Obtaining Common Connection Patterns
 
 ccp <- CCP(net1,net2)
 ccp

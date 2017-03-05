@@ -2,17 +2,17 @@
 % Please edit documentation in R/ppi.net.R
 \name{ppi.net}
 \alias{ppi.net}
-\title{Create a protein-protein interaction network from STRING database}
+\title{Create a protein-protein interaction network}
 \usage{
-ppi.net(genes, species_ID = 9606, evidence = c("neighborhood",
+ppi.net(input, species_ID = 9606, evidence = c("neighborhood",
   "neighborhood_transferred", "fusion", "cooccurence", "homology",
   "coexpression", "coexpression_transferred", "experiments",
   "experiments_transferred", "database", "database_transferred", "textmining",
   "textmining_transferred", "combined_score"))
 }
 \arguments{
-\item{genes}{A vector with the molecular identifiers, they could be two IDs united for the "-"
-character.}
+\item{input}{This parameter may be two types. A vector with the molecular identifiers, they could be two IDs united for the "-"
+character or a pathfile with the relations between proteins as edge list to create the network.}
 
 \item{species_ID}{The numerical ID from STRING database to the specie of interest, by defect is
 "9006" corresponding to human specie.}
@@ -25,8 +25,10 @@ An igraph object as the protein-protein interaction network where the nodes are 
 molecular identifiers given in the vector input.
 }
 \description{
-From a molecular identifiers (gene symbol or protein symbol), create a protein-protein
-network using the different kind of evidence from STRING database.
+Creates a protein-protein interaction network using or a edge list with 
+the relations beween proteins or a vector with the gene symbols or another kind of 
+molecular identifier widely used in biological databases to create a predictive ppi
+network using information of pieces of evidence in STRING database.
 }
 \examples{
 \dontrun{
@@ -37,9 +39,14 @@ ID <- c("FN1","HAMP","ILK","MIF","NME1","PROCR","RAC1","RBBP7",
 
 # Creating the PPI network
 
-ppi <- ppi.net(genes = ID,evidence = c("neighborhood","coexpression","experiments"))
-ppi
+ppi <- ppi.net(input = ID,evidence = c("neighborhood","coexpression","experiments"))
+plot(ppi)
 }
+
+# Creating a ppi network from external data
+
+ppi <- ppi.net(input = system.file("extdata","ppi.txt",package = "coexnet"))
+plot(ppi)
 }
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>

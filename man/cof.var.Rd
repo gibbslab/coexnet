@@ -2,28 +2,25 @@
 % Please edit documentation in R/cof.var.R
 \name{cof.var}
 \alias{cof.var}
-\title{Calculate the coefficient of variation to expression matrix.}
+\title{Calculating the coefficient of variation for expression matrix.}
 \usage{
 cof.var(data, complete = TRUE, treatment = NULL, type = NULL)
 }
 \arguments{
-\item{data}{The whole normalize expression matrix, rows: genes or probeset, columns: samples.}
+\item{data}{The whole normalized expression matrix, rows: genes or probeset, columns: samples.}
 
-\item{complete}{Boolean to define if the function use the whole expression matrix, by default TRUE.}
+\item{complete}{Boolean to define if the function uses the whole expression matrix, by default TRUE.}
 
-\item{treatment}{A vector with 0 and 1 to each one of the samples in the expression matrix, the 0 express 
-the control samples and 1 express the case samples, by default NULL.}
+\item{treatment}{A numeric vector with 0s and 1s for each sample in the expression matrix, the 0 expresses the control samples and 1 expresses the case samples, by default is NULL.}
 
-\item{type}{Can be "case" to obtain the mean and the coefficient of variation to the case samples or, otherwise, "control" to 
-obtain these two values to the control samples.}
+\item{type}{It can be "case" to calculate the mean and the coefficient of variation for the case samples or, otherwise, "control" to obtain these two values for the control samples.}
 }
 \value{
-The expression matrix with two new columns, the first one with the averages and 
-the another one with the coefficient of variation values.
+The expression matrix with two new columns, the first one with the averages and the other one with the coefficient of variation values.
 }
 \description{
-This function calculate the mean and the coefficient of variation to each one of the row (gene or probeset)
-in a expression matrix in two ways: i) in the whole matrix ii) to specific phenotype (case or control).
+This function calculates the mean and the coefficient of variation to each row 
+(genes or probesets) in an expression matrix in two ways: i) in the whole matrix ii) for the specific phenotype (case or control).
 }
 \examples{
 
@@ -34,7 +31,7 @@ in a expression matrix in two ways: i) in the whole matrix ii) to specific pheno
 n <- 200
 m <- 20
 
-# The vector with treatment samples and control samples
+# The vector with treatment and control samples
 
 t <- c(rep(0,10),rep(1,10))
 
@@ -45,12 +42,12 @@ norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
 
 ## Calculating the mean and the coefficient of variation
 
-# In whole expression matrix
+# For the whole expression matrix
 
 complete <- cof.var(norm)
 head(complete)
 
-# In case samples
+# For the case samples
 
 case <- cof.var(data = norm,complete = FALSE,treatment = t,type = "case")
 head(case)

@@ -230,3 +230,21 @@ test_shared.components <- function(){
   checkException(shared.components(c(net1,net2)),silent = TRUE)
   checkException(shared.components(c("P","M","N")),silent = TRUE)
 }
+
+## test for ppi.net function
+
+test_ppi.net <- function(){
+  
+  ppi <- ppi.net(input = system.file("extdata","ppi.txt",package = "coexnet"))
+  
+  # Correct cases
+  
+  checkTrue(is.object(ppi))
+  checkTrue(is.list(ppi))
+  checkEqualsNumeric(length(ppi),10)
+  
+  # Errors
+  
+  checkException(ppi.net(),silent = TRUE)
+  checkException(ppi.net(input = c("SNCA","UBC"),species_ID = 0),silent = TRUE)
+}
