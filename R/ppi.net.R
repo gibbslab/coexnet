@@ -100,7 +100,7 @@ ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighbo
     edge_list <- cbind(edge_list,as.vector(graph_ppi[,2],mode = "character"))
     # Creating a network from interactions in the matrix
     final_graph <- graph.edgelist(edge_list,directed = FALSE)
-  }else if(is.igraph(input)){
+  }else{
     # Reading and creating the igraph object
     final_graph <- read.graph(file = input,format = "ncol")
   }
