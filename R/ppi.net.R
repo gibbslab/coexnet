@@ -23,8 +23,8 @@
 #' 
 #' # Creating the PPI network
 #' 
-#' ppi <- ppi.net(genes = ID,evidence = c("neighborhood","coexpression","experiments"))
-#' ppi
+#' ppi <- ppi.net(input = ID,evidence = c("neighborhood","coexpression","experiments"))
+#' plot(ppi)
 #' }
 
 ppi.net <- function(input,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
@@ -33,7 +33,7 @@ ppi.net <- function(input,species_ID = 9606,evidence = c("neighborhood","neighbo
             "textmining_transferred","combined_score")){
   
   # Detecting the input type
-  if(!file.exists(input)){
+  if(!file.exists(input[1])){
     # Replacing the name of input
     genes <- input
     # Creating the vector to store the unique identifiers
