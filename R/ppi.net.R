@@ -27,13 +27,13 @@
 #' ppi
 #' }
 
-ppi.net <- function(genes,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
+ppi.net <- function(input,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
             "fusion","cooccurence","homology","coexpression","coexpression_transferred",
             "experiments","experiments_transferred","database","database_transferred","textmining",
             "textmining_transferred","combined_score")){
   
   # Detecting the input type
-  if(is.vector(input)){
+  if(!file.exists(input)){
     # Replacing the name of input
     genes <- input
     # Creating the vector to store the unique identifiers
