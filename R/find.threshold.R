@@ -5,15 +5,11 @@
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
 #' @title Find the threshold value to create a co-expression network
-#' @description Find the threshold value to establish the edges in a co-expression network based on correlation matrix
-#' using two different criteria. First, use the differential value between the clustering coefficient for the real network and
-#' random network build and second test the network using a Kolgomorov-Smirnov test to reject normality in the degree distribution of 
-#' the edges in the network.
-#' @param difexp  A whole expression matrix or the expression matrix to differentially expressed genes.
-#' @param method  The method to create the correlation matrix, can be "correlation" to Pearson test or "mutual information" to test 
-#' based on entropy information.
-#' @return The best threshold value find using the two criteria and a plot with the result.
-#' @seealso \code{\link{dif.exprs}} to find the differential expressed genes matrix.
+#' @description Finds the threshold value to establish the cutoff in the process to define the edges in the co-expression network final from two steps. In the first one, obtains the subtraction from clustering coefficient values of the real and random networks created from the possible threshold values in the correlation matrix. In the second one, a Kolmogorov-Smirnov test is made to evaluate the degree distribution respect normality.
+#' @param difexp A whole expression matrix or the expression matrix to differentially expressed genes.
+#' @param method The method name to create the correlation matrix, this can be "correlation" to obtain the Pearson Correlation Coefficient. On the other hand, can be "mutual information" to obtain the correlation values from an entropy-based method.
+#' @return The best threshold value found using the two criteria and a plot showing the result.
+#' @seealso \code{\link{dif.exprs}} to find the differentially expressed genes matrix.
 #' @references Elo, L. L., Jarvenpaa, H., Oresic, M., Lahesmaa, R., & Aittokallio, T. (2007). Systematic construction of gene coexpression networks with applications to human T helper cell differentiation process. Bioinformatics, 23(16), 2096-2103.
 #' @examples 
 #' 
@@ -22,7 +18,7 @@
 #' pathfile <- system.file("extdata","expression_example.txt",package = "coexnet")
 #' data <- read.table(pathfile,stringsAsFactors = FALSE)
 #' 
-#' # Find threshold value
+#' # Finding threshold value
 #' 
 #' cor_pearson <- find.threshold(difexp = data,method = "correlation")
 #' cor_pearson
@@ -71,7 +67,7 @@ find.threshold <- function(difexp, method){
     
     Ci <- transitivity(G,type = "globalundirected")
     
-    # If clustering coefficient cannot calculate, then equal to cero
+    # If clustering coefficient cannot calculate, then equal to zero
     
     if(is.nan(Ci)){Ci <- 0}
     
@@ -82,16 +78,15 @@ find.threshold <- function(difexp, method){
     k1 <- (1/length(V(G)))*K1
     k2 <- (1/length(V(G)))*K2
     
-    # Obtains a value to simulate clustering coefficient of a network
-    # randomly created
+    # Obtains a value to simulate clustering coefficient of a network randomly created
     
     C0 <- ((k2-k1)^2)/(k1^3*length(V(G)))
     
-    # If the result of simulate clustering coefficient is na, tranform to cero
+    # If the result of simulate clustering coefficient is NA, then transform to zero
     
     if(is.nan(C0)){C0 <- 0}
     
-    # Adds the clustering coefficient to threshold values in a vector
+    # Adds the clustering coefficient for threshold values in a vector
     
     Cis[count] <- Ci
     
@@ -108,7 +103,7 @@ find.threshold <- function(difexp, method){
   thr <- vector()
   pass <- vector()
   
-  # Find the differencies between the clustering coefficient to random network anthe real network
+  # Finds the subtraction between the clustering coefficient of random network and the real network
   
   for(i in 1:(length(pcv)-1)){
     if(Cis[i]-C0s[i] > Cis[i+1]-C0s[i+1]){
@@ -121,13 +116,13 @@ find.threshold <- function(difexp, method){
   
   thr <- na.omit(thr)
   
-  # Rounds the result of the difference between the clustering coefficients.
+  # Rounds the result of the difference between the clustering coefficients
   
   pass <- round(na.omit(pass))
   
   thre <- vector()
   
-  # Deletes the minimun values of the difference between the clustering coefficients.
+  # Deletes the minimum values of the difference between the clustering coefficients
   
   for(j in 1:length(thr)){
     if(pass[j] > min(pass)){
@@ -145,7 +140,7 @@ find.threshold <- function(difexp, method){
     
     ad <- matrix(0,ncol = nrow(simil),nrow = nrow(simil))
     
-    # Transforms to adjacency matrix
+    # Transforms into adjacency matrix
     
     for(i in 1:nrow(simil)){
       ad[which(simil[,i]>=thre[n]),i]<-1
@@ -164,7 +159,7 @@ find.threshold <- function(difexp, method){
     
     fit <- fit_power_law(degree(gr))
     
-    # Obtaines the p-value
+    # Obtains the p-value
     
     pvalue <- fit$KS.p
     
@@ -179,7 +174,7 @@ find.threshold <- function(difexp, method){
   
   mtr <- na.omit(mtr)
   
-  # Deletes the minimun values of the difference between the clustering coefficients.
+  # Deletes the minimum values in the subtraction of clustering coefficient values
   
   if(length(mtr) == 0){
     new_pass <- vector()
@@ -207,7 +202,7 @@ find.threshold <- function(difexp, method){
   
   text(min(pcv)+0.1,max(abs(C0s-Cis))-0.1,paste0("Threshold = ", mtr[1]))
   
-  # return the value corrisponding to the final threshold value
+  # returns the value corresponding to the final threshold value
   
   return(mtr[1])
   

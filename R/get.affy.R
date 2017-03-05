@@ -1,5 +1,8 @@
 #' @export get.affy
 #' @author Juan david Henao <judhenaosa@unal.edu.co>
+#' 
+#' # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
+#' 
 #' @title Charge and create an AffyBatch object 
 #' @description Charges the data from a file with the GSM samples compressed using the "filelist.txt" file to identify the GSM ID
 #' and create the AffyBatch object finally.
@@ -14,9 +17,6 @@
 #' # Data whitout CDF enviroment information
 #' 
 #' affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
-
-
-# Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
 get.affy <- function(GSE,dir="."){
   
