@@ -4,21 +4,14 @@
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
 #' @title Create a protein-protein interaction network
-#' @description Creates a protein-protein interaction network using or a edge list with 
-#' the relations beween proteins or a vector with the gene symbols or another kind of 
-#' molecular identifier widely used in biological databases to create a predictive ppi
-#' network using information of pieces of evidence in STRING database.
-#' @param input This parameter may be two types. A vector with the molecular identifiers, they could be two IDs united for the "-"
-#' character or a pathfile with the relations between proteins as edge list to create the network.
-#' @param species_ID The numerical ID from STRING database to the specie of interest, by defect is
-#' "9006" corresponding to human specie.
-#' @param evidence A vector with the evicences to support the interactions bewtween the proteins
-#' by default are all te evidences given in STRING database.
-#' @return An igraph object as the protein-protein interaction network where the nodes are the
-#' molecular identifiers given in the vector input.
+#' @description Creates a protein-protein interaction network using an edge list with the relations between proteins or a vector with the gene symbols or any other molecular identifier type, widely used in biological databases, to create a predictive PPI network using information of evidence in STRING database.
+#' @param input This parameter may be two types. A vector with the molecular identifiers, they could be two IDs united for the "-" character or a path file with the relations between proteins as edge list to create the network.
+#' @param species_ID The numerical ID from STRING database to the species of interest, by defect, is "9006" corresponding to human species.
+#' @param evidence A vector with the evidence to support the interactions between the proteins, by default is all the evidence given in STRING database.
+#' @return An igraph object as the protein-protein interaction network where the nodes are the molecular identifiers given in the input.
 #' @examples
 #' \dontrun{
-#' # Creating vector with identifiers
+#' # Creating a vector with identifiers
 #' 
 #' ID <- c("FN1","HAMP","ILK","MIF","NME1","PROCR","RAC1","RBBP7",
 #' "TMEM176A","TUBG1","UBC","VKORC1")
@@ -29,7 +22,7 @@
 #' plot(ppi)
 #' }
 #' 
-#' # Creating a ppi network from external data
+#' # Creating a PPI network from external data
 #' 
 #' ppi <- ppi.net(input = system.file("extdata","ppi.txt",package = "coexnet"))
 #' plot(ppi)
@@ -39,76 +32,75 @@ ppi.net <- function(input,species_ID = 9606,evidence = c("neighborhood","neighbo
             "experiments","experiments_transferred","database","database_transferred","textmining",
             "textmining_transferred","combined_score")){
   
-  # Detecting the input type
+  # Detects the input type
   if(!file.exists(input[1])){
-    # Replacing the name of input
+    # Replaces the name of input
     genes <- input
     # Creating the vector to store the unique identifiers
     for_gen <- vector()
-    # To each ID in the vector input
+    # To each ID in the input vector 
     for(i in genes){
-      # Split each ID with two or more different identifiers
+      # Splits each ID with two or more different identifiers
       for(j in strsplit(i,"-")){
-        # Add each of the ID such as 
+        # Adds each of the separated ID
         for_gen <- append(for_gen,j)
       }
     }
-    # Remove de dupicated identifiers
+    # Removes duplicated identifiers
     for_gen <- unique(sort(for_gen))
-    # Transform the vector into data-frame 
+    # Transforms the vector into data frame 
     new_genes <- as.data.frame(for_gen,stringsAsFactors = FALSE)
-    # The name of column must be "gene"
+    # The column name must be gene
     names(new_genes) <- "gene"
-    # Charge the STRING database
+    # Loading the STRING database
     database <- STRINGdb$new(version="10",species=species_ID,score_threshold=0,input_directory="")
-    # Obtain the STRING ID to each identifier
+    # Obtains the STRING ID to each identifier
     mapped <- database$map(new_genes,"gene",removeUnmappedRows = TRUE)
-    # Remove the STRING ID duplicated
+    # Removes the STRING ID duplicated
     mapped <- mapped[!duplicated(mapped$STRING_id),]
-    # Obtain the interactions among STRING IDs from diferent types of evidences
+    # Obtains the interactions among STRING IDs according to different types of evidence
     interactions <- database$get_interactions(mapped$STRING_id)
-    # Extract the relations deleting the evidences
+    # Extracts the relations deleting the evidence information columns
     graph_relations <- data.frame(interactions$from,interactions$to,stringsAsFactors = FALSE)
-    # Read each evidence given
+    # Reads each evidence given
     for(i in evidence){
-      # Take each column of all the evidences
+      # Takes each column with evidence information
       for(j in names(interactions)){
-        # If the evidence in the "interactions" variable corresponde with one of the request evidence
+        # If the evidence in the "interactions" variable corresponds with one of the request evidence
         if(i == j){
-          # Append the column with the request evidence in the data.frame with interactions
-          # among STRING_ID
+          # Appends the column with the requested evidence in the data frame with interactions among STRING IDs
           graph_relations <- cbind(graph_relations,interactions[j])
         }
       }
     }
-    # This data.frame will be fill up with interactions with any interaction greater than 0
+    # This data frame will be fill up with interactions with any evidence value greater than zero
     graph_ppi <- data.frame()
-    # This loop fill up the "graph_ppi" data.frame
+    # This loop fill up the "graph_ppi" data frame
     for(i in 1:nrow(graph_relations)){
       if(any(graph_relations[i,3:ncol(graph_relations)] > 0)){
         graph_ppi <- rbind.data.frame(graph_ppi,graph_relations[i,],
                                       stringsAsFactors = FALSE)
       }
     }
-    # This loop replace the STRING IDs with the original identigiers in the first column 
+    # This loop replace the STRING IDs with the original identifiers in the first column 
     for(n in 1:nrow(graph_ppi)){
       graph_ppi$interactions.from[n] <- mapped[
         graph_ppi$interactions.from[n] == mapped$STRING_id,][1]
     }
-    # This loop replace the STRING IDs with the original identigiers in the second column
+    # This loop replace the STRING IDs with the original identifiers in the second column
     for(n in 1:nrow(graph_ppi)){
       graph_ppi$interactions.to[n] <- mapped[
         graph_ppi$interactions.to[n] == mapped$STRING_id,][1]
     }
-    # Is necesary transform the data.frame into matrix
+    # Is necessary transform the data frame into matrix
     edge_list <- matrix()
     # Filling up the matrix with the interactions
     edge_list <- cbind(as.vector(graph_ppi[,1],mode = "character"))
     edge_list <- cbind(edge_list,as.vector(graph_ppi[,2],mode = "character"))
-    # Creating a network from interactions in the matrix
+    # Creates a network based on the interactions in the matrix
     final_graph <- graph.edgelist(edge_list,directed = FALSE)
   }else{
-    # Reading and creating the igraph object
+    # Reads and creates the igraph object
     final_graph <- read.graph(file = input,format = "ncol")
   }
   # Returns the PPI network
