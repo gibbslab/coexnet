@@ -27,7 +27,7 @@ This function will create, in your current path, a folder with the *GSE* (unique
 
 get.info(GSE = "GSE8216", GPL = "GPL2025",dir = ".")
 
-# Shows the actual pathfile with the folder with the GSE number and the .soft file
+# Showing the actual pathfile with the folder with the GSE number and the .soft file
 
 dir()
 
@@ -76,7 +76,7 @@ This function searches, in the current or the designated pathfile, the *.soft* f
 
 ```{r, eval=FALSE}
 
-# Create the table with the relationship between probesets and IDs.
+# Creating the table with probesets and genes/IDs
 
 gene_table <- gene.symbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
 
@@ -245,7 +245,7 @@ This function computes a threshold value using a novel method based on two *Biol
 pathfile <- system.file("extdata","expression_example.txt",package = "coexnet")
 data <- read.table(pathfile,stringsAsFactors = FALSE)
 
-# Find threshold value
+# Finding threshold value
 
 cor_pearson <- find.threshold(difexp = data,method = "correlation")
 cor_pearson
@@ -330,7 +330,7 @@ This function obtains the Common Connection Patterns making two steps. In the fi
 data("net1")
 data("net2")
  
-# Obtain Common Connection Patterns
+# Obtaining Common Connection Patterns
 
 ccp <- CCP(net1,net2)
 ccp
@@ -355,7 +355,7 @@ This function obtains the shared components between two or more biological netwo
 data("net1")
 data("net2")
 
-# Obtain shared components
+# Obtaining shared components
  
 share <- shared.components(net1,net2)
 share
