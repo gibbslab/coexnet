@@ -10,7 +10,7 @@ output:
 
 #Abstract
 
-The networke analysis of biological data has increased in recent years, due to the capacity of this approach to analyze and represent complex information in a simple way, information that nowadays is growing and that covers different levels of biological resolution (protein-protein interaction, signaling interaction networks, gene regulatory network, among others). Currently, one of the most used and informative representations of biological data are co-expression networks. In this approach a network is created based on data obtained from experimental expression measures, taking into account the existence of particular patterns or relations of expression among different genes, proteins or RNA fragments involved in a specific phenotype. Hereby, we introduce *coexnet*, a new R package for the creation of undirected co-expression networks from microarray data, obtained from GEO Datasets database. This package contains all the necessary functions that pipe the analysis process from the download of microarray datasets, going through the normalization and filtering of obtained data to the creation of the co-expression network unsing state of the art correlation measures and statistical analysis. 
+The network analysis of biological data has increased in recent years, due to the capacity of this approach to analyze and represent complex information in a simple way, information that nowadays is growing and that covers different levels of biological resolution (protein-protein interaction, signaling interaction networks, gene regulatory network, among others). Currently, one of the most used and informative representations of biological data are co-expression networks. In this approach a network is created based on data obtained from experimental expression measures, taking into account the existence of particular patterns or relations of expression among different genes, proteins or RNA fragments involved in a specific phenotype. Hereby, we introduce *coexnet*, a new R package for the creation of undirected co-expression networks from microarray data, obtained from GEO Datasets database. This package contains all the necessary functions that pipe the analysis process from the download of microarray datasets, going through the normalization and filtering of obtained data to the creation of the co-expression network unsing state of the art correlation measures and statistical analysis. 
 
 #Workflow
 
@@ -90,7 +90,7 @@ In some cases, the *.soft* file dosen't have all the IDs that are related to eac
 
 ```{r, eval=FALSE}
 
-# The former table has NA and empty information in the IDs. CORREGIR ESTE INGLES!!!!!!!!
+# The created table have NA and empty IDs information.
 # We can delete this unuseful information.
 
 # Deletion of IDs with NA information
@@ -202,7 +202,7 @@ When expression data of gene, proteins, or another kind of ID are used to build 
 
 There are several methodologies to identify differentially expressed genes/IDs, some methods are more predictive than others, so depending of the method, it is possible obtain genes/IDs taht clearly differentiate from others in their expression values or it is also possible to obtain genes/IDs whose expression value are slightly different from others, but that given the criteria of the method used, they are considered as differentialy expressed. In both cases it is possible to have genes/IDs that are identified as differentialy expressed by error and it is necessary to consider a measure of this error. One of common measure of error is the *False Discover Rate* or *FDR*, this metric describes the probability of one gene/ID being selected as differentially expressed by error. 
 
-This function considers two ways to calculate the differentially expressed genes/IDs. It is possible to carry out a predictive methodology obtains the majority of genes or IDs considered as differentially expressed, in this case the *sam* method is used. This method basically uses a difference of means to calculate the genes/IDs that are over-expressed or under-expressed using a permutation process to test the results and prove that the genes/IDs selected where not randomly selected, through these permutations the *FDR* value is calculated (Tusher, *et al* 2001). This function can also use the *acde* method to calculate and obtain the genes/IDs differentially expressed in a less predictive way. This method consists essentially on the application of the main components to characterize the genes differentially expressed by calculating the *FDR* using multiple hypothesis tests according to Benjamini and Hochberg (1995) (Acosta & López-Kleine).
+This function considers two ways to calculate the differentially expressed genes/IDs. It is possible to carry out a predictive methodology obtains the majority of genes or IDs considered as differentially expressed, in this case the *sam* method is used. This method basically uses a difference of means to calculate the genes/IDs that are over-expressed or under-expressed using a permutation process to test the results and prove that the genes/IDs selected where not randomly selected, through these permutations the *FDR* value is calculated (Tusher, *et al*. 2001). This function can also use the *acde* method to calculate and obtain the genes/IDs differentially expressed in a less predictive way. This method consists essentially on the application of the main components to characterize the genes differentially expressed by calculating the *FDR* using multiple hypothesis tests according to Benjamini and Hochberg (1995) (Acosta & López-Kleine, 2015).
 
 ```{r, eval=FALSE}
 
@@ -268,7 +268,7 @@ Finally, based on the adjacency matrix, a list is created,  where connected gene
 
 This way every genes/IDs care connected in the final co-expression network.
 
-This function takes the expression matrix and creates the correlation matrix using *Pearson Correlation Coefficient* or *Mutual Informtion*. After that, creates the adjacency matrix taking into account the threshold value given by the user and finally creates the network from the adjacency matrix as an igraph object to be analyze using the igraph R package or any other tool that recognizes this type of object.
+This function takes the expression matrix and creates the correlation matrix using *Pearson Correlation Coefficient* or *Mutual Informtion*. After that, it creates the adjacency matrix using the threshold value given by the user and finally creates the network from the adjacency matrix as an igraph object to be analyzed using the igraph R package or any other tool that recognizes this type of object.
 
 ```{r, eval=FALSE}
 
@@ -285,38 +285,46 @@ head(cor_pearson)
 
 **Take into account**
 
-In the process of construction of adjacency matrix, sometime a gene/ID can not be related to another one and in the process to go from matrix to edge list, this gene/ID will be deleted. Additionally, the network in the igraph object can be exported as an edge list using the igraph package to be visualize in another tool such as *Cytoscape* or *Gephi*.
+In the process of construction of the adjacency matrix, sometimes a gene/ID can not be related to another one and in the process passing from a matrix to an edge list, this gene/ID will be deleted. Additionally, the network in the igraph object can be exported as an edge list using the igraph package to be visualized in another tool such as *Cytoscape* or *Gephi*.
 
 ##ppi.net
 
-In many cases, it is necessary to consider additional information to have more robust analysis. Within that additional information, protein-protein interaction (PPI) is the most used, this additional information has the proposal of support, in a functional fashion, the relationships in the co-expression network. One way to relate the protein-protein interaction with the co-expression data is building a PPI network. To create this kind of networks are useful to start with the list of genes obtained from the differential expression analysis results (see above). From this list of genes, the network will be created based on a different kind of pieces of evidence like experimental data, the distances of the genes inside in the genome, among others.
+In many cases, it is necessary to consider additional information to have more robust analysis. Protein-protein interaction (PPI) is the most used additional information to support the relationships detected by the co-expression network. One way to relate the protein-protein interaction information with the co-expression data is building a PPI prediction network. To create this kind of networks, it is useful to start with the list of genes obtained from the differential expression analysis results (see above). From this list of genes, the network will be created based a different pieces of evidence like experimental data, the distances of the genes inside in the genome, among others.
 
-This function, creates a PPI network from a vector of genes or another kind of widely used identifier to be recognized from STRING database, this database has information on protein-protein interaction to many species and support the relations between proteins with different types of pieces of evidence like experimental data, co-occurrence of the proteins among related species, text mining, among others. Inside STRING database, each relationship between proteins is supported finally using the information in KEGG database, a widely used and curated database of information on metabolic pathways. Finally returning the PPI network as an igraph object to be analyzed in the same way that co-expression network.
+This function, creates a PPI network from a vector of genes or another kind of widely used identifier to be recognized from STRING database, this database has information on protein-protein interaction from many species and support the relations between proteins with different types of pieces of evidence like experimental data, co-occurrence of the proteins among related species, text mining, among others. Inside STRING database, each relationship between proteins is supported using the information in KEGG database, a widely used and curated database of information on metabolic pathways. Finally, this function returns the PPI network as an igraph object to be analyzed in the same way as a co-expression network. Additionally, this function can create a PPI network from an edge list given by the user, that is useful if the researchers have experimental information, such as Y2H experiments results about relations between proteins of interest.
 
 ```{r, eval=FALSE}
 
-# Loading data
+# Creating vector with identifiers
  
-data("net1")
-data("net2")
+ID <- c("FN1","HAMP","ILK","MIF","NME1","PROCR","RAC1","RBBP7",
+ "TMEM176A","TUBG1","UBC","VKORC1")
  
-# Obtain Common Connection Patterns
+# Creating the PPI network
  
-ccp <- CCP(net1,net2)
-ccp
+ppi <- ppi.net(genes = ID,evidence = c("neighborhood","coexpression","experiments"))
+plot(ppi)
+
+# Creating a PPI network from external data
+ 
+ppi <- ppi.net(input = system.file("extdata","ppi.txt",package = "coexnet"))
+plot(ppi)
 ```
 
 **Take into account**
 
-It is too important that the IDs are those used in the principal databases to will be identified by STRING and being to able to use them. Additionally, this database uses its own IDs to recognize the species of interest, in this case, by default, the function has the ID "9606" which corresponds to the human species, for additional information about species IDs, visit the database website (http://string-db.org/).
+It is very important that the IDs are those used in the principal databases in order to be identified by STRING. Additionally, this database uses its own IDs to recognize the species of interest, in this case, by default, the function has the ID "9606" which corresponds to the human species, for additional information about species IDs, visit the database website (http://string-db.org/).
 
 ##CCP
 
-In some cases, the purpose of creating co-expression networks or even creating PPI networks are to compare several phenotypes related. The most used method is comparing the modules in the different networks, another one consists in to get the intersection of them, including all the shared nodes between them whether they are connected or not. However, the most useful information are related to the connected nodes due to they are implicated in a specific molecular process. Hence, we propose a method to extract only these Common Connection Patterns between networks created from the same molecular information (co-expression, protein-protein interaction, SNPs, TF factors, among them).
+The Common Connection Pattern (CCP), is a new methodological proposal to identify molecular components linked together and common in several biological networks. The principal assumption behind Common Connection Pattern is that the networks to be compared must have the same molecular information from, i.e., must compare one layer of molecular abstraction at the same time, for example, co-expression layer, protein-protein layer, the gene regulation layer, among others.
 
-This function obtains the Common Connection Patterns by comparing two or more networks in two steps. In the first one, the intersection between the networks is obtained. In the second one, the solitary nodes are removed to getting the Common Connection Patterns of the networks as an igraph object. On the other hand, if there are no Common Connection Patterns exists, the function returns an igraph object without edges or nodes (empty network).
+In general, the comparison of biological networks is made to determine common elements or biomarkers among several related phenotypes. In this case, the Common Connection Patterns aims to identify common molecular elements between these phenotypes that are associated also with each other in a specific way. For this, the intersection between biological networks is calculated whose result can have two kinds of elements. On the one hand, the shared nodes without any connection with other nodes in the intersection network. On the other hand, nodes connected to one or more nodes in the intersection network. Each connected component in the intersection will be considered as a Common Connection Pattern.
+
+This function obtains the Common Connection Patterns making two steps. In the first one, it generates the intersection of the networks given in the input as graph objects. In the second one, it identifies the solitary nodes in the intersection network and then they are removed to leave the connected components only. Finally, the function returns all the Common Connection Patterns in one graph object.
 
 ```{r, eval=FALSE}
+
 # Loading data
  
 data("net1")
@@ -330,7 +338,7 @@ ccp
 
 **Take into account**
 
-We consider each of the individual components connected as Common Connection Patterns, but they are all on the same graph object. Additionally, the networks must be created using the same molecular information to consider the final results as Common Connection Patterns, although this function can compare any of network type as long as they are a graph object.
+Although the idea is to compare biological networks from the same nature and created to study related phenotypes, the function can have results, when it compares any kind network. Additionally, is possible not find Common Connection Patterns when two or more networks are compared, in this case, the result will be an igraph object with no nodes and no edges, i.e., an empty network.
 
 ##shared.components
 
@@ -359,7 +367,7 @@ The assumption behind the solitary nodes in the intersection network as molecula
 
 #References
 
-1. Acosta, J. P., & López-Kleine, L. Identification of Differentially Expressed Genes with Artificial Components–the acde Package.
+1. Acosta, J. P., & López-Kleine, L. (2015). Identification of Differentially Expressed Genes with Artificial Components–the acde Package.
 
 2. Elo, L. L., Järvenpää, H., Orešič, M., Lahesmaa, R., & Aittokallio, T. (2007). Systematic construction of gene coexpression networks with applications to human T helper cell differentiation process. Bioinformatics, 23(16), 2096-2103.
 
