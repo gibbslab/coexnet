@@ -50,11 +50,11 @@
 
 expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE){
   
-  # Extracts the date of microarray scan
+  # Extract the date of microarray scan
   
   dates <- protocolData(affy)$ScanDate
   
-  # Split all the information related to date of scan
+  # Spliting all the information related to date of scan
   
   strdates <- strsplit(dates," ")
   
@@ -66,11 +66,11 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRU
     batch.dates[i]  <- strdates[[i]][1]
   }
   
-  # Obtain the unique dates
+  # Obtaining the unique dates
   
   tab <-names(table(batch.dates))
   
-  # Join samples in batchs according the date of scan
+  # Joining samples in batchs according the date of scan
   
   for (n in 1:length(tab)) {
     batch.dates[batch.dates == tab[n]] <- paste0("b", n)
@@ -82,7 +82,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRU
     
     cat("Normalizing", sep = "\n")
     
-    # Extracts the raw expression matrix from AffyBatch object
+    # Extract the raw expression matrix from AffyBatch object
     
     pvsn <- as.matrix.ExpressionSet(affy)
     
@@ -153,7 +153,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRU
   
   cat("DONE")
   
-  # Returns the gene expression matrix
+  # Return the gene expression matrix
   
   return(eset)
 }

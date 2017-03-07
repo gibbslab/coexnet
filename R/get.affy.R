@@ -20,20 +20,20 @@
 
 get.affy <- function(GSE,dir="."){
   
-  # Changes the directory 
+  # Change the directory 
   
   setwd(dir)
   
-  # Reads the filelist.txt file with the samples information
+  # Read the filelist.txt file with the samples information
   
   raw <- read.table(file = paste0(GSE,"/","filelist.txt"),sep = "\t",
                     header = T,comment.char = "", stringsAsFactors = F)
   
-  # Obtains all the names of samples
+  # Obtaining all the names of samples
   
   GSMs <- raw$Name[grep(".CEL",raw$Name,ignore.case = T)]
   
-  # Reads and returns the raw data from each sample
+  # Read and return the raw data from each sample
   
   affy <- ReadAffy(filenames = as.character(GSMs), compress = T,
                    celfile.path = GSE)

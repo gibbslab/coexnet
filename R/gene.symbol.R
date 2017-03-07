@@ -29,7 +29,7 @@ gene.symbol <- function(GPL, d = "."){
   
   options(warn=-1)
   
-  # Moves to path file with the .soft file
+  # Move to path file with the .soft file
   
   setwd(d)
 
@@ -38,11 +38,11 @@ gene.symbol <- function(GPL, d = "."){
   gpl <- getGEO(filename = paste0(GPL,".soft"))
   
   
-  # Creates a table object with all the data in the .soft file
+  # Create a table object with all the data in the .soft file
   
   sym <- Table(gpl)
   
-  # Creates a data.frame with the gene symbols for the probes associated
+  # Create a data.frame with the gene symbols for the probes associated
   
   ta <- data.frame(sym$ID, gsub(" /// ","-",sym$`Gene Symbol`), stringsAsFactors = F)
   

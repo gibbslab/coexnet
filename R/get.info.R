@@ -12,21 +12,21 @@
 #' @seealso \code{\link{get.affy}} to charge the expression data.
 #' @examples 
 #' 
-#' # Extracts data from GEO DataSets
+#' # Extract data from GEO DataSets
 #' 
 #' get.info(GSE = "GSE8216", GPL = "GPL2025",dir = tempdir())
 
 get.info <- function(GSE,GPL,dir="."){
   
-  # Moves to the specified directory
+  # Move to the specified directory
   
   setwd(dir)
   
-  # Downloads the raw data from GEO DataSets database
+  # Download the raw data from GEO DataSets database
   
   sapply(as.vector(t(GSE)), getGEOSuppFiles)
   
-  # Obtains the name of the compressed data
+  # Obtaining the name of the compressed data
   
   files <- dir(".")[grep("^GSE[0-9]",dir("."),ignore.case = T)]
   
@@ -36,7 +36,7 @@ get.info <- function(GSE,GPL,dir="."){
     untar(paste0(j,"/",j,"_RAW.tar"), exdir = paste0(j,"/"))
   }
   
-  # Downloads the .soft file of the microarray chip
+  # Download the .soft file of the microarray chip
   
   getGEOfile(GPL, destdir = ".")
 }

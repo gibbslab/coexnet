@@ -23,12 +23,18 @@
 #' ccp
 
 CCP <- function(...){
-  # Obtains the intersection set of the networks
+  # Obtaining the intersection set of the networks
   intersect <- graph.intersection(...,keep.all.vertices = FALSE)
-  # Selects the intersection nodes without any value of degree
+  # Select the intersection nodes without any value of degree
   members <- which(degree(intersect) == 0)
   # Deletes the solitary vertices in the intersection network
   CCP <- delete.vertices(graph = intersect,v = names(members))
-  # Returns only the nodes in the intersection network with at least one edge
-  return(CCP)
+  # To empty result
+  if(diameter(CCP) == 0){
+    # Showing a messege
+    return(cat("Do not exit CCP between networks"))
+  }else{
+    # Return only the nodes in the intersection network with at least one edge
+    return(CCP)
+  }
 }

@@ -20,10 +20,16 @@
 
 
 shared.components <- function(...){
-  # Obtains the intersection set of the networks
+  # Obtaining the intersection set of the networks
   intersect <- graph.intersection(...,keep.all.vertices = FALSE)
-  # Selects the nodes in the intersected network with degree equal zero
+  # Select the nodes in the intersected network with degree equal zero
   members <- which(degree(intersect) == 0)
-  # Returns the names of the solitary nodes in the intersection network
-  return(names(members))
+  # To empty vector
+  if(length(members) == 0){
+    # Showing a message
+    return(cat("Do not find shared components between the networks"))
+  }else{
+    # Return the names of the solitary nodes in the intersection network
+    return(names(members))
+  }
 }

@@ -44,7 +44,7 @@
 
 cof.var <- function(data,complete=TRUE,treatment=NULL,type=NULL){
   
-  # Replaces the sample name for case/control ID
+  # Replacing the sample name for case/control ID
   
   if (complete == FALSE) {
     
@@ -64,19 +64,19 @@ cof.var <- function(data,complete=TRUE,treatment=NULL,type=NULL){
     tdata = as.data.frame(data)
   }
   
-  # Obtains the mean of the expression values
+  # Obtaining the mean of the expression values
   
   tdata$mean <- rowMeans(tdata, na.rm = T)
   
-  # Obtains the coefficient of variation to each row
+  # Obtaining the coefficient of variation to each row
   
   CV <- function(x){sd(x,na.rm = T)/mean(x,na.rm = T)}
   
-  # Applies the function to the expression matrix
+  # Apply the function to the expression matrix
   
   tdata$cv <- apply(tdata[,1:(ncol(tdata)-1)],1,CV)
   
-  # Returns the expression matrix with the mean and the CV
+  # Return the expression matrix with the mean and the CV
   
   return(tdata)
 }

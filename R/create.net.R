@@ -28,22 +28,22 @@
 
 create.net <- function(difexp,method, threshold){
   
-  # Obtains the similarity values
+  # Obtaining the similarity values
   
   simil <- .correlation.matrix(difexp,method)
   
-  # Creates an empty matrix
+  # Create an empty matrix
   
   Ad <- matrix(0,ncol = nrow(simil),nrow = nrow(simil))
   
-  # Transforms to adjacency matrix
+  # Transform to adjacency matrix
   
   for(i in 1:nrow(simil)){
     Ad[which(simil[,i]>=threshold),i]<-1
     Ad[which(simil[,i]<threshold),i]<-0
   }
   
-  # Changes the names of adjacency matrix to the names of the genes
+  # Change the names of adjacency matrix to the names of the genes
   
   colnames(Ad)<-rownames(Ad)<-rownames(simil)
   
@@ -51,23 +51,23 @@ create.net <- function(difexp,method, threshold){
   
   diag(Ad)<-0
   
-  # Creates the network from the adjacency matrix
+  # Creating the network from the adjacency matrix
   
   Gr=graph.adjacency(Ad,mode="undirected",add.colnames=NULL,diag=FALSE)
   
-  # Obtains the degree value for each node in the network
+  # Obtaining the degree value for each node in the network
   
   de <- degree(Gr,loops = F)
   
-  # Deletes the nodes without any edge
+  # Delete the nodes without any edge
   
   Ad <- Ad[which(de > 0), which(de > 0)]
   
-  # Creates the final network from the adjacency matrix filtered
+  # Create the final network from the adjacency matrix filtered
   
   net <- graph.adjacency(Ad,mode="undirected",add.colnames=NULL,diag=FALSE)
   
-  # Returns the network like igraph object
+  # Return the network like igraph object
   
   return(net)
   

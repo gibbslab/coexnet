@@ -32,39 +32,39 @@ ppi.net <- function(input,species_ID = 9606,evidence = c("neighborhood","neighbo
             "experiments","experiments_transferred","database","database_transferred","textmining",
             "textmining_transferred","combined_score")){
   
-  # Detects the input type
+  # Detecting the input type
   if(!file.exists(input[1])){
-    # Replaces the name of input
+    # Replace the name of input
     genes <- input
     # Creating the vector to store the unique identifiers
     for_gen <- vector()
     # To each ID in the input vector 
     for(i in genes){
-      # Splits each ID with two or more different identifiers
+      # Split each ID with two or more different identifiers
       for(j in strsplit(i,"-")){
-        # Adds each of the separated ID
+        # Add each of the separated ID
         for_gen <- append(for_gen,j)
       }
     }
-    # Removes duplicated identifiers
+    # Remove duplicated identifiers
     for_gen <- unique(sort(for_gen))
-    # Transforms the vector into data frame 
+    # Transform the vector into data frame 
     new_genes <- as.data.frame(for_gen,stringsAsFactors = FALSE)
     # The column name must be gene
     names(new_genes) <- "gene"
     # Loading the STRING database
     database <- STRINGdb$new(version="10",species=species_ID,score_threshold=0,input_directory="")
-    # Obtains the STRING ID to each identifier
+    # Obtaining the STRING ID to each identifier
     mapped <- database$map(new_genes,"gene",removeUnmappedRows = TRUE)
-    # Removes the STRING ID duplicated
+    # Removing the STRING ID duplicated
     mapped <- mapped[!duplicated(mapped$STRING_id),]
-    # Obtains the interactions among STRING IDs according to different types of evidence
+    # Obtaining the interactions among STRING IDs according to different types of evidence
     interactions <- database$get_interactions(mapped$STRING_id)
-    # Extracts the relations deleting the evidence information columns
+    # Extract the relations deleting the evidence information columns
     graph_relations <- data.frame(interactions$from,interactions$to,stringsAsFactors = FALSE)
-    # Reads each evidence given
+    # Read each evidence given
     for(i in evidence){
-      # Takes each column with evidence information
+      # Take each column with evidence information
       for(j in names(interactions)){
         # If the evidence in the "interactions" variable corresponds with one of the request evidence
         if(i == j){
@@ -97,13 +97,12 @@ ppi.net <- function(input,species_ID = 9606,evidence = c("neighborhood","neighbo
     # Filling up the matrix with the interactions
     edge_list <- cbind(as.vector(graph_ppi[,1],mode = "character"))
     edge_list <- cbind(edge_list,as.vector(graph_ppi[,2],mode = "character"))
-    # Creates a network based on the interactions in the matrix
+    # Create a network based on the interactions in the matrix
     final_graph <- graph.edgelist(edge_list,directed = FALSE)
   }else{
-    # Reads and creates the igraph object
+    # Read and create the igraph object
     final_graph <- read.graph(file = input,format = "ncol")
   }
-  # Returns the PPI network
+  # Return the PPI network
   return(final_graph)
 }
-

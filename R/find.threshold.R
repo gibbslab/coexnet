@@ -25,15 +25,15 @@
  
 find.threshold <- function(difexp, method){
   
-  # Obtains the similarity values
+  # Obtaining the similarity values
   
   simil <- .correlation.matrix(difexp,method)
   
-  # Creates a sequence of threshold values
+  # Create a sequence of threshold values
   
   pcv <- seq(0.01,0.99,by = 0.01)
   
-  # Creates two empty vectors
+  # Create two empty vectors
   
   Cis <- vector()
   C0s <- vector()
@@ -44,11 +44,11 @@ find.threshold <- function(difexp, method){
   
   for (val in pcv) {
     
-    # Creates an empty matrix
+    # Create an empty matrix
     
     ady <- matrix(0,ncol = ncol(simil), nrow = nrow(simil))
     
-    # Transforms to adjacency matrix
+    # Transform to adjacency matrix
     
     for(i in 1:nrow(simil)){
       ady[which(simil[,i]>=val),i]<-1
@@ -59,11 +59,11 @@ find.threshold <- function(difexp, method){
     
     diag(ady)<-0
     
-    # Creates the network from the adjacency matrix
+    # Create the network from the adjacency matrix
     
     G = graph.adjacency(ady,mode="undirected",diag=FALSE)
     
-    # Obtains the clustering coefficient value
+    # Obtaining the clustering coefficient value
     
     Ci <- transitivity(G,type = "globalundirected")
     
@@ -71,14 +71,14 @@ find.threshold <- function(difexp, method){
     
     if(is.nan(Ci)){Ci <- 0}
     
-    # Obtains values to calculate an artificial clustering coefficient
+    # Obtaining values to calculate an artificial clustering coefficient
     
     K1 <- sum(degree(G,loops = F))
     K2 <- sum(degree(G,loops = F)^2)
     k1 <- (1/length(V(G)))*K1
     k2 <- (1/length(V(G)))*K2
     
-    # Obtains a value to simulate clustering coefficient of a network randomly created
+    # Obtaining a value to simulate clustering coefficient of a network randomly created
     
     C0 <- ((k2-k1)^2)/(k1^3*length(V(G)))
     
@@ -86,15 +86,15 @@ find.threshold <- function(difexp, method){
     
     if(is.nan(C0)){C0 <- 0}
     
-    # Adds the clustering coefficient for threshold values in a vector
+    # Add the clustering coefficient for threshold values in a vector
     
     Cis[count] <- Ci
     
-    # Adds the artificial clustering coefficient in a vector
+    # Add the artificial clustering coefficient in a vector
     
     C0s[count] <- C0
     
-    # Increases the counter
+    # Increase the counter
     
     count <- count + 1
     
@@ -103,7 +103,7 @@ find.threshold <- function(difexp, method){
   thr <- vector()
   pass <- vector()
   
-  # Finds the subtraction between the clustering coefficient of random network and the real network
+  # Finding the subtraction between the clustering coefficient of random network and the real network
   
   for(i in 1:(length(pcv)-1)){
     if(Cis[i]-C0s[i] > Cis[i+1]-C0s[i+1]){
@@ -112,17 +112,17 @@ find.threshold <- function(difexp, method){
     }
   }
   
-  # Deletes NA values
+  # Delete NA values
   
   thr <- na.omit(thr)
   
-  # Rounds the result of the difference between the clustering coefficients
+  # Round the result of the difference between the clustering coefficients
   
   pass <- round(na.omit(pass))
   
   thre <- vector()
   
-  # Deletes the minimum values of the difference between the clustering coefficients
+  # Delete the minimum values of the difference between the clustering coefficients
   
   for(j in 1:length(thr)){
     if(pass[j] > min(pass)){
@@ -130,7 +130,7 @@ find.threshold <- function(difexp, method){
     }
   }
   
-  # Deletes the NA values
+  # Delete the NA values
   
   thre <- na.omit(thre)
   
@@ -140,7 +140,7 @@ find.threshold <- function(difexp, method){
     
     ad <- matrix(0,ncol = nrow(simil),nrow = nrow(simil))
     
-    # Transforms into adjacency matrix
+    # Transforming into adjacency matrix
     
     for(i in 1:nrow(simil)){
       ad[which(simil[,i]>=thre[n]),i]<-1
@@ -151,30 +151,30 @@ find.threshold <- function(difexp, method){
     
     diag(ad)<-0
     
-    # Creates the network from the adjacency matrix
+    # Create the network from the adjacency matrix
     
     gr=graph.adjacency(ad,mode="undirected",diag=FALSE)
     
-    # Uses the function fit_power_law
+    # Use the function fit_power_law
     
     fit <- fit_power_law(degree(gr))
     
-    # Obtains the p-value
+    # Obtaining the p-value
     
     pvalue <- fit$KS.p
     
-    # Adds the threshold value if p-value > 0.05
+    # Add the threshold value if p-value > 0.05
     
     if(pvalue > 0.05){
       mtr[n] <- thre[n]
     }
   }
   
-  # Deletes NA values
+  # Delete NA values
   
   mtr <- na.omit(mtr)
   
-  # Deletes the minimum values in the subtraction of clustering coefficient values
+  # Delete the minimum values in the subtraction of clustering coefficient values
   
   if(length(mtr) == 0){
     new_pass <- vector()
@@ -186,15 +186,15 @@ find.threshold <- function(difexp, method){
     }
   }
   
-  # Deletes NA values
+  # Delete NA values
   
   mtr <- na.omit(mtr)
   
-  # Creates a plot comparing the clustering coefficients 
+  # Create a plot comparing the clustering coefficients 
   
   plot(pcv,abs(Cis-C0s),t="l",xlab = "Threshold",ylab = "| Ci - C0 |")
   
-  # Creates the line to show the final threshold value
+  # Create the line to show the final threshold value
   
   abline(v=mtr[1], col="red")
   
@@ -202,7 +202,7 @@ find.threshold <- function(difexp, method){
   
   text(min(pcv)+0.1,max(abs(C0s-Cis))-0.1,paste0("Threshold = ", mtr[1]))
   
-  # returns the value corresponding to the final threshold value
+  # return the value corresponding to the final threshold value
   
   return(mtr[1])
   
