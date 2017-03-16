@@ -2,34 +2,32 @@
 % Please edit documentation in R/gene.symbol.R
 \name{gene.symbol}
 \alias{gene.symbol}
-\title{Create a table relating probesets with genes.}
+\title{Create a table relating probesets with genes}
 \usage{
 gene.symbol(GPL, d = ".")
 }
 \arguments{
 \item{GPL}{The GPL ID.}
 
-\item{d}{The pathfile where the .soft file are, by default is the current pathfile.}
+\item{d}{The path file where the .soft file is. By default is the current path file.}
 }
 \value{
-A data.frame with two columns, in the first one the probesets and in the second one the corresponding gene to each probeset.
+A data.frame with two columns, in the first one, the probesets and in the second one, the corresponding gene to each probeset.
 }
 \description{
-From the information in the .soft file, creates a data.frame with two columns, the first one with the probeset names
-and the second one with the name of the corresponding genes. 
-The genes are annotated using the gene symbol system.
+From the information in the .soft file, creates a data.frame with two columns. In the first one, the probeset names. In the second one, the name of the corresponding genes.
 }
 \examples{
 
-# Create the table with probesets and genes/IDs.
+# Creating the table with probesets and genes/IDs
 
 gene_table <- gene.symbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
 
-# Cleaning the NA information.
+# Cleaning the NA information
 
 gene_na <- na.omit(gene_table)
 
-# Cleaning empty gene/ID information.
+# Cleaning gene/ID information empty
 
 final_table <- gene_na[gene_na$ID != "",]
 

@@ -13,8 +13,7 @@ shared.components(...)
 A vector with the names of the shared components.
 }
 \description{
-From the intersected network, obtain the nodes without any value of degree. There are
-the molecular shared components without biological relation among them.
+From the intersection network, obtains the nodes without any degree value. These are the shared molecular components without any biological relation among them.
 }
 \examples{
 # Loading data
@@ -22,7 +21,7 @@ the molecular shared components without biological relation among them.
 data("net1")
 data("net2")
 
-# Obtain shared components
+# Obtaining shared components
 
 share <- shared.components(net1,net2)
 share

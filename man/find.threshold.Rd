@@ -9,17 +9,13 @@ find.threshold(difexp, method)
 \arguments{
 \item{difexp}{A whole expression matrix or the expression matrix to differentially expressed genes.}
 
-\item{method}{The method to create the correlation matrix, can be "correlation" to Pearson test or "mutual information" to test 
-based on entropy information.}
+\item{method}{The method name to create the correlation matrix, this can be "correlation" to obtain the Pearson Correlation Coefficient. On the other hand, can be "mutual information" to obtain the correlation values from an entropy-based method.}
 }
 \value{
-The best threshold value find using the two criteria and a plot with the result.
+The best threshold value found using the two criteria and a plot showing the result.
 }
 \description{
-Find the threshold value to establish the edges in a co-expression network based on correlation matrix
-using two different criteria. First, use the differential value between the clustering coefficient for the real network and
-random network build and second test the network using a Kolgomorov-Smirnov test to reject normality in the degree distribution of 
-the edges in the network.
+Finds the threshold value to establish the cutoff in the process to define the edges in the co-expression network final from two steps. In the first one, obtains the subtraction from clustering coefficient values of the real and random networks created from the possible threshold values in the correlation matrix. In the second one, a Kolmogorov-Smirnov test is made to evaluate the degree distribution respect normality.
 }
 \examples{
 
@@ -28,7 +24,7 @@ the edges in the network.
 pathfile <- system.file("extdata","expression_example.txt",package = "coexnet")
 data <- read.table(pathfile,stringsAsFactors = FALSE)
 
-# Find threshold value
+# Finding threshold value
 
 cor_pearson <- find.threshold(difexp = data,method = "correlation")
 cor_pearson
@@ -37,7 +33,7 @@ cor_pearson
 Elo, L. L., Jarvenpaa, H., Oresic, M., Lahesmaa, R., & Aittokallio, T. (2007). Systematic construction of gene coexpression networks with applications to human T helper cell differentiation process. Bioinformatics, 23(16), 2096-2103.
 }
 \seealso{
-\code{\link{dif.exprs}} to find the differential expressed genes matrix.
+\code{\link{dif.exprs}} to find the differentially expressed genes matrix.
 }
 \author{
 Juan David Henao Sanchez <judhenaosa@unal.edu.co>

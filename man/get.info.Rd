@@ -11,19 +11,17 @@ get.info(GSE, GPL, dir = ".")
 
 \item{GPL}{The GPL ID of the chip used in the microarray experiment.}
 
-\item{dir}{The pathfile to download and uncompress the raw expression data, by default is the current pathfile.}
+\item{dir}{The path file to download and uncompress the raw expression data, by default is the current path file.}
 }
 \value{
 A set of files with the uncompressed data and ready to use.
 }
 \description{
-Using a GSE ID list, from the GEO DtaSet ftp, search and download each one of the raw expression data in a 
-separate file with the GSE ID as the name, after that, this function uncompress the downloaded file to be ready to use.
-Adittionally, this function search and downloaded the information of the chip using the GPL ID to obtain the .soft file.
+Using a GSE ID list, from the GEO DataSets FTP, it searches and downloads each raw expression data in a separate file with the GSE ID as the name. After, the function uncompresses the downloaded file to be ready to use. Additionally, searches and downloaded the information of the chip using the GPL ID to obtain the .soft file.
 }
 \examples{
 
-# Extract data from GEO DataSet
+# Extract data from GEO DataSets
 
 get.info(GSE = "GSE8216", GPL = "GPL2025",dir = tempdir())
 }

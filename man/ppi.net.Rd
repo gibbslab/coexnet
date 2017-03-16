@@ -11,28 +11,21 @@ ppi.net(input, species_ID = 9606, evidence = c("neighborhood",
   "textmining_transferred", "combined_score"))
 }
 \arguments{
-\item{input}{This parameter may be two types. A vector with the molecular identifiers, they could be two IDs united for the "-"
-character or a pathfile with the relations between proteins as edge list to create the network.}
+\item{input}{This parameter may be two types. A vector with the molecular identifiers, they could be two IDs united for the "-" character or a path file with the relations between proteins as edge list to create the network.}
 
-\item{species_ID}{The numerical ID from STRING database to the specie of interest, by defect is
-"9006" corresponding to human specie.}
+\item{species_ID}{The numerical ID from STRING database to the species of interest, by defect, is "9006" corresponding to human species.}
 
-\item{evidence}{A vector with the evicences to support the interactions bewtween the proteins
-by default are all te evidences given in STRING database.}
+\item{evidence}{A vector with the evidence to support the interactions between the proteins, by default is all the evidence given in STRING database.}
 }
 \value{
-An igraph object as the protein-protein interaction network where the nodes are the
-molecular identifiers given in the vector input.
+An igraph object as the protein-protein interaction network where the nodes are the molecular identifiers given in the input.
 }
 \description{
-Creates a protein-protein interaction network using or a edge list with 
-the relations beween proteins or a vector with the gene symbols or another kind of 
-molecular identifier widely used in biological databases to create a predictive ppi
-network using information of pieces of evidence in STRING database.
+Creates a protein-protein interaction network using an edge list with the relations between proteins or a vector with the gene symbols or any other molecular identifier type, widely used in biological databases, to create a predictive PPI network using information of evidence in STRING database.
 }
 \examples{
 \dontrun{
-# Creating vector with identifiers
+# Creating a vector with identifiers
 
 ID <- c("FN1","HAMP","ILK","MIF","NME1","PROCR","RAC1","RBBP7",
 "TMEM176A","TUBG1","UBC","VKORC1")
@@ -43,7 +36,7 @@ ppi <- ppi.net(input = ID,evidence = c("neighborhood","coexpression","experiment
 plot(ppi)
 }
 
-# Creating a ppi network from external data
+# Creating a PPI network from external data
 
 ppi <- ppi.net(input = system.file("extdata","ppi.txt",package = "coexnet"))
 plot(ppi)

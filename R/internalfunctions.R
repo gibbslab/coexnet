@@ -10,6 +10,8 @@
 #' @importFrom graphics abline text
 #' @importFrom stats cor median na.omit sd
 #' @importFrom utils read.table untar
+#' @import vsn
+#' @import rmarkdown
 
 # internalfunctions
 # Juan David Henao Sanchez
