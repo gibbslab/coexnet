@@ -6,6 +6,10 @@ output:
   pdf_document: 
     number_sections: yes
     toc: yes
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{The title}
+  \usepackage[utf8]{inputenc}
 ---
 
 #Abstract
