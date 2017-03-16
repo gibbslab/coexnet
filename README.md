@@ -12,8 +12,6 @@ Extracts the gene expression matrix from GEO DataSets as a
     or Mutual Information (MI) and choosing a threshold value using a graph theory
     approach.
 
-**coexnet** run under R version 2.10 or higher.
-
 ## Install
 
 To install **coexnet** from GitHub you need *devtools* package:
@@ -32,6 +30,7 @@ library(coexnet)
 
 | Name | Description |
 | :-------- | :------------------ | 
+| CCP | Obtain the Common Connection patterns for two or more compared networks |
 | cof.var | Calculate the coefficient of variation to expression matrix. |
 | create.net | Create a co-expression network from expression matrix. |
 | dif.exprs | Differential expression analysis using two different methods. |
@@ -40,6 +39,8 @@ library(coexnet)
 | gene.symbol | Create a table relating probesets with genes. |
 | get.affy | Charge and create an AffyBatch object |
 | get.info | Download raw expression data from GEO DataSet |
+| ppi.net | Create a protein-protein interaction network |
+| shared.components | Obtain the shared components for two or more compared networks |
 
 ## Citation
 
