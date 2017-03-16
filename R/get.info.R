@@ -11,10 +11,11 @@
 #' @return A set of files with the uncompressed data and ready to use.
 #' @seealso \code{\link{get.affy}} to charge the expression data.
 #' @examples 
-#' 
-#' # Extract data from GEO DataSets
+#' \dontrun{
+#' # Extract data from GEO DataSets (Takes time)
 #' 
 #' get.info(GSE = "GSE8216", GPL = "GPL2025",dir = tempdir())
+#' }
 
 get.info <- function(GSE,GPL,dir="."){
   
