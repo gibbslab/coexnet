@@ -37,6 +37,6 @@ Suggests:
     BiocGenerics,
     knitr
 VignetteBuilder: knitr
-biocViews: NetworkBiology, CoExpressionNetwork,ProteinProteinInteractionNetwork,
-    GeneExpression, MergeNetwork, Microarray, DifferentialExpression
+biocViews: GeneExpression, Microarray, DifferentialExpression, GraphAndNetwork, 
+    NetworkInference, SystemsBiology
 RoxygenNote: 6.0.1
