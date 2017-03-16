@@ -44,7 +44,7 @@ gene.symbol <- function(GPL, d = "."){
   
   # Create a data.frame with the gene symbols for the probes associated
   
-  ta <- data.frame(sym$ID, gsub(" /// ","-",sym$`Gene Symbol`), stringsAsFactors = F)
+  ta <- data.frame(sym$ID, gsub(" /// ","-",sym$`Gene Symbol`), stringsAsFactors = FALSE)
   
   # Names of each column
   

@@ -66,11 +66,11 @@ cof.var <- function(data,complete=TRUE,treatment=NULL,type=NULL){
   
   # Obtaining the mean of the expression values
   
-  tdata$mean <- rowMeans(tdata, na.rm = T)
+  tdata$mean <- rowMeans(tdata, na.rm = TRUE)
   
   # Obtaining the coefficient of variation to each row
   
-  CV <- function(x){sd(x,na.rm = T)/mean(x,na.rm = T)}
+  CV <- function(x){sd(x,na.rm = TRUE)/mean(x,na.rm = TRUE)}
   
   # Apply the function to the expression matrix
   

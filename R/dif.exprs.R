@@ -72,7 +72,7 @@ dif.exprs <- function(eset,treatment,fdr,DifferentialMethod){
     
     # Summarizing the results of differential analysis
     
-    sum <- summary(samr,value$Delta,entrez=F)
+    sum <- summary(samr,value$Delta,entrez=FALSE)
     
     # Obtaining the names of genes differentially expressed
     
@@ -94,7 +94,7 @@ dif.exprs <- function(eset,treatment,fdr,DifferentialMethod){
     
     # Differential analysis using acde method
     
-    acde <- stp(eset,treatment,R = 100, PER = T,alpha = fdr)
+    acde <- stp(eset,treatment,R = 100, PER = TRUE,alpha = fdr)
     
     # Showing the result of differential analysis
     

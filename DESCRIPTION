@@ -16,7 +16,7 @@ Description: Extracts the gene expression matrix from GEO DataSets (.CEL files) 
 License: LGPL
 LazyData: TRUE
 Depends:
-    R(>= 2.10)
+    R(>= 3.3)
 Imports:
     affy,
     siggenes,
@@ -37,4 +37,6 @@ Suggests:
     BiocGenerics,
     knitr
 VignetteBuilder: knitr
+biocViews: NetworkBiology, CoExpressionNetwork,ProteinProteinInteractionNetwork,
+    GeneExpression, MergeNetwork, Microarray, DifferentialExpression
 RoxygenNote: 6.0.1

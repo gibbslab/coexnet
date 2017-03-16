@@ -73,8 +73,8 @@ find.threshold <- function(difexp, method){
     
     # Obtaining values to calculate an artificial clustering coefficient
     
-    K1 <- sum(degree(G,loops = F))
-    K2 <- sum(degree(G,loops = F)^2)
+    K1 <- sum(degree(G,loops = FALSE))
+    K2 <- sum(degree(G,loops = FALSE)^2)
     k1 <- (1/length(V(G)))*K1
     k2 <- (1/length(V(G)))*K2
     

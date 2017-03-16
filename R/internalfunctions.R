@@ -17,9 +17,9 @@
 
 .median.probe <- function(gene,array){
   
-  colnames(array) <- gsub(".CEL.gz","",colnames(array),ignore.case = T)
+  colnames(array) <- gsub(".CEL.gz","",colnames(array),ignore.case = TRUE)
   list <- unique(gene$ID)
-  newList <- list[grep(paste0("^","$"),list,invert = T)]
+  newList <- list[grep(paste0("^","$"),list,invert = TRUE)]
   g <- matrix(0,length(newList),dim(array)[2])
   
   for(n in 1:nrow(g)){
@@ -39,9 +39,9 @@
 
 .max.probe <- function(gene,array){
   
-  colnames(array) <- gsub(".CEL.gz","",colnames(array),ignore.case = T)
+  colnames(array) <- gsub(".CEL.gz","",colnames(array),ignore.case = TRUE)
   list <- unique(gene$ID)
-  newList <- list[grep(paste0("^","$"),list,invert = T)]
+  newList <- list[grep(paste0("^","$"),list,invert = TRUE)]
   g <- matrix(0,length(newList),dim(array)[2])
   
   for(n in 1:nrow(g)){
@@ -49,7 +49,7 @@
     a <- na.omit(a)
     
     if(!is.null(dim(a))){
-      g[n,] <- array[names(sort(rowMeans(a),decreasing = T))[1],]
+      g[n,] <- array[names(sort(rowMeans(a),decreasing = TRUE))[1],]
     }else{
       g[n,] <- a
     }

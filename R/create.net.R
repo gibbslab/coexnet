@@ -57,7 +57,7 @@ create.net <- function(difexp,method, threshold){
   
   # Obtaining the degree value for each node in the network
   
-  de <- degree(Gr,loops = F)
+  de <- degree(Gr,loops = FALSE)
   
   # Delete the nodes without any edge
   

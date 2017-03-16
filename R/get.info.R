@@ -28,7 +28,7 @@ get.info <- function(GSE,GPL,dir="."){
   
   # Obtaining the name of the compressed data
   
-  files <- dir(".")[grep("^GSE[0-9]",dir("."),ignore.case = T)]
+  files <- dir(".")[grep("^GSE[0-9]",dir("."),ignore.case = TRUE)]
   
   # Uncompress all the raw data
   

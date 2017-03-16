@@ -88,7 +88,7 @@ expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRU
     
     # Normalize using vsn
    
-    norm <- normalizeVSN(pvsn, verbose = F)
+    norm <- normalizeVSN(pvsn, verbose = FALSE)
     
     # Replace the raw expression matrix from the affyBaych object with the normalized expression matrix
     
