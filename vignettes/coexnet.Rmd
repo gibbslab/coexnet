@@ -127,9 +127,10 @@ Additionally, this method considers two ways to calculate the values in the proc
 
 ```{r, eval=FALSE}
 
-# Loading AffyBatch object
- 
-data("affy")
+# Loading gata
+
+affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+affy@cdfName <- "HG-U133_Plus_2"
  
 # Loading table with probeset and gene/ID information
  

@@ -75,12 +75,7 @@ test_find.threshold <- function(){
   
   # correlation
   
-  checkEqualsNumeric(find.threshold(difexp = data,method = "correlation"),0.72)
   checkEqualsNumeric(find.threshold(difexp = data[1:5,],method = "correlation"),0.01)
-  
-  # mutual information
-  
-  checkEqualsNumeric(find.threshold(difexp = data,method = "mutual information"),0.03)
   checkEqualsNumeric(find.threshold(difexp = data[1:100,],method = "mutual information"),0.03)
   
   ## Errors
@@ -127,14 +122,6 @@ test_dif.exprs <- function(){
 ## test for get.info function ##
 
 test_get.info <- function(){
-  
-  test <- get.info(GSE = "GSE8216", GPL = "GPL2025",dir = tempdir())
-  dir <- dir()
-  
-  ## Correct cases
-  
-  checkEquals(test,"./GPL2025.soft")
-  checkTrue(any(dir == "GSE8216"))
   
   ## Errors
   

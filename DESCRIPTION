@@ -1,7 +1,7 @@
 Package: coexnet
 Type: Package
-Title: CO-EXpression NETwork Builder from GEO DataSet Microarray Data
-Version: 0.1.0
+Title: coexnet: An R package to build CO-EXpression NETworks from Microarray Data
+Version: 0.99.0
 Author: Juan David Henao [aut,cre], Andres Pinzon-Velasco [aut]
 Maintainer: Juan David Henao <judhenaosa@unal.edu.co>
 Description: Extracts the gene expression matrix from GEO DataSets (.CEL files) as a

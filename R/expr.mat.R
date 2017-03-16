@@ -24,9 +24,10 @@
 #' @examples 
 #' \dontrun{
 #' 
-#' # Loading AffyBatch object
+#' # Loading gata
 #' 
-#' data("affy")
+#' affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+#' affy@cdfName <- "HG-U133_Plus_2"
 #' 
 #' # Loading table with probeset and gene/ID information
 #' 
