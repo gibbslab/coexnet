@@ -20,10 +20,11 @@ A set of files with the uncompressed data and ready to use.
 Using a GSE ID list, from the GEO DataSets FTP, it searches and downloads each raw expression data in a separate file with the GSE ID as the name. After, the function uncompresses the downloaded file to be ready to use. Additionally, searches and downloaded the information of the chip using the GPL ID to obtain the .soft file.
 }
 \examples{
-
-# Extract data from GEO DataSets
+\dontrun{
+# Extract data from GEO DataSets (Takes time)
 
 get.info(GSE = "GSE8216", GPL = "GPL2025",dir = tempdir())
+}
 }
 \seealso{
 \code{\link{get.affy}} to charge the expression data.
