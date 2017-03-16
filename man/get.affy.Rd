@@ -11,6 +11,9 @@ get.affy(GSE, dir = ".")
 
 \item{dir}{The path file where the samples and the "filelist" file are to create the AffyBatch object, by default is the current directory.}
 }
+\value{
+An AffyBatch Object.
+}
 \description{
 Charges the data from a file with the GSM samples compressed using the "filelist.txt" file to identify the GSM ID
 and create the AffyBatch object finally.
