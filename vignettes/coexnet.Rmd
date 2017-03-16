@@ -25,6 +25,10 @@ All microarray raw data associated to the same study are stored in a *CEL* file,
 
 This get.info function will create, in your current path, a folder with the *GSE* (unique number) name where the GSM downloaded files will be stored. It also will create the *GPL* (unique number) *.soft* file that contains the microarray chip information.
 
+```{r}
+library(coexnet)
+```
+
 ```{r, eval=FALSE}
 
 # Downloading the microarray raw data from GSE8216 study 
@@ -50,12 +54,13 @@ You can use the *AffyBatch object* in many different packages mainly in the affy
 
 This function searches in your current or designated path file the folder with the *GSE* accession number and reads the *filelist.txt* file that contains the name of each *GSM* sample, in order to recognize them and join them in an unified *AffyBatch object*.
 
-```{r, eval=FALSE}
+```{r,eval=FALSE}
 
 # Reading some GSM samples from GSE4773 study, the folder with the 
 # GSM files are called GSE1234.
 
 affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+affy
 
 ```
 
@@ -63,7 +68,7 @@ affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"
 
 In some cases the *AffyBatch object* doesn't have all the necessary information, and a warning message appears when you visualize the variable containing the *AffyBatch object*. Nevertheless, you can manually edit the AffyBatch afterwards to complete all the requiered information. If you try to process the AffyBatch in some of the packages that use this kind object with missing information, you will get an error message.
 
-```{r, eval=FALSE}
+```{r,eval=FALSE}
 
 # The variable affy doesn't have the CDF (Chip Definition File) information.
 # You can include this information modifying the AffyBatch object afterwards.
@@ -79,7 +84,7 @@ The *.soft* file, downloaded from *GEO Datasets* database using the *GPL* identi
 
 This function searches, in the current or the designated path file, the *.soft* file and  creates a data frame, where the first column contains each of the probeset names and the second one contains the corresponding ID (gene symbol, protein name or another identifier). This matching information is needed to summarize the gene expression data. This step is only needed if microarray chip data is used.
 
-```{r, eval=FALSE}
+```{r}
 
 # Create the table with the match between probesets and IDs.
 
@@ -93,7 +98,7 @@ head(gene_table)
 
 In some cases, the *.soft* file dosen't have all the IDs that are related to each one of the microarray probesets, you can ignore this probeset under the assumption that another probeset could have the same ID and this second one has the respective annotation. On the other hand, one ID can have more than two names, this function creates an ID with all the related names separated by "-". This happens when a sequence of nucleotides of a specific probeset matches the sequence of two or more genes. For example, in the microarray chip *GPL570*, there exists a probeset whose sequence match with the genes *CPZ* and *GPR78*, so the final ID will be *CPZ-GPR78*.
 
-```{r, eval=FALSE}
+```{r}
 
 # The created table have NA and empty IDs information.
 # We can delete this unuseful information.
@@ -149,7 +154,7 @@ The variation amongst the normalized expression values can be determined by the 
 
 This function takes the normalized ID-sample matrix and calculates the median and the *coefficient of variation* for each one of the IDs, this process must be applied in a study-by-study basis. Additionally, this function allows to calculate the mean and the *coefficient of variation* to cases and control samples separately, using a vector of 0s and 1s to identify the cases and control samples. This vector can be defined in the description of each sample in the GEO Datasets database and it is necessary in the process of identification of the genes (or another ID as proteins) that are differentially expressed (see bellow).
 
-```{r, eval=FALSE}
+```{r}
 
 # Simulated expression data
 
@@ -184,7 +189,7 @@ length(boxplot.stats(case$cv)$out)
 
 The decision of discarding a microarray study from our analysis, based on the result of the coefficient of variation analysis, depends on the data and the criteria of the researcher to filter the studies (the selection of a threshold value), there is no a Gold Standard to discard a study, so it is advisable to calculate the *coefficient of variation* of all samples at the same time to compare and to determine which one shows more variation.
 
-```{r, eval=FALSE}
+```{r}
 
 # Calculating the coefficient of variation to whole matrix
 
@@ -275,7 +280,7 @@ This way every genes/IDs are connected in the final co-expression network.
 
 This function takes the expression matrix and creates the correlation matrix using *Pearson Correlation Coefficient* or *Mutual Informtion*. After that, it creates the adjacency matrix using the threshold value given by the user and finally creates the network from the adjacency matrix as an igraph object to be analyzed using the igraph R package or any other tool that recognizes this type of object.
 
-```{r, eval=FALSE}
+```{r}
 
 # Loading data
 
@@ -285,7 +290,7 @@ data <- read.table(pathfile,stringsAsFactors = FALSE)
 # Building the network
  
 cor_pearson <- create.net(difexp = data,threshold = 0.7,method = "correlation")
-head(cor_pearson)
+plot(cor_pearson)
 ```
 
 **Take into account**
@@ -328,7 +333,7 @@ In general, the comparison of biological networks is made to determine common el
 
 This function obtains the Common Connection Patterns making two steps. In the first one, it generates the intersection of the networks given in the input as graph objects. In the second one, it identifies the solitary nodes in the intersection network and then they are removed to leave the connected components only. Finally, the function returns all the Common Connection Patterns in one graph object.
 
-```{r, eval=FALSE}
+```{r}
 
 # Loading data
  
@@ -338,7 +343,7 @@ data("net2")
 # Obtaining Common Connection Patterns
 
 ccp <- CCP(net1,net2)
-ccp
+plot(ccp)
 ```
 
 **Take into account**
@@ -353,7 +358,7 @@ Thus, obtaining these solitary nodes can enrich the comparisons made between gen
 
 This function obtains the shared components between two or more biological networks in two steps. During the first one, it gets the intersection from the networks in the input as igraph objects. During the second one, it extracts the solitary nodes present in the resulting intersected network . Finally, the result is a vector with the names of each solitary node. On the other hand, the nodes connected in the intersection network won't be taken into account because they are considered as being part of some Common Connection Pattern (see above).
 
-```{r, eval=FALSE}
+```{r}
 
 # Loading data
 
