@@ -149,7 +149,6 @@ test_geneSymbol <- function(){
   checkException(geneSymbol(),silent = TRUE)
   checkException(geneSymbol(d = system.file("extdata",package = "coexnet")),silent = TRUE)
   checkException(geneSymbol(GPL = "GPL2025.soft",d = system.file("extdata",package = "coexnet")),silent = TRUE)
-  checkException(geneSymbol(GPL = "GPL2025"),silent = TRUE)
 }
 
 ## test for getAffy function
