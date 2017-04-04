@@ -1,8 +1,7 @@
-#' @export cof.var
-#' @author Juan David Henao <judhenaosa@unal.edu.co>
-
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
+#' @export cofVar
+#' @author Juan David Henao <judhenaosa@unal.edu.co>
 #' @title Calculating the coefficient of variation for expression matrix.
 #' @description This function calculates the mean and the coefficient of variation to each row 
 #' (genes or probesets) in an expression matrix in two ways: i) in the whole matrix ii) for the specific phenotype (case or control).
@@ -33,16 +32,16 @@
 #' 
 #' # For the whole expression matrix
 #' 
-#' complete <- cof.var(norm)
+#' complete <- cofVar(norm)
 #' head(complete)
 #' 
 #' # For the case samples
 #' 
-#' case <- cof.var(data = norm,complete = FALSE,treatment = t,type = "case")
+#' case <- cofVar(data = norm,complete = FALSE,treatment = t,type = "case")
 #' head(case)
 
 
-cof.var <- function(data,complete=TRUE,treatment=NULL,type=NULL){
+cofVar <- function(data,complete=TRUE,treatment=NULL,type=NULL){
   
   # Replacing the sample name for case/control ID
   

@@ -1,8 +1,7 @@
-#' @export shared.components
-#' @author Juan David Henao <judhenaosa@unal.edu.co>
-
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
+#' @export sharedComponents
+#' @author Juan David Henao <judhenaosa@unal.edu.co>
 #' @title Finding shared components between diferent networks.
 #' @description From the intersection network, obtains the nodes without any degree value. These are the shared molecular components without any biological relation among them.
 #' @param ... The networks (igraph objects) to obtain the shared components.
@@ -15,11 +14,11 @@
 #' 
 #' # Obtaining shared components
 #' 
-#' share <- shared.components(net1,net2)
+#' share <- sharedComponents(net1,net2)
 #' share
 
 
-shared.components <- function(...){
+sharedComponents <- function(...){
   # Obtaining the intersection set of the networks
   intersect <- graph.intersection(...,keep.all.vertices = FALSE)
   # Select the nodes in the intersected network with degree equal zero

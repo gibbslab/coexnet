@@ -1,14 +1,13 @@
-#' @export get.affy
-#' @author Juan david Henao <judhenaosa@unal.edu.co>
-#' 
-#' # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
-#' 
+# Bioinformatics and Systems Biology | Universidad Nacional de Colombia
+
+#' @export getAffy
+#' @author Juan david Henao <judhenaosa@unal.edu.co> 
 #' @title Charge and create an AffyBatch object 
 #' @description Charges the data from a file with the GSM samples compressed using the "filelist.txt" file to identify the GSM ID
 #' and create the AffyBatch object finally.
 #' @param GSE The name of the file with the compressed samples data.
 #' @param dir The path file where the samples and the "filelist" file are to create the AffyBatch object, by default is the current directory.
-#' @seealso \code{\link{get.info}} to download expression data from GEO DataSets included the "filelist" file.
+#' @seealso \code{\link{getInfo}} to download expression data from GEO DataSets included the "filelist" file.
 #' @return An AffyBatch Object.
 #' @examples 
 #' 
@@ -17,9 +16,9 @@
 #' 
 #' # Data without CDF environment information
 #' 
-#' affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+#' affy <- getAffy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
 
-get.affy <- function(GSE,dir="."){
+getAffy <- function(GSE,dir="."){
   
   # Change the directory 
   

@@ -1,16 +1,15 @@
-#' @export create.net
-#' @author Juan David Henao Sanchez <judhenaosa@unal.edu.co>
-#' @author Liliana Lopez Kleine <llopezk@unal.edu.co>
-
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
+#' @export createNet
+#' @author Juan David Henao Sanchez <judhenaosa@unal.edu.co>
+#' @author Liliana Lopez Kleine <llopezk@unal.edu.co>
 #' @title Creating a co-expression network from expression matrix.
 #' @description From an expression matrix, this function creates a co-expression network like a graph object using a threshold value and one similarity function.
 #' @param difexp A whole expression matrix or differentially expressed genes matrix.
 #' @param method A function to calculate the similarity matrix between genes. It can be "correlation" to use Pearson function or "mutual information" to use a based on entropy information function.
 #' @param threshold A value between 0 and 1 to filter the similarity matrix and create the co-expression network.
 #' @return An undirected co-expression network as igraph object.
-#' @seealso \code{\link{find.threshold}} to obtain a threshold value based on biology network assumptions.
+#' @seealso \code{\link{findThreshold}} to obtain a threshold value based on biology network assumptions.
 #' @examples 
 #' 
 #' # Loading data
@@ -20,13 +19,13 @@
 #' 
 #' # Building the network
 #' 
-#' cor_pearson <- create.net(difexp = data,threshold = 0.7,method = "correlation")
+#' cor_pearson <- createNet(difexp = data,threshold = 0.7,method = "correlation")
 #' cor_pearson
 #' 
-#' mut_inf <- create.net(difexp = data,threshold = 0.5,method = "mutual information")
+#' mut_inf <- createNet(difexp = data,threshold = 0.5,method = "mutual information")
 #' mut_inf
 
-create.net <- function(difexp,method, threshold){
+createNet <- function(difexp,method, threshold){
   
   # Obtaining the similarity values
   

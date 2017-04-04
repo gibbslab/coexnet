@@ -19,11 +19,11 @@ The network analysis of biological data has increased in recent years, due to th
 
 #Workflow
 
-##get.info
+##getInfo
 
 All microarray raw data associated to the same study are stored in a *CEL* file, this type of file contains the *GSM* files, each one corresponding to one sample of a gene expression study. The user can also obtain each *GSM* file individually, but it is preferable to obtain all the samples at once as they come in the *CEL* file, in order to avoid the work of joining each *GSM*. Additionally having all *GSM* files at once will allow to perform a simultaneous data analysis (in a future normalization process, for example). Furthermore, all the microarray chips are documented in the *GEO Datasets* database. Each of them is identified with the letters *GPL* adding a unique number. The information in the *GPL* file is then linked to the information of each probeset in the microarray chip, including the gene, function, type and other information. This information is very useful to enrich the analysis of expression data.
 
-This get.info function will create, in your current path, a folder with the *GSE* (unique number) name where the GSM downloaded files will be stored. It also will create the *GPL* (unique number) *.soft* file that contains the microarray chip information.
+This function will create, in your current path, a folder with the *GSE* (unique number) name where the GSM downloaded files will be stored. It also will create the *GPL* (unique number) *.soft* file that contains the microarray chip information.
 
 ```{r}
 library(coexnet)
@@ -34,7 +34,7 @@ library(coexnet)
 # Downloading the microarray raw data from GSE8216 study 
 # The accession number of the microarray chip related with this study is GPL2025
 
-get.info(GSE = "GSE8216", GPL = "GPL2025",dir = ".")
+getInfo(GSE = "GSE8216", GPL = "GPL2025",dir = ".")
 
 # Shows the actual path file with the folder, its GSE number and the .soft file
 
@@ -46,7 +46,7 @@ dir()
 
 In some cases the information in the *GPL* file is partial, so take this into account if you are willing to run future analysis over the same data, so it is recomended not to store the files in a temporal folder, given that in many cases you will need the raw data to re-process the expression values using, for example, different methods.
 
-##get.affy
+##getAffy
 
 The *AffyBatch object* is used to process and analyse microarray expression data. The *AffyBatch object* stores information about the date in which each one of the samples were scanned, as well as the information related with the phenotype, the raw expression values to each probe in the microarray chip and the kind of library to read the expression data among others.
 
@@ -59,7 +59,7 @@ This function searches in your current or designated path file the folder with t
 # Reading some GSM samples from GSE4773 study, the folder with the 
 # GSM files are called GSE1234.
 
-affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+affy <- getAffy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
 affy
 
 ```
@@ -76,7 +76,7 @@ In some cases the *AffyBatch object* doesn't have all the necessary information,
 affy@cdfName <- "HG-U133_Plus_2"
 
 ```
-##gene.symbol
+##geneSymbol
 
 In most cases, the idea behind creating a co-expression network is to visualize the relationships among diferent genes, proteins, specific DNA or RNA fragments or any other kind of molecular entities, that are identified by a specific ID. For this reason, it is very useful to keep the information of the corresponding ID corresponding to each one of the probesets in the microarray. This kind of information will be used when you need to switch from a matrix of probeset-samples to one of genes (or another ID)-samples before the construction of the co-expression network.
 
@@ -88,7 +88,7 @@ This function searches, in the current or the designated path file, the *.soft* 
 
 # Create the table with the match between probesets and IDs.
 
-gene_table <- gene.symbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
+gene_table <- geneSymbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
 
 head(gene_table)
 
@@ -115,7 +115,7 @@ head(final_table)
 
 ```
 
-##exprs.mat
+##exprMat
 
 The raw expression data in a microarray experiment must be processed, in order to transform the original data into an ideal way as to be analyzed and thus obtain high confidence results. The first step is the normalization of the data, that consists in a background correction of the raw data followed by a normalization. The second one is the mapping of probeset to gene or any other ID to represent the molecular entity to analyze. Additionally, there exists the posibility to make a second kind of background correction based on the batch of samples scaned in a separate way due to the large number of samples and the limitation in the size of the particular microarray chip used, this correction is known as *Batch Effect Correction*.
 
@@ -129,7 +129,7 @@ Additionally, this method considers two ways to calculate the values in the proc
 
 # Loading gata
 
-affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+affy <- getAffy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
 affy@cdfName <- "HG-U133_Plus_2"
  
 # Loading table with probeset and gene/ID information
@@ -138,7 +138,7 @@ data("info")
  
 # Calculating the expression matrix with rma
  
-rma <- expr.mat(affy = affy,genes = info,NormalizeMethod = "rma",
+rma <- exprMat(affy = affy,genes = info,NormalizeMethod = "rma",
 SummaryMethod = "median",BatchCorrect = FALSE)
 head(rma)
 ```
@@ -147,7 +147,7 @@ head(rma)
 
 Consider that *rma* is a method in which the amplitude of the results are narrower than in *vsn*, take into account this situation, in order to select the method to normalize the raw expresion values. In some cases the *vsn* method takes into account every probe in the normalize process, so it could take time to process. In some cases if you made a *Batch Effect Correction*, you will want to compare the results normalizing the raw expression data without the *Batch Effect Correction*.
 
-##cof.var
+##cofVar
 
 In some cases, the co-expression network is built from two or more microarrays studies, in this sense, it is necessary to define wich one of these studies accounts for more source of background noise and will probably have a negative impact on the results. One way to determine the most harmful studies is from a variation analysis. By this approach the study holding more variation among the normalized expression values can be considered as the source of future background noise and then it is necessary not to consider the use of this studies in the construction of the co-expression network.
 
@@ -173,7 +173,7 @@ norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
 
 # Calculating the coefficient of variation to case samples
 
-case <- cof.var(data = norm,complete = FALSE,treatment = t,type = "case")
+case <- cofVar(data = norm,complete = FALSE,treatment = t,type = "case")
 head(case)
 
 # Creating the boxplot to coefficient of variation results
@@ -194,7 +194,7 @@ The decision of discarding a microarray study from our analysis, based on the re
 
 # Calculating the coefficient of variation to whole matrix
 
-complete <- cof.var(norm)
+complete <- cofVar(norm)
 head(complete)
 
 # Creating the boxplot to coefficient of variation results
@@ -207,7 +207,7 @@ length(boxplot.stats(complete$cv)$out)
 
 ```
 
-##dif.exprs
+##difExprs
 
 When expression data of gene, proteins, or another kind of ID are used to build a co-expression network, in most cases it is convenient to asses differences in the expression value of each of them. A differential expression analysis will allow us to identify the genes/IDs that are over-expressed or under-expressed with respect the whole data set and thus to establish the possible molecular components that are associated directly or indirectly with the onset and/or development of a certain phenotype and use them to create the co-expression network.
 
@@ -233,7 +233,7 @@ norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
  
 # Running the function using the two approaches
  
-sam <- dif.exprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
+sam <- difExprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
 head(sam)
 ```
 
@@ -241,7 +241,7 @@ head(sam)
 
 This function identifies the genes/IDs differentially expressed taking into account the expected *FDR*, so independently of the method used (*sam* or *acde*), the number of genes/IDs identified as differentially expressed will be guided by the *FDR* expected by the user, thus increasing the predictive power in the final results.
 
-##find.threshold
+##findThreshold
 
 Once you have the final expression matrix, it is used as basis to obtain the co-expression network. There are two methods widely used to obtain it, both of them are related to the definition of correlation value between all the genes/IDs creating a square matrix. On one hand you can calculate the *Pearson Correlation Coefficient*, this method calculates the correlation between each genes/IDs expression values, as result, the square matrix will have values between zero and one, given that for the future construction of the co-expression network it is necessary to use the absolute value of the results. On the other hand, the *Mutual Information* approach is based on the entropy of the data and in a simmilar manner a square matrix is created, but, in this case, it is necessary to perform an additional transformation of the results in order to obtain a square matrix with values between zero and one.
 
@@ -258,7 +258,7 @@ data <- read.table(pathfile,stringsAsFactors = FALSE)
 
 # Finding threshold value
 
-cor_pearson <- find.threshold(difexp = data,method = "correlation")
+cor_pearson <- findThreshold(difexp = data,method = "correlation")
 cor_pearson
 
 ```
@@ -267,7 +267,7 @@ cor_pearson
 
 *Mutual Information* is used, in most cases, when you need to analyze a huge amount of expression data, for example, when the study was designed to use a lot of samples and you must process all information simultaneously. In most cases, the threshold value is selected by the researcher without any biological assumption. Here, we present this novel methodology to select a threshold value under a network biology assumption.
 
-##create.net
+##createNet
 
 The last step in the construction of a co-expression network is the creation of a data structure that stores the information necessary to create a network graph. Once you had defined a threshold value, the last step is to transform the expression matrix in a adjacency matrix using the correlation or the mutual information method to obtain the values of relationship between the diferent genes or proteins (or another kind of ID).
 
@@ -290,7 +290,7 @@ data <- read.table(pathfile,stringsAsFactors = FALSE)
  
 # Building the network
  
-cor_pearson <- create.net(difexp = data,threshold = 0.7,method = "correlation")
+cor_pearson <- createNet(difexp = data,threshold = 0.7,method = "correlation")
 plot(cor_pearson)
 ```
 
@@ -298,7 +298,7 @@ plot(cor_pearson)
 
 In the process of construction of the adjacency matrix, sometimes a gene/ID can not be related to another one and in the process passing from a matrix to an edge list, this gene/ID will be deleted. Additionally, the network in the igraph object can be exported as an edge list using the igraph package to be visualized in another tool such as *Cytoscape* or *Gephi*.
 
-##ppi.net
+##ppiNet
 
 In many cases, it is necessary to consider additional information to have a more robust analysis. Protein-protein interaction (PPI) is the most used additional information to support the relationships detected by the co-expression network. One way to relate the protein-protein interaction information with the co-expression data is by building a PPI prediction network. To create this kind of networks, it is useful to start with the list of genes obtained from the differential expression analysis results (see above). From this list of genes, the network will be created based on different pieces of evidence like experimental data and the distances of the genes inside in the genome, among others.
 
@@ -313,12 +313,12 @@ ID <- c("FN1","HAMP","ILK","MIF","NME1","PROCR","RAC1","RBBP7",
  
 # Creating the PPI network
  
-ppi <- ppi.net(input = ID,evidence = c("neighborhood","coexpression","experiments"))
+ppi <- ppiNet(input = ID,evidence = c("neighborhood","coexpression","experiments"))
 plot(ppi)
 
 # Creating a PPI network from external data
 
-ppi <- ppi.net(input = system.file("extdata","ppi.txt",package = "coexnet"))
+ppi <- ppiNet(input = system.file("extdata","ppi.txt",package = "coexnet"))
 plot(ppi)
 ```
 
@@ -351,7 +351,7 @@ plot(ccp)
 
 Although the idea is to compare biological networks from the same nature and created to study related phenotypes, the function can have results, when it compares any kind network. Additionally, is possible not find Common Connection Patterns when two or more networks are compared, but, is possible to find shared solitary nodes between them.
 
-##shared.components
+##sharedComponents
 
 Solitary nodes obtained when two or more biological networks are compared also have relevant information associated because these nodes are molecular components implicated in more than two phenotypes. This is especially true if the filter used to include genes was that of the differential expression. The reason behind obtaining solitary nodes may be that there is not enough information to relate them with another component in the network or that the node has a relationship in another layer of the network (protein-protein interaction layer, genetic regulation layer, SNP layer, etc).
 
@@ -368,7 +368,7 @@ data("net2")
 
 # Obtain shared components
  
-share <- shared.components(net1,net2)
+share <- sharedComponents(net1,net2)
 share
 ```
 

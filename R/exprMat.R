@@ -1,8 +1,7 @@
-#' @export expr.mat
-#' @author Juan David Henao <judhenaosa@unal.edu.co>
-
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
+#' @export exprMat
+#' @author Juan David Henao <judhenaosa@unal.edu.co>
 #' @title Calculate the expression matrix from the raw expression data.
 #' @description This function use a affyBatch object with the raw expression data to normalize and transform the matrix from
 #' probeset to gene considering the option to remove the batch effect in the long microarray data.
@@ -16,8 +15,8 @@
 #' gen or ID.
 #' @param BatchCorrect  The option to apply batch effect correction, by default TRUE.
 #' @return A expression matrix, in the rows each one of the gene/ID and in the columns each one of the samples.
-#' @seealso \code{\link{get.affy}} to obtain the affyBatch object.
-#' @seealso \code{\link{gene.symbol}} to obtain the data.frame with probeset and genes/ID from .SOFT file.
+#' @seealso \code{\link{getAffy}} to obtain the affyBatch object.
+#' @seealso \code{\link{geneSymbol}} to obtain the data.frame with probeset and genes/ID from .SOFT file.
 #' @references Huber, W., Von Heydebreck, A., Sultmann, H., Poustka, A., & Vingron, M. (2002). Variance stabilization applied to microarray data calibration and to the quantification of differential expression. Bioinformatics, 18(suppl 1), S96-S104.
 #' @references Irizarry, R. A., Hobbs, B., Collin, F., Beazer Barclay, Y. D., Antonellis, K. J., Scherf, U., & Speed, T. P. (2003). 
 #' Exploration, normalization, and summaries of high density oligonucleotide array probe level data. Biostatistics, 4(2), 249-264.
@@ -26,7 +25,7 @@
 #' 
 #' # Loading gata
 #' 
-#' affy <- get.affy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+#' affy <- getAffy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
 #' affy@cdfName <- "HG-U133_Plus_2"
 #' 
 #' # Loading table with probeset and gene/ID information
@@ -37,19 +36,19 @@
 #' 
 #' ## RMA
 #' 
-#' rma <- expr.mat(affy = affy,genes = info,NormalizeMethod = "rma",
+#' rma <- exprMat(affy = affy,genes = info,NormalizeMethod = "rma",
 #' SummaryMethod = "median",BatchCorrect = FALSE)
 #' head(rma)
 #' 
 #' ## VSN
 #' 
-#' vsn <- expr.mat(affy = affy,genes = info,NormalizeMethod = "vsn",
+#' vsn <- exprMat(affy = affy,genes = info,NormalizeMethod = "vsn",
 #' SummaryMethod = "median",BatchCorrect = FALSE)
 #' head(vsn)
 #' 
 #' }
 
-expr.mat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE){
+exprMat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE){
   
   # Extract the date of microarray scan
   

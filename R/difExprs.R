@@ -1,8 +1,7 @@
-#' @export dif.exprs
-#' @author Juan David Henao <judhenaosa@unal.edu.co>
-
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
+#' @export difExprs
+#' @author Juan David Henao <judhenaosa@unal.edu.co>
 #' @title Differential expression analysis using two different methods.
 #' @description Using the expression matrix calculate the differential expressed
 #' genes to two class analysis and fixing an expected FDR value. The methods
@@ -15,7 +14,7 @@
 #' genes, can be "sam" or "acde"
 #' @return A data.frame with the expression matrix to the expressed diferential 
 #' genes only.
-#' @seealso \code{\link{expr.mat}} to obtain the expression matrix.
+#' @seealso \code{\link{exprMat}} to obtain the expression matrix.
 #' @references Tusher, V. G., Tibshirani, R., & Chu, G. (2001). Significance analysis of 
 #' microarrays applied to the ionizing radiation response. Proceedings of the National Academy of Sciences, 98(9), 5116-5121.
 #' @references Acosta J and Lopez-Kleine L (2015). acde: Artificial Components Detection of Differentially Expressed Genes. R package version 1.4.0.
@@ -39,10 +38,10 @@
 #' 
 #' ## Running the function using the two approaches
 #' 
-#' sam <- dif.exprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
-#' acde <- dif.exprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "acde")
+#' sam <- difExprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
+#' acde <- difExprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "acde")
 
-dif.exprs <- function(eset,treatment,fdr,DifferentialMethod){
+difExprs <- function(eset,treatment,fdr,DifferentialMethod){
   
   if(DifferentialMethod == "sam"){
     

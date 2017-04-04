@@ -1,8 +1,7 @@
-#' @export ppi.net
-#' @author Juan David Henao <judhenaosa@unal.edu.co>
-
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
+#' @export ppiNet
+#' @author Juan David Henao <judhenaosa@unal.edu.co>
 #' @title Create a protein-protein interaction network
 #' @description Creates a protein-protein interaction network using an edge list with the relations between proteins or a vector with the gene symbols or any other molecular identifier type, widely used in biological databases, to create a predictive PPI network using information of evidence in STRING database.
 #' @param input This parameter may be two types. A vector with the molecular identifiers, they could be two IDs united for the "-" character or a path file with the relations between proteins as edge list to create the network.
@@ -18,16 +17,16 @@
 #' 
 #' # Creating the PPI network
 #' 
-#' ppi <- ppi.net(input = ID,evidence = c("neighborhood","coexpression","experiments"))
+#' ppi <- ppiNet(input = ID,evidence = c("neighborhood","coexpression","experiments"))
 #' plot(ppi)
 #' }
 #' 
 #' # Creating a PPI network from external data
 #' 
-#' ppi <- ppi.net(input = system.file("extdata","ppi.txt",package = "coexnet"))
+#' ppi <- ppiNet(input = system.file("extdata","ppi.txt",package = "coexnet"))
 #' plot(ppi)
 
-ppi.net <- function(input,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
+ppiNet <- function(input,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
             "fusion","cooccurence","homology","coexpression","coexpression_transferred",
             "experiments","experiments_transferred","database","database_transferred","textmining",
             "textmining_transferred","combined_score")){

@@ -1,8 +1,7 @@
-#' @export gene.symbol
-#' @author Juan David Henao <judhenaosa@unal.edu.co>
-
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
+#' @export geneSymbol
+#' @author Juan David Henao <judhenaosa@unal.edu.co>
 #' @title Create a table relating probesets with genes
 #' @description From the information in the .soft file, creates a data.frame with two columns. In the first one, the probeset names. In the second one, the name of the corresponding genes.
 #' @param GPL The GPL ID.
@@ -12,7 +11,7 @@
 #' 
 #' # Creating the table with probesets and genes/IDs
 #' 
-#' gene_table <- gene.symbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
+#' gene_table <- geneSymbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
 #' 
 #' # Cleaning the NA information
 #' 
@@ -25,7 +24,7 @@
 #' head(final_table)
 
 
-gene.symbol <- function(GPL, d = "."){
+geneSymbol <- function(GPL, d = "."){
   
   options(warn=-1)
   

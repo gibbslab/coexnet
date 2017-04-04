@@ -1,15 +1,14 @@
-#' @export find.threshold
-#' @author Juan David Henao Sanchez <judhenaosa@unal.edu.co>
-#' @author Liliana Lopez Kleine <llopezk@unal.edu.co>
-
 # Bioinformatics and Systems Biology | Universidad Nacional de Colombia
 
+#' @export findThreshold
+#' @author Juan David Henao Sanchez <judhenaosa@unal.edu.co>
+#' @author Liliana Lopez Kleine <llopezk@unal.edu.co>
 #' @title Find the threshold value to create a co-expression network
 #' @description Finds the threshold value to establish the cutoff in the process to define the edges in the co-expression network final from two steps. In the first one, obtains the subtraction from clustering coefficient values of the real and random networks created from the possible threshold values in the correlation matrix. In the second one, a Kolmogorov-Smirnov test is made to evaluate the degree distribution respect normality.
 #' @param difexp A whole expression matrix or the expression matrix to differentially expressed genes.
 #' @param method The method name to create the correlation matrix, this can be "correlation" to obtain the Pearson Correlation Coefficient. On the other hand, can be "mutual information" to obtain the correlation values from an entropy-based method.
 #' @return The best threshold value found using the two criteria and a plot showing the result.
-#' @seealso \code{\link{dif.exprs}} to find the differentially expressed genes matrix.
+#' @seealso \code{\link{difExprs}} to find the differentially expressed genes matrix.
 #' @references Elo, L. L., Jarvenpaa, H., Oresic, M., Lahesmaa, R., & Aittokallio, T. (2007). Systematic construction of gene coexpression networks with applications to human T helper cell differentiation process. Bioinformatics, 23(16), 2096-2103.
 #' @examples 
 #' 
@@ -20,10 +19,10 @@
 #' 
 #' # Finding threshold value
 #' 
-#' cor_pearson <- find.threshold(difexp = data,method = "correlation")
+#' cor_pearson <- findThreshold(difexp = data,method = "correlation")
 #' cor_pearson
  
-find.threshold <- function(difexp, method){
+findThreshold <- function(difexp, method){
   
   # Obtaining the similarity values
   
