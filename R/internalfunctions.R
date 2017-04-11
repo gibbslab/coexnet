@@ -36,7 +36,7 @@
   rownames(g) <- newList
   colnames(g) <- colnames(array)
   
-  return(g)
+  return(makeSummarizedExperimentFromExpressionSet(ExpressionSet(g)))
 }
 
 .max.probe <- function(gene,array){
@@ -60,7 +60,7 @@
   rownames(g) <- newList
   colnames(g) <- colnames(array)
   
-  return(g)
+  return(makeSummarizedExperimentFromExpressionSet(ExpressionSet(g)))
 }
 
 .correlation.matrix <- function(difexp,method){
