@@ -16,7 +16,7 @@ Description: Extracts the gene expression matrix from GEO DataSets (.CEL files) 
 License: LGPL
 LazyData: TRUE
 Depends:
-    R(>= 3.4)
+    R(>= 3.3)
 Imports:
     affy,
     siggenes,

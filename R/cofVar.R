@@ -43,6 +43,12 @@
 
 cofVar <- function(data,complete=TRUE,treatment=NULL,type=NULL){
   
+  # Identifing the SummarizedExperiment object
+  
+  if(!is.matrix(data) && !is.data.frame(data)){
+    data <- assay(data)
+  }
+  
   # Replacing the sample name for case/control ID
   
   if (complete == FALSE) {

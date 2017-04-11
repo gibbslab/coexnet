@@ -43,6 +43,12 @@
 
 difExprs <- function(eset,treatment,fdr,DifferentialMethod){
   
+  # Identifing the SummarizedExperiment object
+  
+  if(!is.matrix(eset) && !is.data.frame(eset)){
+    eset <- assay(eset)
+  }
+  
   if(DifferentialMethod == "sam"){
     
     # Differential analysis using sam method
