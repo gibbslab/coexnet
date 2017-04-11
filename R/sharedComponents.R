@@ -26,7 +26,7 @@ sharedComponents <- function(...){
   # To empty vector
   if(length(members) == 0){
     # Showing a message
-    return(cat("Do not find shared components between the networks"))
+    return(stop("Do not find shared components between the networks"))
   }else{
     # Return the names of the solitary nodes in the intersection network
     return(names(members))

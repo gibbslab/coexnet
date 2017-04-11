@@ -32,7 +32,7 @@ CCP <- function(...){
   # To empty result
   if(diameter(CCP) == 0){
     # Showing a messege
-    return(cat("Do not exit CCP between networks"))
+    return(stop("Do not exit CCP between networks"))
   }else{
     # Return only the nodes in the intersection network with at least one edge
     return(CCP)
