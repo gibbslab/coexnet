@@ -22,7 +22,7 @@ gen or ID.}
 \item{BatchCorrect}{The option to apply batch effect correction, by default TRUE.}
 }
 \value{
-A expression matrix, in the rows each one of the gene/ID and in the columns each one of the samples.
+A SummarizedExperiment object with the expression matrix.
 }
 \description{
 This function use a affyBatch object with the raw expression data to normalize and transform the matrix from

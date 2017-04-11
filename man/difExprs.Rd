@@ -7,7 +7,7 @@
 difExprs(eset, treatment, fdr, DifferentialMethod)
 }
 \arguments{
-\item{eset}{A matrix with the expression matrix.}
+\item{eset}{A matrix with the expression matrix, it may be stored in a SummarizedExperiment object.}
 
 \item{treatment}{A vector with the ientifiers of the classes, 0 to control
 and 1 to case.}

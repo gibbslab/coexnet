@@ -7,7 +7,7 @@
 cofVar(data, complete = TRUE, treatment = NULL, type = NULL)
 }
 \arguments{
-\item{data}{The whole normalized expression matrix, rows: genes or probeset, columns: samples.}
+\item{data}{The whole normalized expression matrix, rows: genes or probeset, columns: samples, it may be stored in a SummarizedExperiment object.}
 
 \item{complete}{Boolean to define if the function uses the whole expression matrix, by default TRUE.}
 

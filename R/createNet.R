@@ -5,7 +5,7 @@
 #' @author Liliana Lopez Kleine <llopezk@unal.edu.co>
 #' @title Creating a co-expression network from expression matrix.
 #' @description From an expression matrix, this function creates a co-expression network like a graph object using a threshold value and one similarity function.
-#' @param difexp A whole expression matrix or differentially expressed genes matrix.
+#' @param difexp A whole expression matrix or differentially expressed genes matrix, it may be stored in a SummarizedExperiment object.
 #' @param method A function to calculate the similarity matrix between genes. It can be "correlation" to use Pearson function or "mutual information" to use a based on entropy information function.
 #' @param threshold A value between 0 and 1 to filter the similarity matrix and create the co-expression network.
 #' @return An undirected co-expression network as igraph object.
@@ -26,6 +26,12 @@
 #' mut_inf
 
 createNet <- function(difexp,method, threshold){
+  
+  # Identifing the SummarizedExperiment object
+  
+  if(!is.matrix(difexp) && !is.data.frame(difexp)){
+    difexp <- assay(difexp)
+  }
   
   # Obtaining the similarity values
   

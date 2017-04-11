@@ -14,7 +14,7 @@
 #' average expression value or "median" to obtain the median of each sample of the set of probeset corresponding to particular
 #' gen or ID.
 #' @param BatchCorrect  The option to apply batch effect correction, by default TRUE.
-#' @return A expression matrix, in the rows each one of the gene/ID and in the columns each one of the samples.
+#' @return A SummarizedExperiment object with the expression matrix.
 #' @seealso \code{\link{getAffy}} to obtain the affyBatch object.
 #' @seealso \code{\link{geneSymbol}} to obtain the data.frame with probeset and genes/ID from .SOFT file.
 #' @references Huber, W., Von Heydebreck, A., Sultmann, H., Poustka, A., & Vingron, M. (2002). Variance stabilization applied to microarray data calibration and to the quantification of differential expression. Bioinformatics, 18(suppl 1), S96-S104.

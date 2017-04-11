@@ -6,7 +6,7 @@
 #' @description Using the expression matrix calculate the differential expressed
 #' genes to two class analysis and fixing an expected FDR value. The methods
 #' are SAM and ACDE.
-#' @param eset A matrix with the expression matrix.
+#' @param eset A matrix with the expression matrix, it may be stored in a SummarizedExperiment object.
 #' @param treatment A vector with the ientifiers of the classes, 0 to control
 #' and 1 to case.
 #' @param fdr The expected FDR value.

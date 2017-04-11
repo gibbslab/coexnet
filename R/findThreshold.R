@@ -5,7 +5,7 @@
 #' @author Liliana Lopez Kleine <llopezk@unal.edu.co>
 #' @title Find the threshold value to create a co-expression network
 #' @description Finds the threshold value to establish the cutoff in the process to define the edges in the co-expression network final from two steps. In the first one, obtains the subtraction from clustering coefficient values of the real and random networks created from the possible threshold values in the correlation matrix. In the second one, a Kolmogorov-Smirnov test is made to evaluate the degree distribution respect normality.
-#' @param difexp A whole expression matrix or the expression matrix to differentially expressed genes.
+#' @param difexp A whole expression matrix or the expression matrix to differentially expressed genes, it may be stored in a SummarizedExperiment object.
 #' @param method The method name to create the correlation matrix, this can be "correlation" to obtain the Pearson Correlation Coefficient. On the other hand, can be "mutual information" to obtain the correlation values from an entropy-based method.
 #' @return The best threshold value found using the two criteria and a plot showing the result.
 #' @seealso \code{\link{difExprs}} to find the differentially expressed genes matrix.
@@ -23,6 +23,12 @@
 #' cor_pearson
  
 findThreshold <- function(difexp, method){
+  
+  # Identifing the SummarizedExperiment object
+  
+  if(!is.matrix(difexp) && !is.data.frame(difexp)){
+    difexp <- assay(difexp)
+  }
   
   # Obtaining the similarity values
   
@@ -199,7 +205,7 @@ findThreshold <- function(difexp, method){
   
   # Text to complete the plot
   
-  text(min(pcv)+0.1,max(abs(C0s-Cis))-0.1,paste0("Threshold = ", mtr[1]))
+  text(0.1,max(abs(C0s-Cis))-0.1,paste0("Threshold = ", mtr[1]))
   
   # return the value corresponding to the final threshold value
   

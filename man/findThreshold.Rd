@@ -7,7 +7,7 @@
 findThreshold(difexp, method)
 }
 \arguments{
-\item{difexp}{A whole expression matrix or the expression matrix to differentially expressed genes.}
+\item{difexp}{A whole expression matrix or the expression matrix to differentially expressed genes, it may be stored in a SummarizedExperiment object.}
 
 \item{method}{The method name to create the correlation matrix, this can be "correlation" to obtain the Pearson Correlation Coefficient. On the other hand, can be "mutual information" to obtain the correlation values from an entropy-based method.}
 }

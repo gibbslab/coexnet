@@ -7,7 +7,7 @@
 createNet(difexp, method, threshold)
 }
 \arguments{
-\item{difexp}{A whole expression matrix or differentially expressed genes matrix.}
+\item{difexp}{A whole expression matrix or differentially expressed genes matrix, it may be stored in a SummarizedExperiment object.}
 
 \item{method}{A function to calculate the similarity matrix between genes. It can be "correlation" to use Pearson function or "mutual information" to use a based on entropy information function.}
 

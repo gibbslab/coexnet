@@ -2,6 +2,7 @@
 #' @importFrom affy ReadAffy expresso rma computeExprSet
 #' @import siggenes
 #' @importFrom acde stp
+#' @import SummarizedExperiment
 #' @import igraph
 #' @import STRINGdb
 #' @importFrom minet build.mim
