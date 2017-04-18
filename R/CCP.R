@@ -5,12 +5,14 @@
 
 #' @title Finding Common Connection Pattern between different networks.
 #' @description From the intersection of two or more networks, it obtains the connected components 
-#' by deleting the solitary nodes in the intersection network. They must be graph objects.
+#' by deleting the solitary nodes in the intersection network. They must be igraph objects.
 #' @param ... The networks (igraph objects) to obtain the Common Connection Patterns.
+#' @param by It can be, a degree value or a range of values (c(min, max)), to defined the Common Connection Pattern. If you pass one value all the nodes above this degree will be used. By default is NULL, it calculates the CCPs using all the network.
 #' @return An igraph object with all the Common Connection Pattern in the same network.
 #' @details 
 #' The Common Connection Pattern (CCP), is a new methodological proposal to identify molecular components linked together and common in several biological networks. The principal assumption behind Common Connection Pattern is that the networks to be compared must have the same molecular information from, i.e., must compare one layer of molecular abstraction at the same time, for example, co-expression layer, protein-protein layer, the gene regulation layer, among others.
-#' In general, the comparison of biological networks is made to determine common elements or biomarkers among several related phenotypes. In this case, the Common Connection Patterns aims to identify common molecular elements between these phenotypes that are associated also with each other in a specific way. For this, the intersection between biological networks is calculated whose result can have two kinds of elements. On the one hand, the shared nodes without any connection with other nodes in the intersection network. On the other hand, nodes connected to one or more nodes in the intersection network. Each connected component in the intersection will be considered as a Common Connection Pattern.
+#' 
+#' For this, the intersection between biological networks is calculated whose result are the sub-networks with diameter greater than zero, being each of them considered as a Common Connection Pattern.
 #' @examples 
 #' # Loading data
 #' 
@@ -22,19 +24,55 @@
 #' ccp <- CCP(net1,net2)
 #' ccp
 
-CCP <- function(...){
-  # Obtaining the intersection set of the networks
-  intersect <- graph.intersection(...,keep.all.vertices = FALSE)
-  # Select the intersection nodes without any value of degree
-  members <- which(degree(intersect) == 0)
+CCP <- function(...,by = NULL){
+  
+  if(is.null(by)){
+    # Identifying the intersection network
+    ccp <- graph.intersection(...,keep.all.vertices = FALSE)
+  }else{
+    
+    t <- list(...)
+    
+    pre_ccp <- NULL
+    
+    for(i in t){
+      # Filtering the network from a data frame
+      df <- as_data_frame(i)
+      
+      # Identifies the nodes with the degree given by the user
+      if(length(by) == 2){
+        v <- names(which(degree(i) >= by[1] & degree(i) <= by[2]))
+      }else{
+        v <- names(which(degree(i) >= by[1]))
+      }
+      
+      # Filters the network as data frame
+      ft <- df[df$from %in% v,]
+      ft <- rbind(ft,df[df$to %in% v,])
+      
+      # Creating the igraph object
+      newG <- graph_from_data_frame(unique(ft),directed = FALSE)
+      
+      # Obtaining the intersection network
+      if(is.null(pre_ccp)){
+        pre_ccp <- newG
+      }else{
+        ccp <- graph.intersection(pre_ccp,newG,keep.all.vertices = FALSE)
+        pre_ccp <- ccp
+      }
+    }
+  }
+  
+  # Obtains the names of vertices with diameter equal to zero
+  members <- which(degree(ccp) == 0)
   # Deletes the solitary vertices in the intersection network
-  CCP <- delete.vertices(graph = intersect,v = names(members))
-  # To empty result
-  if(diameter(CCP) == 0){
+  finalccp <- delete.vertices(graph = ccp,v = names(members))
+  
+  if(diameter(finalccp) == 0){
     # Showing a messege
-    return(stop("Do not exit CCP between networks"))
+    stop("Do not exit CCP between networks")
   }else{
     # Return only the nodes in the intersection network with at least one edge
-    return(CCP)
+    return(finalccp)
   }
 }
