@@ -44,4 +44,4 @@ library(coexnet)
 
 ## Citation
 
-Juan Henao and Andres Pinzon-Velasco (2016). coexnet: An R package to build CO-EXpression NETworks from Microarray Data (Version 0.1) [software] Available at https://github.com/gibbslab/coexnet
+Juan Henao, Liliana Lopez-Kleine Andres Pinzon-Velasco (2016). coexnet: An R package to build CO-EXpression NETworks from Microarray Data (Version 0.1) [software] Available at https://github.com/gibbslab/coexnet
