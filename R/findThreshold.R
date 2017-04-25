@@ -10,6 +10,7 @@
 #' @return The best threshold value found using the two criteria and a plot showing the result.
 #' @seealso \code{\link{difExprs}} to find the differentially expressed genes matrix.
 #' @references Elo, L. L., Jarvenpaa, H., Oresic, M., Lahesmaa, R., & Aittokallio, T. (2007). Systematic construction of gene coexpression networks with applications to human T helper cell differentiation process. Bioinformatics, 23(16), 2096-2103.
+#' @references Leal, L. G., Lopez, C., & Lopez-Kleine, L. (2014). Construction and comparison of gene co-expression networks shows complex plant immune responses. PeerJ, 2, e610.
 #' @examples 
 #' 
 #' # Loading data
