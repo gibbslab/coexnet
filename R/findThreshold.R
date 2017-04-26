@@ -27,7 +27,7 @@ findThreshold <- function(difexp, method){
   
   # Identifing the SummarizedExperiment object
   
-  if(!is.matrix(difexp) && !is.data.frame(difexp)){
+  if(is(difexp,"SummarizedExperiment")){
     difexp <- assay(difexp)
   }
   

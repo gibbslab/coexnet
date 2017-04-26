@@ -45,7 +45,7 @@ difExprs <- function(eset,treatment,fdr,DifferentialMethod){
   
   # Identifing the SummarizedExperiment object
   
-  if(!is.matrix(eset) && !is.data.frame(eset)){
+  if(is(eset,"SummarizedExperiment")){
     eset <- assay(eset)
   }
   
