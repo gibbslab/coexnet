@@ -31,11 +31,11 @@ CCP <- function(...,by = NULL){
     ccp <- graph.intersection(...,keep.all.vertices = FALSE)
   }else{
     
-    t <- list(...)
+    decom <- list(...)
     
     pre_ccp <- NULL
     
-    for(i in t){
+    for(i in decom){
       # Filtering the network from a data frame
       df <- as_data_frame(i)
       

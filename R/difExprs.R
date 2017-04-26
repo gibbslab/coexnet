@@ -29,7 +29,7 @@
 #' 
 #' # The vector with treatment samples and control samples
 #' 
-#' t <- c(rep(0,10),rep(1,10))
+#' treat <- c(rep(0,10),rep(1,10))
 #' 
 #' # Calculating the expression values normalized
 #' 
@@ -38,8 +38,8 @@
 #' 
 #' ## Running the function using the two approaches
 #' 
-#' sam <- difExprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
-#' acde <- difExprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "acde")
+#' sam <- difExprs(eset = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "sam")
+#' acde <- difExprs(eset = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "acde")
 
 difExprs <- function(eset,treatment,fdr,DifferentialMethod){
   
@@ -115,11 +115,11 @@ difExprs <- function(eset,treatment,fdr,DifferentialMethod){
     
     # Create a data.frame object with the result of differential analysis
     
-    list <- data.frame(acde$gNames, acde$dgenes)
+    lis <- data.frame(acde$gNames, acde$dgenes)
     
     # Obtaining the name of genes differentially expressed
     
-    diff <- list[list$acde.dgenes != "no-diff.",]
+    diff <- lis[lis$acde.dgenes != "no-diff.",]
     
     # Filter the expression matrix with the genes differentially expressed
     

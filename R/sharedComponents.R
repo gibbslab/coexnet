@@ -22,13 +22,13 @@ sharedComponents <- function(...){
   # Obtaining the intersection set of the networks
   intersect <- graph.intersection(...,keep.all.vertices = FALSE)
   # Select the nodes in the intersected network with degree equal zero
-  members <- which(degree(intersect) == 0)
+  membrs <- which(degree(intersect) == 0)
   # To empty vector
-  if(length(members) == 0){
+  if(length(membrs) == 0){
     # Showing a message
     stop("Do not find shared components between the networks")
   }else{
     # Return the names of the solitary nodes in the intersection network
-    return(names(members))
+    return(names(membrs))
   }
 }
