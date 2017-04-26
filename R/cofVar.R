@@ -45,7 +45,7 @@ cofVar <- function(data,complete=TRUE,treatment=NULL,type=NULL){
   
   # Identifing the SummarizedExperiment object
   
-  if(!is.matrix(data) && !is.data.frame(data)){
+  if(is(data,"SummarizedExperiment")){
     data <- assay(data)
   }
   
