@@ -5,7 +5,7 @@
 #' @author Liliana Lopez Kleine <llopezk@unal.edu.co>
 #' @title Find the threshold value to create a co-expression network
 #' @description Finds the threshold value to establish the cutoff in the process to define the edges in the co-expression network final from two steps. In the first one, obtains the subtraction from clustering coefficient values of the real and random networks created from the possible threshold values in the correlation matrix. In the second one, a Kolmogorov-Smirnov test is made to evaluate the degree distribution respect normality.
-#' @param difexp A whole expression matrix or the expression matrix to differentially expressed genes, it may be stored in a SummarizedExperiment object.
+#' @param expmat A whole expression matrix or the expression matrix to differentially expressed genes, it may be stored in a SummarizedExperiment object.
 #' @param method The method name to create the correlation matrix, this can be "correlation" to obtain the Pearson Correlation Coefficient. On the other hand, can be "mutual information" to obtain the correlation values from an entropy-based method.
 #' @return The best threshold value found using the two criteria and a plot showing the result.
 #' @seealso \code{\link{difExprs}} to find the differentially expressed genes matrix.
@@ -20,20 +20,20 @@
 #' 
 #' # Finding threshold value
 #' 
-#' cor_pearson <- findThreshold(difexp = data,method = "correlation")
+#' cor_pearson <- findThreshold(expmat = data,method = "correlation")
 #' cor_pearson
  
-findThreshold <- function(difexp, method){
+findThreshold <- function(expmat, method){
   
   # Identifing the SummarizedExperiment object
   
-  if(is(difexp,"SummarizedExperiment")){
-    difexp <- assay(difexp)
+  if(is(expmat,"SummarizedExperiment")){
+    expmat <- assay(expmat)
   }
   
   # Obtaining the similarity values
   
-  simil <- .correlation.matrix(difexp,method)
+  simil <- .correlation.matrix(expmat,method)
   
   # Create a sequence of threshold values
   

@@ -6,7 +6,7 @@
 #' @description Using the expression matrix calculate the differential expressed
 #' genes to two class analysis and fixing an expected FDR value. The methods
 #' are SAM and ACDE.
-#' @param eset A matrix with the expression matrix, it may be stored in a SummarizedExperiment object.
+#' @param expdata A matrix with the expression matrix, it may be stored in a SummarizedExperiment object.
 #' @param treatment A vector with the ientifiers of the classes, 0 to control
 #' and 1 to case.
 #' @param fdr The expected FDR value.
@@ -38,22 +38,22 @@
 #' 
 #' ## Running the function using the two approaches
 #' 
-#' sam <- difExprs(eset = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "sam")
-#' acde <- difExprs(eset = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "acde")
+#' sam <- difExprs(expdata = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "sam")
+#' acde <- difExprs(expdata = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "acde")
 
-difExprs <- function(eset,treatment,fdr,DifferentialMethod){
+difExprs <- function(expdata,treatment,fdr,DifferentialMethod){
   
   # Identifing the SummarizedExperiment object
   
-  if(is(eset,"SummarizedExperiment")){
-    eset <- assay(eset)
+  if(is(expdata,"SummarizedExperiment")){
+    expdata <- assay(expdata)
   }
   
   if(DifferentialMethod == "sam"){
     
     # Differential analysis using sam method
     
-    samr <- sam(data = eset,cl = treatment,B=100,rand=100)
+    samr <- sam(data = expdata,cl = treatment,B=100,rand=100)
     
     # Obtaining the fdr to different thresholds
     
@@ -85,7 +85,7 @@ difExprs <- function(eset,treatment,fdr,DifferentialMethod){
     
     # Filter the expression matrix with the genes differentially expressed
     
-    genes <- eset[dife,]
+    genes <- expdata[dife,]
     
     # Showing the achieved fdr
     
@@ -99,7 +99,7 @@ difExprs <- function(eset,treatment,fdr,DifferentialMethod){
     
     # Differential analysis using acde method
     
-    acde <- stp(eset,treatment,R = 100, PER = TRUE,alpha = fdr)
+    acde <- stp(expdata,treatment,R = 100, PER = TRUE,alpha = fdr)
     
     # Showing the result of differential analysis
     
@@ -123,7 +123,7 @@ difExprs <- function(eset,treatment,fdr,DifferentialMethod){
     
     # Filter the expression matrix with the genes differentially expressed
     
-    genes <- eset[diff$acde.gNames,]
+    genes <- expdata[diff$acde.gNames,]
   }
   
   # Return the matrix of the genes differentially expressed
