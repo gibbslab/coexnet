@@ -23,7 +23,7 @@
 #' cor_pearson <- findThreshold(expmat = data,method = "correlation")
 #' cor_pearson
  
-findThreshold <- function(expmat, method){
+findThreshold <- function(expmat, method,plotting=FALSE){
   
   # Identifing the SummarizedExperiment object
   
@@ -196,19 +196,21 @@ findThreshold <- function(expmat, method){
   
   mtr <- na.omit(mtr)
   
-  # Create a plot comparing the clustering coefficients 
-  
-  plot(pcv,abs(Cis-C0s),t="l",xlab = "Threshold",ylab = "| Ci - C0 |")
-  
-  # Create the line to show the final threshold value
-  
-  abline(v=mtr[1], col="red")
-  
-  # Text to complete the plot
-  
-  text(0.1,max(abs(C0s-Cis))-0.1,paste0("Threshold = ", mtr[1]))
-  
-  # return the value corresponding to the final threshold value
+  if(plotting == TRUE){
+    # Create a plot comparing the clustering coefficients 
+    
+    plot(pcv,abs(Cis-C0s),t="l",xlab = "Threshold",ylab = "| Ci - C0 |")
+    
+    # Create the line to show the final threshold value
+    
+    abline(v=mtr[1], col="red")
+    
+    # Text to complete the plot
+    
+    text(0.1,max(abs(C0s-Cis))-0.1,paste0("Threshold = ", mtr[1]))
+    
+    # return the value corresponding to the final threshold value 
+  }
   
   return(mtr[1])
   

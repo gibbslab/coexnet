@@ -41,7 +41,7 @@
 #' sam <- difExprs(expdata = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "sam")
 #' acde <- difExprs(expdata = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "acde")
 
-difExprs <- function(expdata,treatment,fdr,DifferentialMethod){
+difExprs <- function(expdata,treatment,fdr,DifferentialMethod,plotting=FALSE){
   
   # Identifing the SummarizedExperiment object
   
@@ -73,7 +73,9 @@ difExprs <- function(expdata,treatment,fdr,DifferentialMethod){
     
     # Showing the result of differential analysis
     
-    plot(samr,value$Delta)
+    if(plotting == TRUE){
+      plot(samr,value$Delta)
+    }
     
     # Summarizing the results of differential analysis
     
@@ -103,15 +105,13 @@ difExprs <- function(expdata,treatment,fdr,DifferentialMethod){
     
     # Showing the result of differential analysis
     
-    plot(acde)
+    if(plotting == TRUE){
+      plot(acde) 
+    }
     
     # Showing the achieved fdr
     
     cat(paste0("Achieved FDR: ",acde$astar))
-    
-    # Showing the threshold value
-    
-    cat(paste0("; Delta value: ",acde$tstar))
     
     # Create a data.frame object with the result of differential analysis
     
