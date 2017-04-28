@@ -18,13 +18,13 @@
 #' # Creating the PPI network
 #' 
 #' ppi <- ppiNet(input = ID,evidence = c("neighborhood","coexpression","experiments"))
-#' plot(ppi)
+#' ppi
 #' }
 #' 
 #' # Creating a PPI network from external data
 #' 
 #' ppi <- ppiNet(input = system.file("extdata","ppi.txt",package = "coexnet"))
-#' plot(ppi)
+#' ppi
 
 ppiNet <- function(input,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
             "fusion","cooccurence","homology","coexpression","coexpression_transferred",
@@ -75,19 +75,19 @@ ppiNet <- function(input,species_ID = 9606,evidence = c("neighborhood","neighbor
     # This data frame will be fill up with interactions with any evidence value greater than zero
     graph_ppi <- data.frame()
     # This loop fill up the "graph_ppi" data frame
-    for(i in 1:nrow(graph_relations)){
+    for(i in seq_len(nrow(graph_relations))){
       if(any(graph_relations[i,3:ncol(graph_relations)] > 0)){
         graph_ppi <- rbind.data.frame(graph_ppi,graph_relations[i,],
                                       stringsAsFactors = FALSE)
       }
     }
     # This loop replace the STRING IDs with the original identifiers in the first column 
-    for(n in 1:nrow(graph_ppi)){
+    for(n in seq_len(nrow(graph_ppi))){
       graph_ppi$interactions.from[n] <- mapped[
         graph_ppi$interactions.from[n] == mapped$STRING_id,][1]
     }
     # This loop replace the STRING IDs with the original identifiers in the second column
-    for(n in 1:nrow(graph_ppi)){
+    for(n in seq_len(nrow(graph_ppi))){
       graph_ppi$interactions.to[n] <- mapped[
         graph_ppi$interactions.to[n] == mapped$STRING_id,][1]
     }

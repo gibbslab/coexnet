@@ -56,7 +56,7 @@ findThreshold <- function(expmat, method,plotting=FALSE){
     
     # Transform to adjacency matrix
     
-    for(i in 1:nrow(simil)){
+    for(i in seq_len(nrow(simil))){
       ady[which(simil[,i]>=val),i]<-1
       ady[which(simil[,i]<val),i]<-0
     }
@@ -111,7 +111,7 @@ findThreshold <- function(expmat, method,plotting=FALSE){
   
   # Finding the subtraction between the clustering coefficient of random network and the real network
   
-  for(i in 1:(length(pcv)-1)){
+  for(i in seq_len((length(pcv)-1))){
     if(Cis[i]-C0s[i] > Cis[i+1]-C0s[i+1]){
      thr[i] <- pcv[i]
      pass[i] <- Cis[i]*100-C0s[i]*100
@@ -130,7 +130,7 @@ findThreshold <- function(expmat, method,plotting=FALSE){
   
   # Delete the minimum values of the difference between the clustering coefficients
   
-  for(j in 1:length(thr)){
+  for(j in seq_len(length(thr))){
     if(pass[j] > min(pass)){
       thre[j] <- thr[j]
     }
@@ -142,13 +142,13 @@ findThreshold <- function(expmat, method,plotting=FALSE){
   
   mtr <- vector()
   
-  for(n in 1:length(thre)){
+  for(n in seq_len(length(thre))){
     
     ad <- matrix(0,ncol = nrow(simil),nrow = nrow(simil))
     
     # Transforming into adjacency matrix
     
-    for(i in 1:nrow(simil)){
+    for(i in seq_len(nrow(simil))){
       ad[which(simil[,i]>=thre[n]),i]<-1
       ad[which(simil[,i]<thre[n]),i]<-0
     }
@@ -185,7 +185,7 @@ findThreshold <- function(expmat, method,plotting=FALSE){
   if(length(mtr) == 0){
     new_pass <- vector()
     Cls <- round(Cis-C0s,digits = 3)
-    for(j in 1:length(pcv)){
+    for(j in seq_len(length(pcv))){
       if(Cls[j] > min(Cls)){
         mtr[j] <- pcv[j]
      }
