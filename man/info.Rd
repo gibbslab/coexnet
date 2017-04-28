@@ -5,7 +5,7 @@
 \alias{info}
 \title{Table with the relation between the probesets and the corresponding gene.}
 \source{
-GEO Dataset from NCBI, GPL accession: GPL570.
+GEO Dataset from NCBI, GPL accession: GPL8300.
 }
 \description{
 Table where the probesets and genes are related.

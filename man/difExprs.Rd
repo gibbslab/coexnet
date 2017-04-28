@@ -4,10 +4,10 @@
 \alias{difExprs}
 \title{Differential expression analysis using two different methods.}
 \usage{
-difExprs(eset, treatment, fdr, DifferentialMethod)
+difExprs(expdata, treatment, fdr, DifferentialMethod, plotting = FALSE)
 }
 \arguments{
-\item{eset}{A matrix with the expression matrix, it may be stored in a SummarizedExperiment object.}
+\item{expdata}{A matrix with the expression matrix, it may be stored in a SummarizedExperiment object.}
 
 \item{treatment}{A vector with the ientifiers of the classes, 0 to control
 and 1 to case.}
@@ -37,7 +37,7 @@ m <- 20
 
 # The vector with treatment samples and control samples
 
-t <- c(rep(0,10),rep(1,10))
+treat <- c(rep(0,10),rep(1,10))
 
 # Calculating the expression values normalized
 
@@ -46,8 +46,8 @@ norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
 
 ## Running the function using the two approaches
 
-sam <- difExprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
-acde <- difExprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "acde")
+sam <- difExprs(expdata = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "sam")
+acde <- difExprs(expdata = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "acde")
 }
 \references{
 Tusher, V. G., Tibshirani, R., & Chu, G. (2001). Significance analysis of 

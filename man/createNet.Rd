@@ -4,10 +4,10 @@
 \alias{createNet}
 \title{Creating a co-expression network from expression matrix.}
 \usage{
-createNet(difexp, method, threshold)
+createNet(expmat, method, threshold)
 }
 \arguments{
-\item{difexp}{A whole expression matrix or differentially expressed genes matrix, it may be stored in a SummarizedExperiment object.}
+\item{expmat}{A whole expression matrix or differentially expressed genes matrix, it may be stored in a SummarizedExperiment object.}
 
 \item{method}{A function to calculate the similarity matrix between genes. It can be "correlation" to use Pearson function or "mutual information" to use a based on entropy information function.}
 
@@ -28,10 +28,10 @@ data <- read.table(pathfile,stringsAsFactors = FALSE)
 
 # Building the network
 
-cor_pearson <- createNet(difexp = data,threshold = 0.7,method = "correlation")
+cor_pearson <- createNet(expmat = data,threshold = 0.7,method = "correlation")
 cor_pearson
 
-mut_inf <- createNet(difexp = data,threshold = 0.5,method = "mutual information")
+mut_inf <- createNet(expmat = data,threshold = 0.5,method = "mutual information")
 mut_inf
 }
 \seealso{

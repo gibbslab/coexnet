@@ -33,7 +33,7 @@ m <- 20
 
 # The vector with treatment and control samples
 
-t <- c(rep(0,10),rep(1,10))
+treat <- c(rep(0,10),rep(1,10))
 
 # Calculating the expression values normalized
 
@@ -49,7 +49,7 @@ head(complete)
 
 # For the case samples
 
-case <- cofVar(data = norm,complete = FALSE,treatment = t,type = "case")
+case <- cofVar(data = norm,complete = FALSE,treatment = treat,type = "case")
 head(case)
 }
 \author{

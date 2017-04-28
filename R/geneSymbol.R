@@ -41,9 +41,13 @@ geneSymbol <- function(GPL, d = "."){
   
   sym <- Table(gpl)
   
+  # Column names to uppercase
+  
+  names(sym) <- toupper(names(sym))
+  
   # Create a data.frame with the gene symbols for the probes associated
   
-  ta <- data.frame(sym$ID, gsub(" /// ","-",sym$`Gene Symbol`), stringsAsFactors = FALSE)
+  ta <- data.frame(sym$ID, gsub(" /// ","-",sym$`GENE SYMBOL`), stringsAsFactors = FALSE)
   
   # Names of each column
   

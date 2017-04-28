@@ -44,7 +44,7 @@ data("info")
 
 ## RMA
 
-rma <- exprMat(affy = affy,genes = info,NormalizeMethod = "rma",
+rma <- exprMat(affy = Dilution,genes = info,NormalizeMethod = "rma",
 SummaryMethod = "median",BatchCorrect = FALSE)
 head(rma)
 

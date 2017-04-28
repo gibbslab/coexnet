@@ -12,7 +12,7 @@ NULL
 #' @name info
 #' @docType data
 #' @description Table where the probesets and genes are related.
-#' @source GEO Dataset from NCBI, GPL accession: GPL570.
+#' @source GEO Dataset from NCBI, GPL accession: GPL8300.
 #' @author Greene JG, 2006.
 NULL
 
