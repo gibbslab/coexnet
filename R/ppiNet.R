@@ -17,22 +17,22 @@
 #' 
 #' # Creating the PPI network
 #' 
-#' ppi <- ppiNet(input = ID,evidence = c("neighborhood","coexpression","experiments"))
+#' ppi <- ppiNet(molecularIDs = ID,evidence = c("neighborhood","coexpression","experiments"))
 #' ppi
 #' }
 #' 
 #' # Creating a PPI network from external data
 #' 
-#' ppi <- ppiNet(input = system.file("extdata","ppi.txt",package = "coexnet"))
+#' ppi <- ppiNet(file = system.file("extdata","ppi.txt",package = "coexnet"))
 #' ppi
 
-ppiNet <- function(input,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
+ppiNet <- function(molecularIDs = NULL,file = NULL,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
             "fusion","cooccurence","homology","coexpression","coexpression_transferred",
             "experiments","experiments_transferred","database","database_transferred","textmining",
             "textmining_transferred","combined_score")){
   
   # Detecting the input type
-  if(!file.exists(input[1])){
+  if(is.null(file) && molecularIDs > 0){
     # Replace the name of input
     genes <- input
     # Creating the vector to store the unique identifiers
@@ -98,9 +98,11 @@ ppiNet <- function(input,species_ID = 9606,evidence = c("neighborhood","neighbor
     edge_list <- cbind(edge_list,as.vector(graph_ppi[,2],mode = "character"))
     # Create a network based on the interactions in the matrix
     final_graph <- graph.edgelist(edge_list,directed = FALSE)
-  }else{
+  }else if(is.null(molecularIDs) && file.exists(file)){
     # Read and create the igraph object
-    final_graph <- read.graph(file = input,format = "ncol")
+    final_graph <- read.graph(file = file,format = "ncol")
+  }else{
+    stop("A valid input was not found")
   }
   # Return the PPI network
   return(final_graph)
