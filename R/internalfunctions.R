@@ -25,7 +25,7 @@
   newList <- list[grep(paste0("^","$"),list,invert = TRUE)]
   g <- matrix(0,length(newList),dim(array)[2])
   
-  for(n in 1:nrow(g)){
+  for(n in seq_len(nrow(g))){
     a <- array[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$ID),]$probe),]
     a <- na.omit(a)
     if(!is.null(dim(a))){
@@ -47,7 +47,7 @@
   newList <- list[grep(paste0("^","$"),list,invert = TRUE)]
   g <- matrix(0,length(newList),dim(array)[2])
   
-  for(n in 1:nrow(g)){
+  for(n in seq_len(nrow(g))){
     a <- array[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$ID),]$probe),]
     a <- na.omit(a)
     

@@ -30,7 +30,7 @@
 #' 
 #' # Loading table with probeset and gene/ID information
 #' 
-#' data("info")
+#' data(info)
 #' 
 #' # Calculating the expression matrix
 #' 
@@ -87,7 +87,7 @@ exprMat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE
       
       # Fill the vector with the specific dates of scan
       
-      for (i in 1:length(strdates)) {
+      for (i in seq_len(length(strdates))) {
         batch.dates[i]  <- strdates[[i]][1]
       }
       
@@ -97,7 +97,7 @@ exprMat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE
       
       # Joining samples in batchs according the date of scan
       
-      for (n in 1:length(tab)) {
+      for (n in seq_len(length(tab))) {
         batch.dates[batch.dates == tab[n]] <- paste0("b", n)
       }
       
@@ -142,7 +142,7 @@ exprMat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE
       
       # Fill the vector with the specific dates of scan
       
-      for (i in 1:length(strdates)) {
+      for (i in seq_len(length(strdates))) {
         batch.dates[i]  <- strdates[[i]][1]
       }
       
@@ -152,7 +152,7 @@ exprMat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE
       
       # Joining samples in batchs according the date of scan
       
-      for (n in 1:length(tab)) {
+      for (n in seq_len(length(tab))) {
         batch.dates[batch.dates == tab[n]] <- paste0("b", n)
       }
       
