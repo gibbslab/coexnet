@@ -36,7 +36,7 @@
 #' 
 #' ## RMA
 #' 
-#' rma <- exprMat(affy = affy,genes = info,NormalizeMethod = "rma",
+#' rma <- exprMat(affy = Dilution,genes = info,NormalizeMethod = "rma",
 #' SummaryMethod = "median",BatchCorrect = FALSE)
 #' head(rma)
 #' 
@@ -49,32 +49,6 @@
 #' }
 
 exprMat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE){
-  
-  # Extract the date of microarray scan
-  
-  dates <- protocolData(affy)$ScanDate
-  
-  # Spliting all the information related to date of scan
-  
-  strdates <- strsplit(dates," ")
-  
-  batch.dates <- vector()
-  
-  # Fill the vector with the specific dates of scan
-  
-  for (i in 1:length(strdates)) {
-    batch.dates[i]  <- strdates[[i]][1]
-  }
-  
-  # Obtaining the unique dates
-  
-  tab <-names(table(batch.dates))
-  
-  # Joining samples in batchs according the date of scan
-  
-  for (n in 1:length(tab)) {
-    batch.dates[batch.dates == tab[n]] <- paste0("b", n)
-  }
   
   if(NormalizeMethod == "vsn"){
     
@@ -101,6 +75,32 @@ exprMat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE
     # Conditional to apply batch effect correction
     
     if (BatchCorrect == TRUE) {
+      # Extract the date of microarray scan
+      
+      dates <- protocolData(affy)$ScanDate
+      
+      # Spliting all the information related to date of scan
+      
+      strdates <- strsplit(dates," ")
+      
+      batch.dates <- vector()
+      
+      # Fill the vector with the specific dates of scan
+      
+      for (i in 1:length(strdates)) {
+        batch.dates[i]  <- strdates[[i]][1]
+      }
+      
+      # Obtaining the unique dates
+      
+      tab <-names(table(batch.dates))
+      
+      # Joining samples in batchs according the date of scan
+      
+      for (n in 1:length(tab)) {
+        batch.dates[batch.dates == tab[n]] <- paste0("b", n)
+      }
+      
       batch <- removeBatchEffect(vsn,batch.dates)
     }else{
       batch <- as.matrix.ExpressionSet(vsn)
@@ -130,6 +130,32 @@ exprMat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE
     # Conditional to apply batch effect correction
     
     if (BatchCorrect == TRUE) {
+      # Extract the date of microarray scan
+      
+      dates <- protocolData(affy)$ScanDate
+      
+      # Spliting all the information related to date of scan
+      
+      strdates <- strsplit(dates," ")
+      
+      batch.dates <- vector()
+      
+      # Fill the vector with the specific dates of scan
+      
+      for (i in 1:length(strdates)) {
+        batch.dates[i]  <- strdates[[i]][1]
+      }
+      
+      # Obtaining the unique dates
+      
+      tab <-names(table(batch.dates))
+      
+      # Joining samples in batchs according the date of scan
+      
+      for (n in 1:length(tab)) {
+        batch.dates[batch.dates == tab[n]] <- paste0("b", n)
+      }
+      
       batch <- removeBatchEffect(rma,batch.dates)
     }else{
       batch <- as.matrix.ExpressionSet(rma)

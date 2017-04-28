@@ -43,7 +43,7 @@ createNet <- function(expmat,method, threshold){
   
   # Transform to adjacency matrix
   
-  for(i in 1:nrow(simil)){
+  for(i in seq_len(nrow(simil))){
     Ad[which(simil[,i]>=threshold),i]<-1
     Ad[which(simil[,i]<threshold),i]<-0
   }
