@@ -84,13 +84,9 @@ exprMat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE
       
       strdates <- strsplit(dates," ")
       
-      batch.dates <- vector()
+      # List to vector
       
-      # Fill the vector with the specific dates of scan
-      
-      for (i in seq_len(length(strdates))) {
-        batch.dates[i]  <- strdates[[i]][1]
-      }
+      batch.dates <- sapply(seq_len(length(strdates)),function(i){strdates[[i]][1]})
       
       # Obtaining the unique dates
       
@@ -139,13 +135,9 @@ exprMat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE
       
       strdates <- strsplit(dates," ")
       
-      batch.dates <- vector()
+      # List to vector
       
-      # Fill the vector with the specific dates of scan
-      
-      for (i in seq_len(length(strdates))) {
-        batch.dates[i]  <- strdates[[i]][1]
-      }
+      batch.dates <- sapply(seq_len(length(strdates)),function(i){strdates[[i]][1]})
       
       # Obtaining the unique dates
       

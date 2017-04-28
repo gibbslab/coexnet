@@ -23,9 +23,10 @@
   colnames(array) <- gsub(".CEL.gz","",colnames(array),ignore.case = TRUE)
   list <- unique(gene$ID)
   newList <- list[grep(paste0("^","$"),list,invert = TRUE)]
+  
   g <- matrix(0,length(newList),dim(array)[2])
   
-  for(n in seq_len(nrow(g))){
+  g <- t(sapply(seq_len(nrow(g)), function(n){
     a <- array[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$ID),]$probe),]
     a <- na.omit(a)
     if(!is.null(dim(a))){
@@ -33,7 +34,8 @@
     }else{
       g[n,] <- a
     }
-  }
+  }))
+  
   rownames(g) <- newList
   colnames(g) <- colnames(array)
   
@@ -45,9 +47,10 @@
   colnames(array) <- gsub(".CEL.gz","",colnames(array),ignore.case = TRUE)
   list <- unique(gene$ID)
   newList <- list[grep(paste0("^","$"),list,invert = TRUE)]
+  
   g <- matrix(0,length(newList),dim(array)[2])
   
-  for(n in seq_len(nrow(g))){
+  g <- t(sapply(seq_len(nrow(g)), function(n){
     a <- array[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$ID),]$probe),]
     a <- na.omit(a)
     
@@ -56,7 +59,7 @@
     }else{
       g[n,] <- a
     }
-  }
+  }))
   
   rownames(g) <- newList
   colnames(g) <- colnames(array)
