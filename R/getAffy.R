@@ -16,17 +16,13 @@
 #' 
 #' # Data without CDF environment information
 #' 
-#' affy <- getAffy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+#' affy <- getAffy(GSE = "GSE1234",directory = system.file("extdata",package = "coexnet"))
 
-getAffy <- function(GSE,dir="."){
-  
-  # Change the directory 
-  
-  setwd(dir)
+getAffy <- function(GSE,directory="."){
   
   # Read the filelist.txt file with the samples information
   
-  raw <- read.table(file = paste0(GSE,"/","filelist.txt"),sep = "\t",
+  raw <- read.table(file = paste0(directory,"/",GSE,"/","filelist.txt"),sep = "\t",
                     header = TRUE,comment.char = "", stringsAsFactors = FALSE)
   
   # Obtaining all the names of samples
@@ -36,7 +32,7 @@ getAffy <- function(GSE,dir="."){
   # Read and return the raw data from each sample
   
   affy <- ReadAffy(filenames = as.character(GSMs), compress = TRUE,
-                   celfile.path = GSE)
+                   celfile.path = paste0(directory,"/",GSE))
   
   return(affy)
 }

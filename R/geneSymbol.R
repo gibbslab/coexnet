@@ -24,17 +24,13 @@
 #' head(final_table)
 
 
-geneSymbol <- function(GPL, d = "."){
+geneSymbol <- function(GPL, directory = "."){
   
   options(warn=-1)
-  
-  # Move to path file with the .soft file
-  
-  setwd(d)
 
   # Information extracted from the file .soft
   
-  gpl <- getGEO(filename = paste0(GPL,".soft"))
+  gpl <- getGEO(filename = paste0(directory,"/",GPL,".soft"))
   
   
   # Create a table object with all the data in the .soft file

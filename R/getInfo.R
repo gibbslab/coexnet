@@ -16,7 +16,7 @@
 #' getInfo(GSE = "GSE8216", GPL = "GPL2025",dir = tempdir())
 #' }
 
-getInfo <- function(GSE,GPL,dir="."){
+getInfo <- function(GSE,GPL,directory="."){
   
   # Move to the specified directory
   
