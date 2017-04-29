@@ -166,19 +166,17 @@ findThreshold <- function(expmat, method,plotting=FALSE){
   
   # Delete the minimum values in the subtraction of clustering coefficient values
   
-  if(length(mtr) == 0){
-    new_pass <- vector()
-    Cls <- round(Cis-C0s,digits = 3)
-    for(j in seq_len(length(pcv))){
-      if(Cls[j] > min(Cls)){
-        mtr[j] <- pcv[j]
-     }
+  Cls <- round(Cis-C0s,digits = 3)
+  
+  mtr_p <- sapply(mtr,function(n){
+    return(Cls[n*100])
+  })
+  
+  mtr_f <- unlist(t(sapply(seq_len(length(mtr_p)),function(n){
+    if(mtr_p[n] > min(mtr_p)){
+      return(mtr[n])
     }
-  }
-  
-  # Delete NA values
-  
-  mtr <- na.omit(mtr)
+  })))
   
   if(plotting == TRUE){
     # Create a plot comparing the clustering coefficients 
@@ -187,15 +185,15 @@ findThreshold <- function(expmat, method,plotting=FALSE){
     
     # Create the line to show the final threshold value
     
-    abline(v=mtr[1], col="red")
+    abline(v=mtr_f[1], col="red")
     
     # Text to complete the plot
     
-    text(0.1,max(abs(C0s-Cis))-0.1,paste0("Threshold = ", mtr[1]))
+    text(0.1,max(abs(C0s-Cis))-0.1,paste0("Threshold = ", mtr_f[1]))
     
     # return the value corresponding to the final threshold value 
   }
   
-  return(mtr[1])
+  return(mtr_f[1])
   
 }
