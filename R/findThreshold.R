@@ -39,16 +39,7 @@ findThreshold <- function(expmat, method,plotting=FALSE){
   
   pcv <- seq(0.01,0.99,by = 0.01)
   
-  # Create two empty vectors
-  
-  Cis <- vector()
-  C0s <- vector()
-  
-  # Initial counter
-  
-  count <- 1
-  
-  for (val in pcv) {
+  Cis <- sapply(pcv, function(n){
     
     # Create an empty matrix
     
@@ -57,8 +48,8 @@ findThreshold <- function(expmat, method,plotting=FALSE){
     # Transform to adjacency matrix
     
     for(i in seq_len(nrow(simil))){
-      ady[which(simil[,i]>=val),i]<-1
-      ady[which(simil[,i]<val),i]<-0
+      ady[which(simil[,i]>=n),i]<-1
+      ady[which(simil[,i]<n),i]<-0
     }
     
     # Diagonal equal to zero
@@ -77,6 +68,28 @@ findThreshold <- function(expmat, method,plotting=FALSE){
     
     if(is.nan(Ci)){Ci <- 0}
     
+    return(Ci)
+  })
+  
+  C0s <- sapply(pcv, function(n){
+    # Create an empty matrix
+    
+    ady <- matrix(0,ncol = ncol(simil), nrow = nrow(simil))
+    
+    # Transform to adjacency matrix
+    
+    for(i in seq_len(nrow(simil))){
+      ady[which(simil[,i]>=n),i]<-1
+      ady[which(simil[,i]<n),i]<-0
+    }
+    
+    # Diagonal equal to zero
+    
+    diag(ady)<-0
+    
+    # Create the network from the adjacency matrix
+    
+    G = graph.adjacency(ady,mode="undirected",diag=FALSE)
     # Obtaining values to calculate an artificial clustering coefficient
     
     K1 <- sum(degree(G,loops = FALSE))
@@ -92,58 +105,33 @@ findThreshold <- function(expmat, method,plotting=FALSE){
     
     if(is.nan(C0)){C0 <- 0}
     
-    # Add the clustering coefficient for threshold values in a vector
-    
-    Cis[count] <- Ci
-    
-    # Add the artificial clustering coefficient in a vector
-    
-    C0s[count] <- C0
-    
-    # Increase the counter
-    
-    count <- count + 1
-    
-  }
+    return(C0)
+  })
   
-  thr <- vector()
-  pass <- vector()
   
   # Finding the subtraction between the clustering coefficient of random network and the real network
   
-  for(i in seq_len((length(pcv)-1))){
+  thr <- unlist(t(sapply(seq_len((length(pcv)-1)), function(i){
     if(Cis[i]-C0s[i] > Cis[i+1]-C0s[i+1]){
-     thr[i] <- pcv[i]
-     pass[i] <- Cis[i]*100-C0s[i]*100
+      return(pcv[i])
     }
-  }
+  })))
   
-  # Delete NA values
-  
-  thr <- na.omit(thr)
-  
-  # Round the result of the difference between the clustering coefficients
-  
-  pass <- round(na.omit(pass))
-  
-  thre <- vector()
+  pass <- unlist(t(sapply(seq_len((length(pcv)-1)), function(i){
+    if(Cis[i]-C0s[i] > Cis[i+1]-C0s[i+1]){
+      return(Cis[i]*100-C0s[i]*100)
+    }
+  })))
   
   # Delete the minimum values of the difference between the clustering coefficients
   
-  for(j in seq_len(length(thr))){
+  thre <- unlist(t(sapply(seq_len(length(thr)),function(j){
     if(pass[j] > min(pass)){
-      thre[j] <- thr[j]
+      return(thr[j])
     }
-  }
+  })))
   
-  # Delete the NA values
-  
-  thre <- na.omit(thre)
-  
-  mtr <- vector()
-  
-  for(n in seq_len(length(thre))){
-    
+  mtr <- unlist(t(sapply(seq_len(length(thre)),function(n){
     ad <- matrix(0,ncol = nrow(simil),nrow = nrow(simil))
     
     # Transforming into adjacency matrix
@@ -172,13 +160,9 @@ findThreshold <- function(expmat, method,plotting=FALSE){
     # Add the threshold value if p-value > 0.05
     
     if(pvalue > 0.05){
-      mtr[n] <- thre[n]
+      return(thre[n])
     }
-  }
-  
-  # Delete NA values
-  
-  mtr <- na.omit(mtr)
+  })))
   
   # Delete the minimum values in the subtraction of clustering coefficient values
   
