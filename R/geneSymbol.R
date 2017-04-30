@@ -5,13 +5,13 @@
 #' @title Create a table relating probesets with genes
 #' @description From the information in the .soft file, creates a data.frame with two columns. In the first one, the probeset names. In the second one, the name of the corresponding genes.
 #' @param GPL The GPL ID.
-#' @param d The path file where the .soft file is. By default is the current path file.
+#' @param directory The path file where the .soft file is. By default is the current path file.
 #' @return A data.frame with two columns, in the first one, the probesets and in the second one, the corresponding gene to each probeset.
 #' @examples 
 #' 
 #' # Creating the table with probesets and genes/IDs
 #' 
-#' gene_table <- geneSymbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
+#' gene_table <- geneSymbol(GPL = "GPL2025",directory = system.file("extdata",package = "coexnet"))
 #' 
 #' # Cleaning the NA information
 #' 

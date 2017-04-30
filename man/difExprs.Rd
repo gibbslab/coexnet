@@ -16,6 +16,8 @@ and 1 to case.}
 
 \item{DifferentialMethod}{The method to calculate the differential expressed
 genes, can be "sam" or "acde"}
+
+\item{plotting}{The option to show the result in a plot. By default FALSE.}
 }
 \value{
 A data.frame with the expression matrix to the expressed diferential 

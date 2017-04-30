@@ -10,6 +10,8 @@ findThreshold(expmat, method, plotting = FALSE)
 \item{expmat}{A whole expression matrix or the expression matrix to differentially expressed genes, it may be stored in a SummarizedExperiment object.}
 
 \item{method}{The method name to create the correlation matrix, this can be "correlation" to obtain the Pearson Correlation Coefficient. On the other hand, can be "mutual information" to obtain the correlation values from an entropy-based method.}
+
+\item{plotting}{The option to show the result in a plot. By default FALSE.}
 }
 \value{
 The best threshold value found using the two criteria and a plot showing the result.

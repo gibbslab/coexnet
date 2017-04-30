@@ -11,11 +11,13 @@ ppiNet(molecularIDs = NULL, file = NULL, species_ID = 9606,
   "textmining", "textmining_transferred", "combined_score"))
 }
 \arguments{
+\item{molecularIDs}{A vector of IDs recognized by STRING database to create a PPI network from them.}
+
+\item{file}{A file with an edge list to charge the PPI network.}
+
 \item{species_ID}{The numerical ID from STRING database to the species of interest, by defect, is "9006" corresponding to human species.}
 
 \item{evidence}{A vector with the evidence to support the interactions between the proteins, by default is all the evidence given in STRING database.}
-
-\item{input}{This parameter may be two types. A vector with the molecular identifiers, they could be two IDs united for the "-" character or a path file with the relations between proteins as edge list to create the network.}
 }
 \value{
 An igraph object as the protein-protein interaction network where the nodes are the molecular identifiers given in the input.

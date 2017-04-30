@@ -6,7 +6,7 @@
 #' @description Charges the data from a file with the GSM samples compressed using the "filelist.txt" file to identify the GSM ID
 #' and create the AffyBatch object finally.
 #' @param GSE The name of the file with the compressed samples data.
-#' @param dir The path file where the samples and the "filelist" file are to create the AffyBatch object, by default is the current directory.
+#' @param directory The path file where the samples and the "filelist" file are to create the AffyBatch object, by default is the current directory.
 #' @seealso \code{\link{getInfo}} to download expression data from GEO DataSets included the "filelist" file.
 #' @return An AffyBatch Object.
 #' @examples 

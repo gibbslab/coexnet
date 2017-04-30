@@ -4,7 +4,7 @@ test_cofVar <- function(){
   
   ## Correct cases
   
-  t <- c(0,1,0,1)
+  treat <- c(0,1,0,1)
   
   a <- seq(0.1,0.5,length.out = 20)
   norm <- data.frame(a,a+0.2,a+0.1,a+0.3)
@@ -16,19 +16,19 @@ test_cofVar <- function(){
   
   # case
   
-  result2 <- cofVar(norm,complete = FALSE,treatment = t,type = "case")
+  result2 <- cofVar(norm,complete = FALSE,treatment = treat,type = "case")
   checkEqualsNumeric(round(result2$cv[1],7),0.2020305)
   
   # control
   
-  result3 <- cofVar(norm,complete = FALSE,treatment = t,type = "control")
+  result3 <- cofVar(norm,complete = FALSE,treatment = treat,type = "control")
   checkEqualsNumeric(round(result3$cv[1],7),0.4714045)
   
   ## Errors
   
   checkException(cofVar(),silent = TRUE)
   checkException(cofVar(norm[1,3]),silent = TRUE)
-  checkException(cofVar(norm,complete = FALSE,treatment = t,type = "tratment"),silent = TRUE)
+  checkException(cofVar(norm,complete = FALSE,treatment = treat,type = "tratment"),silent = TRUE)
   checkException(cofVar(norm,complete = FALSE,treatment = c(0,1),type = "control"),silent = TRUE)
 }
 
@@ -43,7 +43,7 @@ test_createNet <- function(){
   
   # correlation
   
-  cor_pearson <- createNet(difexp = data,threshold = 0.7,method = "correlation")
+  cor_pearson <- createNet(expmat = data,threshold = 0.7,method = "correlation")
 
   checkEquals(names(cor_pearson["RFC2"][4]),"PTPN21")
   checkEquals(names(cor_pearson["RFC2"][137]),"IL28A")
@@ -51,7 +51,7 @@ test_createNet <- function(){
   
   # mutual information
   
-  mut_inf <- createNet(difexp = data,threshold = 0.5,method = "mutual information")
+  mut_inf <- createNet(expmat = data,threshold = 0.5,method = "mutual information")
   
   checkEquals(names(mut_inf["PXK"][40]),"NEDD1")
   checkEqualsNumeric(mut_inf["PXK"][40],0)
@@ -60,8 +60,8 @@ test_createNet <- function(){
   ## Errors
   
   checkException(createNet(),silent = TRUE)
-  checkException(createNet(difexp = data,threshold = 0.3),silent = TRUE)
-  checkException(createNet(difexp = data[1,5],method = "mutual information",threshold = 0.5),silent = TRUE)
+  checkException(createNet(expmat = data,threshold = 0.3),silent = TRUE)
+  checkException(createNet(expmat = data[1,5],method = "mutual information",threshold = 0.5),silent = TRUE)
 }
 
 ## test for findThreshold ##
@@ -75,14 +75,14 @@ test_findThreshold <- function(){
   
   # correlation
   
-  checkEqualsNumeric(findThreshold(difexp = data[1:5,],method = "correlation"),0.01)
-  checkEqualsNumeric(findThreshold(difexp = data[1:100,],method = "mutual information"),0.03)
+  checkEqualsNumeric(findThreshold(expmat = data[1:5,],method = "correlation"),0.01)
+  checkEqualsNumeric(findThreshold(expmat = data[1:100,],method = "mutual information"),0.03)
   
   ## Errors
   
   checkException(findThreshold(),silent = TRUE)
-  checkException(findThreshold(difexp = data),silent = TRUE)
-  checkException(findThreshold(difexp = data[1,5],method = "mutual information"),silent = TRUE)
+  checkException(findThreshold(expmat = data),silent = TRUE)
+  checkException(findThreshold(expmat = data[1,5],method = "mutual information"),silent = TRUE)
 }
 
 ## test for difExprs function ##
@@ -97,7 +97,7 @@ test_difExprs <- function(){
   
   # sam
   
-  sam <- difExprs(eset = norm,treatment = t,fdr = 0.05,DifferentialMethod = "sam")
+  sam <- difExprs(expdata = norm,treatment = t,fdr = 0.05,DifferentialMethod = "sam")
   
   checkTrue(dim(sam)[1] >= 1)
   checkTrue(is.data.frame(sam))
@@ -105,7 +105,7 @@ test_difExprs <- function(){
   
   # acde
   
-  acde <- difExprs(eset = norm,treatment = t,fdr = 0.05,DifferentialMethod = "acde")
+  acde <- difExprs(expdata = norm,treatment = t,fdr = 0.05,DifferentialMethod = "acde")
   
   checkTrue(dim(acde)[1] >= 1)
   checkTrue(is.data.frame(acde))
@@ -114,9 +114,9 @@ test_difExprs <- function(){
   ## Errors
   
   checkException(difExprs(),silent = TRUE)
-  checkException(difExprs(eset = norm,treatment = t,fdr = 3,DifferentialMethod = "sam"),silent = TRUE)
-  checkException(difExprs(eset = norm[1:10,],treatment = t,fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
-  checkException(difExprs(eset = norm,treatment = c(0,1),fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
+  checkException(difExprs(expdata = norm,treatment = t,fdr = 3,DifferentialMethod = "sam"),silent = TRUE)
+  checkException(difExprs(expdata = norm[1:10,],treatment = t,fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
+  checkException(difExprs(expdata = norm,treatment = c(0,1),fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
 }
 
 ## test for getInfo function ##
@@ -126,14 +126,14 @@ test_getInfo <- function(){
   ## Errors
   
   checkException(getInfo(),silent = TRUE)
-  checkException(getInfo(GPL = "GPL2025",dir = tempdir()),silent = TRUE)
+  checkException(getInfo(GPL = "GPL2025",directory = tempdir()),silent = TRUE)
 }
 
 ## test geneSymbol function ##
 
 test_geneSymbol <- function(){
   
-  gene_table <- geneSymbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
+  gene_table <- geneSymbol(GPL = "GPL2025",directory = system.file("extdata",package = "coexnet"))
   gene_na <- na.omit(gene_table)
   final_table <- gene_na[gene_na$ID != "",]
   
@@ -147,15 +147,15 @@ test_geneSymbol <- function(){
   ## Errors
   
   checkException(geneSymbol(),silent = TRUE)
-  checkException(geneSymbol(d = system.file("extdata",package = "coexnet")),silent = TRUE)
-  checkException(geneSymbol(GPL = "GPL2025.soft",d = system.file("extdata",package = "coexnet")),silent = TRUE)
+  checkException(geneSymbol(directory = system.file("extdata",package = "coexnet")),silent = TRUE)
+  checkException(geneSymbol(GPL = "GPL2025.soft",directory = system.file("extdata",package = "coexnet")),silent = TRUE)
 }
 
 ## test for getAffy function
 
 test_getAffy <- function(){
   
-  affy <- getAffy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+  affy <- getAffy(GSE = "GSE1234",directory = system.file("extdata",package = "coexnet"))
   
   ## Correct cases
   
@@ -169,8 +169,8 @@ test_getAffy <- function(){
   ## Errors
   
   checkException(getAffy(),silent = TRUE)
-  checkException(getAffy(dir = system.file("extdata",package = "coexnet")),silent = TRUE)
-  checkException(getAffy(GSE = "1234",dir = system.file("extdata",package = "coexnet")),silent = TRUE)
+  checkException(getAffy(directory = system.file("extdata",package = "coexnet")),silent = TRUE)
+  checkException(getAffy(GSE = "1234",directory = system.file("extdata",package = "coexnet")),silent = TRUE)
 }
 
 ## test for CCP function
@@ -221,7 +221,7 @@ test_sharedComponents <- function(){
 
 test_ppiNet <- function(){
   
-  ppi <- ppiNet(input = system.file("extdata","ppi.txt",package = "coexnet"))
+  ppi <- ppiNet(file = system.file("extdata","ppi.txt",package = "coexnet"))
   
   # Correct cases
   
@@ -232,5 +232,5 @@ test_ppiNet <- function(){
   # Errors
   
   checkException(ppiNet(),silent = TRUE)
-  checkException(ppiNet(input = c("SNCA","UBC"),species_ID = 0),silent = TRUE)
+  checkException(ppiNet(file = c("SNCA","UBC"),species_ID = 0),silent = TRUE)
 }

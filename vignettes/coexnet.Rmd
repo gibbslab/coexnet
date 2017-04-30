@@ -34,7 +34,7 @@ library(coexnet)
 # Downloading the microarray raw data from GSE8216 study 
 # The accession number of the microarray chip related with this study is GPL2025
 
-getInfo(GSE = "GSE8216", GPL = "GPL2025",dir = ".")
+getInfo(GSE = "GSE8216", GPL = "GPL2025",directory = ".")
 
 # Shows the actual path file with the folder, its GSE number and the .soft file
 
@@ -59,7 +59,7 @@ This function searches in your current or designated path file the folder with t
 # Reading some GSM samples from GSE4773 study, the folder with the 
 # GSM files are called GSE1234.
 
-affy <- getAffy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+affy <- getAffy(GSE = "GSE1234",directory = system.file("extdata",package = "coexnet"))
 affy
 
 ```
@@ -88,7 +88,7 @@ This function searches, in the current or the designated path file, the *.soft* 
 
 # Create the table with the match between probesets and IDs.
 
-gene_table <- geneSymbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
+gene_table <- geneSymbol(GPL = "GPL2025",directory = system.file("extdata",package = "coexnet"))
 
 head(gene_table)
 
@@ -129,8 +129,9 @@ Additionally, this method considers two ways to calculate the values in the proc
 
 # Loading gata
 
-affy <- getAffy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
-affy@cdfName <- "HG-U133_Plus_2"
+if (require(affydata)) {
+  data(Dilution)
+}
  
 # Loading table with probeset and gene/ID information
  
@@ -138,7 +139,7 @@ data("info")
  
 # Calculating the expression matrix with rma
  
-rma <- exprMat(affy = affy,genes = info,NormalizeMethod = "rma",
+rma <- exprMat(affy = Dilution,genes = info,NormalizeMethod = "rma",
 SummaryMethod = "median",BatchCorrect = FALSE)
 head(rma)
 ```
@@ -233,7 +234,7 @@ norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
  
 # Running the function using the two approaches
  
-sam <- difExprs(eset = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
+sam <- difExprs(expdata = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
 head(sam)
 ```
 
@@ -258,7 +259,7 @@ data <- read.table(pathfile,stringsAsFactors = FALSE)
 
 # Finding threshold value
 
-cor_pearson <- findThreshold(difexp = data,method = "correlation")
+cor_pearson <- findThreshold(expmat = data,method = "correlation")
 cor_pearson
 
 ```
@@ -290,7 +291,7 @@ data <- read.table(pathfile,stringsAsFactors = FALSE)
  
 # Building the network
  
-cor_pearson <- createNet(difexp = data,threshold = 0.7,method = "correlation")
+cor_pearson <- createNet(expmat = data,threshold = 0.7,method = "correlation")
 plot(cor_pearson)
 ```
 
@@ -313,12 +314,14 @@ ID <- c("FN1","HAMP","ILK","MIF","NME1","PROCR","RAC1","RBBP7",
  
 # Creating the PPI network
  
-ppi <- ppiNet(input = ID,evidence = c("neighborhood","coexpression","experiments"))
+ppi <- ppiNet(molecularIDs = ID,evidence = c("neighborhood","coexpression","experiments"))
 plot(ppi)
+```
 
+```{r}
 # Creating a PPI network from external data
 
-ppi <- ppiNet(input = system.file("extdata","ppi.txt",package = "coexnet"))
+ppi <- ppiNet(file = system.file("extdata","ppi.txt",package = "coexnet"))
 plot(ppi)
 ```
 

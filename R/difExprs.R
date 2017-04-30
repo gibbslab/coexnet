@@ -12,6 +12,7 @@
 #' @param fdr The expected FDR value.
 #' @param DifferentialMethod The method to calculate the differential expressed
 #' genes, can be "sam" or "acde"
+#' @param plotting The option to show the result in a plot. By default FALSE.
 #' @return A data.frame with the expression matrix to the expressed diferential 
 #' genes only.
 #' @seealso \code{\link{exprMat}} to obtain the expression matrix.

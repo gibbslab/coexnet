@@ -7,6 +7,7 @@
 #' @description Finds the threshold value to establish the cutoff in the process to define the edges in the co-expression network final from two steps. In the first one, obtains the subtraction from clustering coefficient values of the real and random networks created from the possible threshold values in the correlation matrix. In the second one, a Kolmogorov-Smirnov test is made to evaluate the degree distribution respect normality.
 #' @param expmat A whole expression matrix or the expression matrix to differentially expressed genes, it may be stored in a SummarizedExperiment object.
 #' @param method The method name to create the correlation matrix, this can be "correlation" to obtain the Pearson Correlation Coefficient. On the other hand, can be "mutual information" to obtain the correlation values from an entropy-based method.
+#' @param plotting The option to show the result in a plot. By default FALSE.
 #' @return The best threshold value found using the two criteria and a plot showing the result.
 #' @seealso \code{\link{difExprs}} to find the differentially expressed genes matrix.
 #' @references Elo, L. L., Jarvenpaa, H., Oresic, M., Lahesmaa, R., & Aittokallio, T. (2007). Systematic construction of gene coexpression networks with applications to human T helper cell differentiation process. Bioinformatics, 23(16), 2096-2103.

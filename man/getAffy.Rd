@@ -9,7 +9,7 @@ getAffy(GSE, directory = ".")
 \arguments{
 \item{GSE}{The name of the file with the compressed samples data.}
 
-\item{dir}{The path file where the samples and the "filelist" file are to create the AffyBatch object, by default is the current directory.}
+\item{directory}{The path file where the samples and the "filelist" file are to create the AffyBatch object, by default is the current directory.}
 }
 \value{
 An AffyBatch Object.

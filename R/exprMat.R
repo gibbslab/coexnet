@@ -43,7 +43,7 @@
 #' 
 #' ## VSN
 #' 
-#' vsn <- exprMat(affy = affy,genes = info,NormalizeMethod = "vsn",
+#' vsn <- exprMat(affy = Dilution,genes = info,NormalizeMethod = "vsn",
 #' SummaryMethod = "median",BatchCorrect = FALSE)
 #' head(vsn)
 #' 

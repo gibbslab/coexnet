@@ -25,7 +25,7 @@
 #' mut_inf <- createNet(expmat = data,threshold = 0.5,method = "mutual information")
 #' mut_inf
 
-createNet <- function(expmat,method, threshold){
+createNet <- function(expmat,method,threshold){
   
   # Identifing the SummarizedExperiment object
   

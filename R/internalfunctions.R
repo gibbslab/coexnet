@@ -3,7 +3,7 @@
 #' @importFrom siggenes sam plot
 #' @importFrom acde stp
 #' @importFrom SummarizedExperiment assay
-#' @importFrom igraph graph.intersection as_data_frame graph_from_data_frame degree delete.vertices diameter graph.adjacency transitivity fit_power_law
+#' @importFrom igraph graph.intersection as_data_frame graph_from_data_frame degree delete.vertices diameter graph.adjacency transitivity fit_power_law read.graph
 #' @importFrom minet build.mim
 #' @importFrom limma removeBatchEffect as.matrix.ExpressionSet normalizeVSN
 #' @importFrom Biobase protocolData

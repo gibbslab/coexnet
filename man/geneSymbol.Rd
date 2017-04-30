@@ -9,7 +9,7 @@ geneSymbol(GPL, directory = ".")
 \arguments{
 \item{GPL}{The GPL ID.}
 
-\item{d}{The path file where the .soft file is. By default is the current path file.}
+\item{directory}{The path file where the .soft file is. By default is the current path file.}
 }
 \value{
 A data.frame with two columns, in the first one, the probesets and in the second one, the corresponding gene to each probeset.
@@ -21,7 +21,7 @@ From the information in the .soft file, creates a data.frame with two columns. I
 
 # Creating the table with probesets and genes/IDs
 
-gene_table <- geneSymbol(GPL = "GPL2025",d = system.file("extdata",package = "coexnet"))
+gene_table <- geneSymbol(GPL = "GPL2025",directory = system.file("extdata",package = "coexnet"))
 
 # Cleaning the NA information
 
