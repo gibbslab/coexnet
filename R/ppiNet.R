@@ -81,10 +81,9 @@ ppiNet <- function(molecularIDs = NULL,file = NULL,species_ID = 9606,evidence = 
       graph_ppi$interactions.to[n] <- mapped[
         graph_ppi$interactions.to[n] == mapped$STRING_id,][1]
     }
+    
     # Is necessary transform the data frame into matrix
-    edge_list <- matrix()
-    # Filling up the matrix with the interactions
-    edge_list <- cbind(as.vector(graph_ppi[,1],mode = "character"))
+    eedge_list <- as.matrix(as.vector(graph_ppi[,1],mode = "character"))
     edge_list <- cbind(edge_list,as.vector(graph_ppi[,2],mode = "character"))
     # Create a network based on the interactions in the matrix
     final_graph <- graph.edgelist(edge_list,directed = FALSE)
