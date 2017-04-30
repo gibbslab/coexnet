@@ -33,18 +33,15 @@ ppiNet <- function(molecularIDs = NULL,file = NULL,species_ID = 9606,evidence = 
   
   # Detecting the input type
   if(is.null(file) && molecularIDs > 0){
-    # Replace the name of input
-    genes <- input
     # Creating the vector to store the unique identifiers
-    for_gen <- vector()
-    # To each ID in the input vector 
-    for(i in genes){
-      # Split each ID with two or more different identifiers
-      for(j in strsplit(i,"-")){
-        # Add each of the separated ID
-        for_gen <- append(for_gen,j)
+    for_gen <- sapply(molecularIDs,function(i){
+      if(grepl("-",i) > 0){
+        return(unlist(strsplit(i,"-")))
+      }else{
+        return(i)
       }
-    }
+    })
+    
     # Remove duplicated identifiers
     for_gen <- unique(sort(for_gen))
     # Transform the vector into data frame 
@@ -73,14 +70,7 @@ ppiNet <- function(molecularIDs = NULL,file = NULL,species_ID = 9606,evidence = 
       }
     }
     # This data frame will be fill up with interactions with any evidence value greater than zero
-    graph_ppi <- data.frame()
-    # This loop fill up the "graph_ppi" data frame
-    for(i in seq_len(nrow(graph_relations))){
-      if(any(graph_relations[i,3:ncol(graph_relations)] > 0)){
-        graph_ppi <- rbind.data.frame(graph_ppi,graph_relations[i,],
-                                      stringsAsFactors = FALSE)
-      }
-    }
+    graph_ppi <- graph_relations[rowSums(graph_relations[,seq(3,ncol(graph_relations))]) > 0,]
     # This loop replace the STRING IDs with the original identifiers in the first column 
     for(n in seq_len(nrow(graph_ppi))){
       graph_ppi$interactions.from[n] <- mapped[
