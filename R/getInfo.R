@@ -13,18 +13,16 @@
 #' \dontrun{
 #' # Extract data from GEO DataSets (Takes time)
 #' 
-#' getInfo(GSE = "GSE8216", GPL = "GPL2025",dir = tempdir())
+#' getInfo(GSE = "GSE8216", GPL = "GPL2025",directory = tempdir())
 #' }
 
 getInfo <- function(GSE,GPL,directory="."){
   
-  # Move to the specified directory
-  
-  setwd(dir)
-  
   # Download the raw data from GEO DataSets database
   
-  sapply(as.vector(t(GSE)), getGEOSuppFiles)
+  sapply(as.vector(t(GSE)), function(n){
+    getGEOSuppFiles(n,baseDir = directory)
+  })
   
   # Obtaining the name of the compressed data
   
