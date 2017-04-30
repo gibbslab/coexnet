@@ -91,13 +91,13 @@ test_difExprs <- function(){
   
   ## Correct cases
   
-  t <- c(rep(0,10),rep(1,10))
+  treat <- c(rep(0,10),rep(1,10))
   
   norm <- read.table(system.file("extdata","expression_example.txt",package = "coexnet"))
   
   # sam
   
-  sam <- difExprs(expdata = norm,treatment = t,fdr = 0.05,DifferentialMethod = "sam")
+  sam <- difExprs(expdata = norm,treatment = treat,fdr = 0.05,DifferentialMethod = "sam")
   
   checkTrue(dim(sam)[1] >= 1)
   checkTrue(is.data.frame(sam))
@@ -105,7 +105,7 @@ test_difExprs <- function(){
   
   # acde
   
-  acde <- difExprs(expdata = norm,treatment = t,fdr = 0.05,DifferentialMethod = "acde")
+  acde <- difExprs(expdata = norm,treatment = treat,fdr = 0.05,DifferentialMethod = "acde")
   
   checkTrue(dim(acde)[1] >= 1)
   checkTrue(is.data.frame(acde))
@@ -114,8 +114,8 @@ test_difExprs <- function(){
   ## Errors
   
   checkException(difExprs(),silent = TRUE)
-  checkException(difExprs(expdata = norm,treatment = t,fdr = 3,DifferentialMethod = "sam"),silent = TRUE)
-  checkException(difExprs(expdata = norm[1:10,],treatment = t,fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
+  checkException(difExprs(expdata = norm,treatment = treat,fdr = 3,DifferentialMethod = "sam"),silent = TRUE)
+  checkException(difExprs(expdata = norm[1:10,],treatment = treat,fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
   checkException(difExprs(expdata = norm,treatment = c(0,1),fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
 }
 

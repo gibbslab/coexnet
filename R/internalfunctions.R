@@ -1,6 +1,6 @@
 #' @importFrom GEOquery getGEO Table getGEOSuppFiles getGEOfile
 #' @importFrom affy ReadAffy expresso rma computeExprSet
-#' @importFrom siggenes sam plot
+#' @importFrom siggenes sam plot summary
 #' @importFrom acde stp
 #' @importFrom SummarizedExperiment assay makeSummarizedExperimentFromExpressionSet
 #' @importFrom igraph graph.intersection V graph.edgelist as_data_frame graph_from_data_frame degree delete.vertices diameter graph.adjacency transitivity fit_power_law read.graph
