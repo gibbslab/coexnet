@@ -4,7 +4,7 @@
 \alias{getAffy}
 \title{Charge and create an AffyBatch object}
 \usage{
-getAffy(GSE, dir = ".")
+getAffy(GSE, directory = ".")
 }
 \arguments{
 \item{GSE}{The name of the file with the compressed samples data.}
@@ -25,7 +25,7 @@ and create the AffyBatch object finally.
 
 # Data without CDF environment information
 
-affy <- getAffy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
+affy <- getAffy(GSE = "GSE1234",directory = system.file("extdata",package = "coexnet"))
 }
 \seealso{
 \code{\link{getInfo}} to download expression data from GEO DataSets included the "filelist" file.

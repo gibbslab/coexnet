@@ -4,18 +4,18 @@
 \alias{ppiNet}
 \title{Create a protein-protein interaction network}
 \usage{
-ppiNet(input, species_ID = 9606, evidence = c("neighborhood",
-  "neighborhood_transferred", "fusion", "cooccurence", "homology",
-  "coexpression", "coexpression_transferred", "experiments",
-  "experiments_transferred", "database", "database_transferred", "textmining",
-  "textmining_transferred", "combined_score"))
+ppiNet(molecularIDs = NULL, file = NULL, species_ID = 9606,
+  evidence = c("neighborhood", "neighborhood_transferred", "fusion",
+  "cooccurence", "homology", "coexpression", "coexpression_transferred",
+  "experiments", "experiments_transferred", "database", "database_transferred",
+  "textmining", "textmining_transferred", "combined_score"))
 }
 \arguments{
-\item{input}{This parameter may be two types. A vector with the molecular identifiers, they could be two IDs united for the "-" character or a path file with the relations between proteins as edge list to create the network.}
-
 \item{species_ID}{The numerical ID from STRING database to the species of interest, by defect, is "9006" corresponding to human species.}
 
 \item{evidence}{A vector with the evidence to support the interactions between the proteins, by default is all the evidence given in STRING database.}
+
+\item{input}{This parameter may be two types. A vector with the molecular identifiers, they could be two IDs united for the "-" character or a path file with the relations between proteins as edge list to create the network.}
 }
 \value{
 An igraph object as the protein-protein interaction network where the nodes are the molecular identifiers given in the input.
@@ -32,14 +32,14 @@ ID <- c("FN1","HAMP","ILK","MIF","NME1","PROCR","RAC1","RBBP7",
 
 # Creating the PPI network
 
-ppi <- ppiNet(input = ID,evidence = c("neighborhood","coexpression","experiments"))
-plot(ppi)
+ppi <- ppiNet(molecularIDs = ID,evidence = c("neighborhood","coexpression","experiments"))
+ppi
 }
 
 # Creating a PPI network from external data
 
-ppi <- ppiNet(input = system.file("extdata","ppi.txt",package = "coexnet"))
-plot(ppi)
+ppi <- ppiNet(file = system.file("extdata","ppi.txt",package = "coexnet"))
+ppi
 }
 \author{
 Juan David Henao <judhenaosa@unal.edu.co>

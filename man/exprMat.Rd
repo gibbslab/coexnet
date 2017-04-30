@@ -33,12 +33,13 @@ probeset to gene considering the option to remove the batch effect in the long m
 
 # Loading gata
 
-affy <- getAffy(GSE = "GSE1234",dir = system.file("extdata",package = "coexnet"))
-affy@cdfName <- "HG-U133_Plus_2"
+if (require(affydata)) {
+ data(Dilution)
+}
 
 # Loading table with probeset and gene/ID information
 
-data("info")
+data(info)
 
 # Calculating the expression matrix
 

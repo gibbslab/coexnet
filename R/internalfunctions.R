@@ -1,18 +1,18 @@
 #' @importFrom GEOquery getGEO Table getGEOSuppFiles getGEOfile
 #' @importFrom affy ReadAffy expresso rma computeExprSet
-#' @import siggenes
+#' @importFrom siggenes sam plot
 #' @importFrom acde stp
-#' @import SummarizedExperiment
-#' @import igraph
-#' @import STRINGdb
+#' @importFrom SummarizedExperiment assay
+#' @importFrom igraph graph.intersection as_data_frame graph_from_data_frame degree delete.vertices diameter graph.adjacency transitivity fit_power_law
 #' @importFrom minet build.mim
 #' @importFrom limma removeBatchEffect as.matrix.ExpressionSet normalizeVSN
-#' @import Biobase
+#' @importFrom Biobase protocolData
 #' @importFrom graphics abline text
 #' @importFrom stats cor median na.omit sd
 #' @importFrom utils read.table untar
-#' @import vsn
+#' @importFrom vsn vsn2
 #' @import rmarkdown
+#' @import STRINGdb
 
 # internalfunctions
 # Juan David Henao Sanchez

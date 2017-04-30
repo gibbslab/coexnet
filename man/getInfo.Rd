@@ -4,7 +4,7 @@
 \alias{getInfo}
 \title{Download raw expression data from GEO DataSet}
 \usage{
-getInfo(GSE, GPL, dir = ".")
+getInfo(GSE, GPL, directory = ".")
 }
 \arguments{
 \item{GSE}{The list of GSE ID.}
@@ -23,7 +23,7 @@ Using a GSE ID list, from the GEO DataSets FTP, it searches and downloads each r
 \dontrun{
 # Extract data from GEO DataSets (Takes time)
 
-getInfo(GSE = "GSE8216", GPL = "GPL2025",dir = tempdir())
+getInfo(GSE = "GSE8216", GPL = "GPL2025",directory = tempdir())
 }
 }
 \seealso{
