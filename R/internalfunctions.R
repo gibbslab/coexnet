@@ -2,11 +2,11 @@
 #' @importFrom affy ReadAffy expresso rma computeExprSet
 #' @importFrom siggenes sam plot
 #' @importFrom acde stp
-#' @importFrom SummarizedExperiment assay
-#' @importFrom igraph graph.intersection as_data_frame graph_from_data_frame degree delete.vertices diameter graph.adjacency transitivity fit_power_law read.graph
+#' @importFrom SummarizedExperiment assay makeSummarizedExperimentFromExpressionSet
+#' @importFrom igraph graph.intersection V graph.edgelist as_data_frame graph_from_data_frame degree delete.vertices diameter graph.adjacency transitivity fit_power_law read.graph
 #' @importFrom minet build.mim
 #' @importFrom limma removeBatchEffect as.matrix.ExpressionSet normalizeVSN
-#' @importFrom Biobase protocolData
+#' @importFrom Biobase protocolData ExpressionSet
 #' @importFrom graphics abline text
 #' @importFrom stats cor median na.omit sd
 #' @importFrom utils read.table untar
