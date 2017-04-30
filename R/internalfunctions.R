@@ -6,11 +6,11 @@
 #' @importFrom igraph graph.intersection V graph.edgelist as_data_frame graph_from_data_frame degree delete.vertices diameter graph.adjacency transitivity fit_power_law read.graph
 #' @importFrom minet build.mim
 #' @importFrom limma removeBatchEffect as.matrix.ExpressionSet normalizeVSN
-#' @importFrom Biobase protocolData ExpressionSet exprs
 #' @importFrom graphics abline text
 #' @importFrom stats cor median na.omit sd
 #' @importFrom utils read.table untar
 #' @importFrom vsn vsn2
+#' @import Biobase
 #' @import rmarkdown
 #' @import STRINGdb
 
