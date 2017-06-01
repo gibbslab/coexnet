@@ -70,7 +70,7 @@ CCP <- function(...,by = NULL){
   
   if(diameter(finalccp) == 0){
     # Showing a messege
-    stop("Do not exit CCP between networks")
+    stop("No Common Connection Patterns found between networks")
   }else{
     # Return only the nodes in the intersection network with at least one edge
     return(finalccp)

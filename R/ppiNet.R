@@ -92,7 +92,7 @@ ppiNet <- function(molecularIDs = NULL,file = NULL,species_ID = 9606,evidence = 
     # Read and create the igraph object
     final_graph <- read.graph(file = file,format = "ncol")
   }else{
-    stop("A valid input was not found")
+    stop("A valid input was not found: Please, be sure to use an edge list or a vector of IDs as input")
   }
   # Return the PPI network
   return(final_graph)
