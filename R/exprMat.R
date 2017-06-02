@@ -137,7 +137,7 @@ exprMat <- function(affy,genes,NormalizeMethod,SummaryMethod,BatchCorrect = TRUE
       
       # List to vector
       
-      batch.dates <- vapply(seq_len(length(strdates)),function(i){strdates[[i]][1]},1)
+      batch.dates <- vapply(seq_len(length(strdates)),function(i){strdates[[i]][1]},'character')
       
       # Obtaining the unique dates
       
