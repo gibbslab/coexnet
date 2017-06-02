@@ -112,27 +112,33 @@ findThreshold <- function(expData, method,plotting=FALSE){
   
   # Finding the subtraction between the clustering coefficient of random network and the real network
   
-  thr <- unlist(t(sapply(seq_len((length(pcv)-1)), function(i){
+  thr <- na.omit(vapply(seq_len((length(pcv)-1)), function(i){
     if(Cis[i]-C0s[i] > Cis[i+1]-C0s[i+1]){
       return(pcv[i])
+    }else{
+      return(NA)
     }
-  })))
+  },1))
   
-  pass <- unlist(t(sapply(seq_len((length(pcv)-1)), function(i){
+  pass <- na.omit(vapply(seq_len((length(pcv)-1)), function(i){
     if(Cis[i]-C0s[i] > Cis[i+1]-C0s[i+1]){
       return(Cis[i]*100-C0s[i]*100)
+    }else{
+      return(NA)
     }
-  })))
+  },1))
   
   # Delete the minimum values of the difference between the clustering coefficients
   
-  thre <- unlist(t(sapply(seq_len(length(thr)),function(j){
+  thre <- na.omit(vapply(seq_len(length(thr)),function(j){
     if(pass[j] > min(pass)){
       return(thr[j])
+    }else{
+      return(NA)
     }
-  })))
+  },1))
   
-  mtr <- unlist(t(sapply(seq_len(length(thre)),function(n){
+  mtr <- na.omit(vapply(seq_len(length(thre)),function(n){
     ad <- matrix(0,ncol = nrow(simil),nrow = nrow(simil))
     
     # Transforming into adjacency matrix
@@ -162,22 +168,26 @@ findThreshold <- function(expData, method,plotting=FALSE){
     
     if(pvalue > 0.05){
       return(thre[n])
+    }else{
+      return(NA)
     }
-  })))
+  },1))
   
   # Delete the minimum values in the subtraction of clustering coefficient values
   
   Cls <- round(Cis-C0s,digits = 3)
   
-  mtr_p <- sapply(mtr,function(n){
+  mtr_p <- vapply(mtr,function(n){
     return(Cls[n*100])
-  })
+  },1)
   
-  mtr_f <- unlist(t(sapply(seq_len(length(mtr_p)),function(n){
+  mtr_f <- na.omit(vapply(seq_len(length(mtr_p)),function(n){
     if(mtr_p[n] > min(mtr_p)){
       return(mtr[n])
+    }else{
+      return(NA)
     }
-  })))
+  },1))
   
   if(plotting == TRUE){
     # Create a plot comparing the clustering coefficients 
