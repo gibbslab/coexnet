@@ -5,7 +5,7 @@
 #' @title Calculating the coefficient of variation for expression matrix.
 #' @description This function calculates the mean and the coefficient of variation to each row 
 #' (genes or probesets) in an expression matrix in two ways: i) in the whole matrix ii) for the specific phenotype (case or control).
-#' @param data The whole normalized expression matrix, rows: genes or probeset, columns: samples, it may be stored in a SummarizedExperiment object.
+#' @param expData The whole normalized expression matrix, rows: genes or probeset, columns: samples, it may be stored in a SummarizedExperiment object.
 #' @param complete Boolean to define if the function uses the whole expression matrix, by default TRUE.
 #' @param treatment A numeric vector with 0s and 1s for each sample in the expression matrix, the 0 expresses the control samples and 1 expresses the case samples, by default is NULL.
 #' @param type It can be "case" to calculate the mean and the coefficient of variation for the case samples or, otherwise, "control" to obtain these two values for the control samples.
@@ -37,25 +37,25 @@
 #' 
 #' # For the case samples
 #' 
-#' case <- cofVar(data = norm,complete = FALSE,treatment = treat,type = "case")
+#' case <- cofVar(expData = norm,complete = FALSE,treatment = treat,type = "case")
 #' head(case)
 
 
-cofVar <- function(data,complete=TRUE,treatment=NULL,type=NULL){
+cofVar <- function(expData,complete=TRUE,treatment=NULL,type=NULL){
   
   # Identifing the SummarizedExperiment object
   
-  if(is(data,"SummarizedExperiment")){
-    data <- assay(data)
+  if(is(expData,"SummarizedExperiment")){
+    expData <- assay(expData)
   }
   
   # Replacing the sample name for case/control ID
   
   if (complete == FALSE) {
     
-    data <- as.data.frame(data)
+    expData <- as.data.frame(expData)
     
-    names(data) <- treatment
+    names(expData) <- treatment
     
     if(type == "control"){
       
@@ -64,9 +64,9 @@ cofVar <- function(data,complete=TRUE,treatment=NULL,type=NULL){
       
       type <- "1"
     }
-    tdata <- data[names(data) == type]
+    tdata <- expData[names(expData) == type]
   }else{
-    tdata = as.data.frame(data)
+    tdata = as.data.frame(expData)
   }
   
   # Obtaining the mean of the expression values

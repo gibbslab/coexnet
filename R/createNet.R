@@ -5,7 +5,7 @@
 #' @author Liliana Lopez Kleine <llopezk@unal.edu.co>
 #' @title Creating a co-expression network from expression matrix.
 #' @description From an expression matrix, this function creates a co-expression network like a graph object using a threshold value and one similarity function.
-#' @param expmat A whole expression matrix or differentially expressed genes matrix, it may be stored in a SummarizedExperiment object.
+#' @param expData A whole expression matrix or differentially expressed genes matrix, it may be stored in a SummarizedExperiment object.
 #' @param method A function to calculate the similarity matrix between genes. It can be "correlation" to use Pearson function or "mutual information" to use a based on entropy information function.
 #' @param threshold A value between 0 and 1 to filter the similarity matrix and create the co-expression network.
 #' @return An undirected co-expression network as igraph object.
@@ -19,23 +19,23 @@
 #' 
 #' # Building the network
 #' 
-#' cor_pearson <- createNet(expmat = data,threshold = 0.7,method = "correlation")
+#' cor_pearson <- createNet(expData = data,threshold = 0.7,method = "correlation")
 #' cor_pearson
 #' 
-#' mut_inf <- createNet(expmat = data,threshold = 0.5,method = "mutual information")
+#' mut_inf <- createNet(expData = data,threshold = 0.5,method = "mutual information")
 #' mut_inf
 
-createNet <- function(expmat,method,threshold){
+createNet <- function(expData,method,threshold){
   
   # Identifing the SummarizedExperiment object
   
-  if(is(expmat,"SummarizedExperiment")){
-    expmat <- assay(expmat)
+  if(is(expData,"SummarizedExperiment")){
+    expData <- assay(expData)
   }
   
   # Obtaining the similarity values
   
-  simil <- .correlation.matrix(expmat,method)
+  simil <- .correlation.matrix(expData,method)
   
   # Create an empty matrix
   

@@ -6,7 +6,7 @@
 #' @description Using the expression matrix calculate the differential expressed
 #' genes to two class analysis and fixing an expected FDR value. The methods
 #' are SAM and ACDE.
-#' @param expdata A matrix with the expression matrix, it may be stored in a SummarizedExperiment object.
+#' @param expData A matrix with the expression matrix, it may be stored in a SummarizedExperiment object.
 #' @param treatment A vector with the ientifiers of the classes, 0 to control
 #' and 1 to case.
 #' @param fdr The expected FDR value.
@@ -39,22 +39,22 @@
 #' 
 #' ## Running the function using the two approaches
 #' 
-#' sam <- difExprs(expdata = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "sam")
-#' acde <- difExprs(expdata = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "acde")
+#' sam <- difExprs(expData = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "sam")
+#' acde <- difExprs(expData = norm,treatment = treat,fdr = 0.2,DifferentialMethod = "acde")
 
-difExprs <- function(expdata,treatment,fdr,DifferentialMethod,plotting=FALSE){
+difExprs <- function(expData,treatment,fdr,DifferentialMethod,plotting=FALSE){
   
   # Identifing the SummarizedExperiment object
   
-  if(is(expdata,"SummarizedExperiment")){
-    expdata <- assay(expdata)
+  if(is(expData,"SummarizedExperiment")){
+    expData <- assay(expData)
   }
   
   if(DifferentialMethod == "sam"){
     
     # Differential analysis using sam method
     
-    samr <- sam(data = expdata,cl = treatment,B=100,rand=100)
+    samr <- sam(data = expData,cl = treatment,B=100,rand=100)
     
     # Obtaining the fdr to different thresholds
     
@@ -88,7 +88,7 @@ difExprs <- function(expdata,treatment,fdr,DifferentialMethod,plotting=FALSE){
     
     # Filter the expression matrix with the genes differentially expressed
     
-    genes <- expdata[dife,]
+    genes <- expData[dife,]
     
     # Showing the achieved fdr
     
@@ -102,7 +102,7 @@ difExprs <- function(expdata,treatment,fdr,DifferentialMethod,plotting=FALSE){
     
     # Differential analysis using acde method
     
-    acde <- stp(expdata,treatment,R = 100, PER = TRUE,alpha = fdr)
+    acde <- stp(expData,treatment,R = 100, PER = TRUE,alpha = fdr)
     
     # Showing the result of differential analysis
     
@@ -124,7 +124,7 @@ difExprs <- function(expdata,treatment,fdr,DifferentialMethod,plotting=FALSE){
     
     # Filter the expression matrix with the genes differentially expressed
     
-    genes <- expdata[diff$acde.gNames,]
+    genes <- expData[diff$acde.gNames,]
   }
   
   # Return the matrix of the genes differentially expressed

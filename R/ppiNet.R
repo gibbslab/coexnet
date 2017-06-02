@@ -27,7 +27,7 @@
 #' ppi <- ppiNet(file = system.file("extdata","ppi.txt",package = "coexnet"))
 #' ppi
 
-ppiNet <- function(molecularIDs = NULL,file = NULL,species_ID = 9606,evidence = c("neighborhood","neighborhood_transferred",
+ppiNet <- function(molecularIDs = NULL,file = NULL,speciesID = 9606,evidence = c("neighborhood","neighborhood_transferred",
             "fusion","cooccurence","homology","coexpression","coexpression_transferred",
             "experiments","experiments_transferred","database","database_transferred","textmining",
             "textmining_transferred","combined_score")){
@@ -50,7 +50,7 @@ ppiNet <- function(molecularIDs = NULL,file = NULL,species_ID = 9606,evidence = 
     # The column name must be gene
     names(new_genes) <- "gene"
     # Loading the STRING database
-    database <- STRINGdb$new(version="10",species=species_ID,score_threshold=0,input_directory="")
+    database <- STRINGdb$new(version="10",species=speciesID,score_threshold=0,input_directory="")
     # Obtaining the STRING ID to each identifier
     mapped <- database$map(new_genes,"gene",removeUnmappedRows = TRUE)
     # Removing the STRING ID duplicated

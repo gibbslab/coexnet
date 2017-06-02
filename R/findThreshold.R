@@ -5,7 +5,7 @@
 #' @author Liliana Lopez Kleine <llopezk@unal.edu.co>
 #' @title Find the threshold value to create a co-expression network
 #' @description Finds the threshold value to establish the cutoff in the process to define the edges in the co-expression network final from two steps. In the first one, obtains the subtraction from clustering coefficient values of the real and random networks created from the possible threshold values in the correlation matrix. In the second one, a Kolmogorov-Smirnov test is made to evaluate the degree distribution respect normality.
-#' @param expmat A whole expression matrix or the expression matrix to differentially expressed genes, it may be stored in a SummarizedExperiment object.
+#' @param expData A whole expression matrix or the expression matrix to differentially expressed genes, it may be stored in a SummarizedExperiment object.
 #' @param method The method name to create the correlation matrix, this can be "correlation" to obtain the Pearson Correlation Coefficient. On the other hand, can be "mutual information" to obtain the correlation values from an entropy-based method.
 #' @param plotting The option to show the result in a plot. By default FALSE.
 #' @return The best threshold value found using the two criteria and a plot showing the result.
@@ -21,20 +21,20 @@
 #' 
 #' # Finding threshold value
 #' 
-#' cor_pearson <- findThreshold(expmat = data,method = "correlation")
+#' cor_pearson <- findThreshold(expData = data,method = "correlation")
 #' cor_pearson
  
-findThreshold <- function(expmat, method,plotting=FALSE){
+findThreshold <- function(expData, method,plotting=FALSE){
   
   # Identifing the SummarizedExperiment object
   
-  if(is(expmat,"SummarizedExperiment")){
-    expmat <- assay(expmat)
+  if(is(expData,"SummarizedExperiment")){
+    expData <- assay(expData)
   }
   
   # Obtaining the similarity values
   
-  simil <- .correlation.matrix(expmat,method)
+  simil <- .correlation.matrix(expData,method)
   
   # Create a sequence of threshold values
   
