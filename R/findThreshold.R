@@ -40,7 +40,7 @@ findThreshold <- function(expData, method,plotting=FALSE){
   
   pcv <- seq(0.01,0.99,by = 0.01)
   
-  Cis <- sapply(pcv, function(n){
+  Cis <- vapply(pcv, function(n){
     
     # Create an empty matrix
     
@@ -70,9 +70,9 @@ findThreshold <- function(expData, method,plotting=FALSE){
     if(is.nan(Ci)){Ci <- 0}
     
     return(Ci)
-  })
+  },1)
   
-  C0s <- sapply(pcv, function(n){
+  C0s <- vapply(pcv, function(n){
     # Create an empty matrix
     
     ady <- matrix(0,ncol = ncol(simil), nrow = nrow(simil))
@@ -107,7 +107,7 @@ findThreshold <- function(expData, method,plotting=FALSE){
     if(is.nan(C0)){C0 <- 0}
     
     return(C0)
-  })
+  },1)
   
   
   # Finding the subtraction between the clustering coefficient of random network and the real network

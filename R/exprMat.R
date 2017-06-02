@@ -23,7 +23,7 @@
 #' @examples 
 #' \dontrun{
 #' 
-#' # Loading gata
+#' # Loading data
 #' 
 #' if (require(affydata)) {
 #'  data(Dilution)

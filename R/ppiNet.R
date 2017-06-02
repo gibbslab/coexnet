@@ -20,7 +20,7 @@
 #' 
 #' ppi <- ppiNet(molecularIDs = ID,evidence = c("neighborhood","coexpression","experiments"))
 #' ppi
-#' }
+ #' }
 #' 
 #' # Creating a PPI network from external data
 #' 
