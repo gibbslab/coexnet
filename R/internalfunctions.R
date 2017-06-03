@@ -39,6 +39,8 @@
   rownames(g) <- newList
   colnames(g) <- colnames(array)
   
+  g <- na.omit(g)
+  
   return(makeSummarizedExperimentFromExpressionSet(ExpressionSet(g)))
 }
 
@@ -55,7 +57,11 @@
     a <- na.omit(a)
     
     if(!is.null(dim(a))){
-      g[n,] <- array[names(sort(rowMeans(a),decreasing = TRUE))[1],]
+      if(dim(a)[1] > 0){
+        g[n,] <- array[names(sort(rowMeans(a),decreasing = TRUE))[1],] 
+      }else{
+        g[n,] <- rep(NA,ncol(a))
+      }
     }else{
       g[n,] <- a
     }
@@ -63,6 +69,8 @@
   
   rownames(g) <- newList
   colnames(g) <- colnames(array)
+  
+  g <- na.omit(g)
   
   return(makeSummarizedExperimentFromExpressionSet(ExpressionSet(g)))
 }
