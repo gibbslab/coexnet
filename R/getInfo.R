@@ -26,7 +26,7 @@ getInfo <- function(GSE,GPL,directory="."){
   
   # Obtaining the name of the compressed data
   
-  files <- dir(".")[grep("^GSE[0-9]",dir("."),ignore.case = TRUE)]
+  files <- dir(directory)[grep("^GSE[0-9]",dir(directory),ignore.case = TRUE)]
   
   # Uncompress all the raw data
   
@@ -36,5 +36,5 @@ getInfo <- function(GSE,GPL,directory="."){
   
   # Download the .soft file of the microarray chip
   
-  getGEOfile(GPL, destdir = ".")
+  getGEOfile(GPL, destdir = directory)
 }
