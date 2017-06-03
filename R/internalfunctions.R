@@ -26,7 +26,7 @@
   
   g <- matrix(0,length(newList),dim(array)[2])
   
-  g <- t(sapply(seq_len(nrow(g)), function(n){
+  g <- t(vapply(seq_len(nrow(g)), function(n){
     a <- array[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$ID),]$probe),]
     a <- na.omit(a)
     if(!is.null(dim(a))){
@@ -34,7 +34,7 @@
     }else{
       g[n,] <- a
     }
-  }))
+  },rep(0.0,ncol(array))))
   
   rownames(g) <- newList
   colnames(g) <- colnames(array)
@@ -50,7 +50,7 @@
   
   g <- matrix(0,length(newList),dim(array)[2])
   
-  g <- t(sapply(seq_len(nrow(g)), function(n){
+  g <- t(vapply(seq_len(nrow(g)), function(n){
     a <- array[as.vector(gene[grep(paste0("^",newList[n],"$"),gene$ID),]$probe),]
     a <- na.omit(a)
     
@@ -59,7 +59,7 @@
     }else{
       g[n,] <- a
     }
-  }))
+  },rep(0.0,ncol(array))))
   
   rownames(g) <- newList
   colnames(g) <- colnames(array)
