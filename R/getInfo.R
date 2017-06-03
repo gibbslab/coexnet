@@ -30,8 +30,8 @@ getInfo <- function(GSE,GPL,directory="."){
   
   # Uncompress all the raw data
   
-  for(j in files){
-    untar(paste0(j,"/",j,"_RAW.tar"), exdir = paste0(j,"/"))
+  for(j in GSE){
+    untar(paste0(directory,"/",j,"/",j,"_RAW.tar"), exdir = paste0(directory,"/",j,"/"))
   }
   
   # Download the .soft file of the microarray chip
