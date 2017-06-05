@@ -35,13 +35,13 @@ ppiNet <- function(molecularIDs = NULL,file = NULL,speciesID = 9606,evidence = c
   # Detecting the input type
   if(is.null(file) && molecularIDs > 0){
     # Creating the vector to store the unique identifiers
-    for_gen <- sapply(molecularIDs,function(i){
+    for_gen <- vapply(molecularIDs,function(i){
       if(grepl("-",i) > 0){
         return(unlist(strsplit(i,"-")))
       }else{
         return(i)
       }
-    })
+    },"character")
     
     # Remove duplicated identifiers
     for_gen <- unique(sort(for_gen))
