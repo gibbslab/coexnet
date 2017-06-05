@@ -31,7 +31,7 @@ probeset to gene considering the option to remove the batch effect in the long m
 \examples{
 \dontrun{
 
-# Loading gata
+# Loading data
 
 if (require(affydata)) {
  data(Dilution)

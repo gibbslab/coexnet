@@ -4,10 +4,10 @@
 \alias{cofVar}
 \title{Calculating the coefficient of variation for expression matrix.}
 \usage{
-cofVar(data, complete = TRUE, treatment = NULL, type = NULL)
+cofVar(expData, complete = TRUE, treatment = NULL, type = NULL)
 }
 \arguments{
-\item{data}{The whole normalized expression matrix, rows: genes or probeset, columns: samples, it may be stored in a SummarizedExperiment object.}
+\item{expData}{The whole normalized expression matrix, rows: genes or probeset, columns: samples, it may be stored in a SummarizedExperiment object.}
 
 \item{complete}{Boolean to define if the function uses the whole expression matrix, by default TRUE.}
 
@@ -49,7 +49,7 @@ head(complete)
 
 # For the case samples
 
-case <- cofVar(data = norm,complete = FALSE,treatment = treat,type = "case")
+case <- cofVar(expData = norm,complete = FALSE,treatment = treat,type = "case")
 head(case)
 }
 \author{

@@ -4,10 +4,10 @@
 \alias{findThreshold}
 \title{Find the threshold value to create a co-expression network}
 \usage{
-findThreshold(expmat, method, plotting = FALSE)
+findThreshold(expData, method, plotting = FALSE)
 }
 \arguments{
-\item{expmat}{A whole expression matrix or the expression matrix to differentially expressed genes, it may be stored in a SummarizedExperiment object.}
+\item{expData}{A whole expression matrix or the expression matrix to differentially expressed genes, it may be stored in a SummarizedExperiment object.}
 
 \item{method}{The method name to create the correlation matrix, this can be "correlation" to obtain the Pearson Correlation Coefficient. On the other hand, can be "mutual information" to obtain the correlation values from an entropy-based method.}
 
@@ -28,7 +28,7 @@ data <- read.table(pathfile,stringsAsFactors = FALSE)
 
 # Finding threshold value
 
-cor_pearson <- findThreshold(expmat = data,method = "correlation")
+cor_pearson <- findThreshold(expData = data,method = "correlation")
 cor_pearson
 }
 \references{
