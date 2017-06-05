@@ -43,7 +43,7 @@ test_createNet <- function(){
   
   # correlation
   
-  cor_pearson <- createNet(expmat = data,threshold = 0.7,method = "correlation")
+  cor_pearson <- createNet(expData = data,threshold = 0.7,method = "correlation")
 
   checkEquals(names(cor_pearson["RFC2"][4]),"PTPN21")
   checkEquals(names(cor_pearson["RFC2"][137]),"IL28A")
@@ -51,7 +51,7 @@ test_createNet <- function(){
   
   # mutual information
   
-  mut_inf <- createNet(expmat = data,threshold = 0.5,method = "mutual information")
+  mut_inf <- createNet(expData = data,threshold = 0.5,method = "mutual information")
   
   checkEquals(names(mut_inf["PXK"][40]),"NEDD1")
   checkEqualsNumeric(mut_inf["PXK"][40],0)
@@ -60,8 +60,8 @@ test_createNet <- function(){
   ## Errors
   
   checkException(createNet(),silent = TRUE)
-  checkException(createNet(expmat = data,threshold = 0.3),silent = TRUE)
-  checkException(createNet(expmat = data[1,5],method = "mutual information",threshold = 0.5),silent = TRUE)
+  checkException(createNet(expData = data,threshold = 0.3),silent = TRUE)
+  checkException(createNet(expData = data[1,5],method = "mutual information",threshold = 0.5),silent = TRUE)
 }
 
 ## test for findThreshold ##
@@ -75,14 +75,14 @@ test_findThreshold <- function(){
   
   # correlation
   
-  checkEqualsNumeric(findThreshold(expmat = data[1:5,],method = "correlation"),0.01)
-  checkEqualsNumeric(findThreshold(expmat = data[1:100,],method = "mutual information"),0.03)
+  checkEqualsNumeric(findThreshold(expData = data[1:5,],method = "correlation"),0.01)
+  checkEqualsNumeric(findThreshold(expData = data[1:100,],method = "mutual information"),0.03)
   
   ## Errors
   
   checkException(findThreshold(),silent = TRUE)
-  checkException(findThreshold(expmat = data),silent = TRUE)
-  checkException(findThreshold(expmat = data[1,5],method = "mutual information"),silent = TRUE)
+  checkException(findThreshold(expData = data),silent = TRUE)
+  checkException(findThreshold(expData = data[1,5],method = "mutual information"),silent = TRUE)
 }
 
 ## test for difExprs function ##
@@ -97,7 +97,7 @@ test_difExprs <- function(){
   
   # sam
   
-  sam <- difExprs(expdata = norm,treatment = treat,fdr = 0.05,DifferentialMethod = "sam")
+  sam <- difExprs(expData = norm,treatment = treat,fdr = 0.05,DifferentialMethod = "sam")
   
   checkTrue(dim(sam)[1] >= 1)
   checkTrue(is.data.frame(sam))
@@ -105,7 +105,7 @@ test_difExprs <- function(){
   
   # acde
   
-  acde <- difExprs(expdata = norm,treatment = treat,fdr = 0.05,DifferentialMethod = "acde")
+  acde <- difExprs(expData = norm,treatment = treat,fdr = 0.05,DifferentialMethod = "acde")
   
   checkTrue(dim(acde)[1] >= 1)
   checkTrue(is.data.frame(acde))
@@ -114,9 +114,9 @@ test_difExprs <- function(){
   ## Errors
   
   checkException(difExprs(),silent = TRUE)
-  checkException(difExprs(expdata = norm,treatment = treat,fdr = 3,DifferentialMethod = "sam"),silent = TRUE)
-  checkException(difExprs(expdata = norm[1:10,],treatment = treat,fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
-  checkException(difExprs(expdata = norm,treatment = c(0,1),fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
+  checkException(difExprs(expData = norm,treatment = treat,fdr = 3,DifferentialMethod = "sam"),silent = TRUE)
+  checkException(difExprs(expData = norm[1:10,],treatment = treat,fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
+  checkException(difExprs(expData = norm,treatment = c(0,1),fdr = 0.05,DifferentialMethod = "sam"),silent = TRUE)
 }
 
 ## test for getInfo function ##

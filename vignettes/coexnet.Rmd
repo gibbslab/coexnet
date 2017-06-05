@@ -174,7 +174,7 @@ norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
 
 # Calculating the coefficient of variation to case samples
 
-case <- cofVar(data = norm,complete = FALSE,treatment = t,type = "case")
+case <- cofVar(expData = norm,complete = FALSE,treatment = t,type = "case")
 head(case)
 
 # Creating the boxplot to coefficient of variation results
@@ -234,7 +234,7 @@ norm <- t(apply(mat, 1, function(nm) rnorm(m, mean=nm, sd=1)))
  
 # Running the function using the two approaches
  
-sam <- difExprs(expdata = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
+sam <- difExprs(expData = norm,treatment = t,fdr = 0.2,DifferentialMethod = "sam")
 head(sam)
 ```
 
@@ -259,7 +259,7 @@ data <- read.table(pathfile,stringsAsFactors = FALSE)
 
 # Finding threshold value
 
-cor_pearson <- findThreshold(expmat = data,method = "correlation")
+cor_pearson <- findThreshold(expData = data,method = "correlation")
 cor_pearson
 
 ```
@@ -291,7 +291,7 @@ data <- read.table(pathfile,stringsAsFactors = FALSE)
  
 # Building the network
  
-cor_pearson <- createNet(expmat = data,threshold = 0.7,method = "correlation")
+cor_pearson <- createNet(expData = data,threshold = 0.7,method = "correlation")
 plot(cor_pearson)
 ```
 
