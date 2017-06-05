@@ -15,9 +15,9 @@ ppiNet(molecularIDs = NULL, file = NULL, speciesID = 9606,
 
 \item{file}{A file with an edge list to charge the PPI network.}
 
-\item{evidence}{A vector with the evidence to support the interactions between the proteins, by default is all the evidence given in STRING database.}
+\item{speciesID}{The numerical ID from STRING database to the species of interest, by defect, is "9006" corresponding to human species.}
 
-\item{species_ID}{The numerical ID from STRING database to the species of interest, by defect, is "9006" corresponding to human species.}
+\item{evidence}{A vector with the evidence to support the interactions between the proteins, by default is all the evidence given in STRING database.}
 }
 \value{
 An igraph object as the protein-protein interaction network where the nodes are the molecular identifiers given in the input.

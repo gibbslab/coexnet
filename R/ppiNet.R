@@ -6,7 +6,7 @@
 #' @description Creates a protein-protein interaction network using an edge list with the relations between proteins or a vector with the gene symbols or any other molecular identifier type, widely used in biological databases, to create a predictive PPI network using information of evidence in STRING database.
 #' @param molecularIDs A vector of IDs recognized by STRING database to create a PPI network from them.
 #' @param file A file with an edge list to charge the PPI network.
-#' @param species_ID The numerical ID from STRING database to the species of interest, by defect, is "9006" corresponding to human species.
+#' @param speciesID The numerical ID from STRING database to the species of interest, by defect, is "9006" corresponding to human species.
 #' @param evidence A vector with the evidence to support the interactions between the proteins, by default is all the evidence given in STRING database.
 #' @return An igraph object as the protein-protein interaction network where the nodes are the molecular identifiers given in the input.
 #' @examples
